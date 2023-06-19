@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		174B7F3C85FD7590A5DA28FE /* Pods_SafeArea.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 542256F46CC0CC56F7C7E930 /* Pods_SafeArea.framework */; };
+		5E5361C12A40453500BEDD8D /* 1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5361C02A40453500BEDD8D /* 1.swift */; };
+		5E5361C32A40453B00BEDD8D /* 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5361C22A40453B00BEDD8D /* 2.swift */; };
+		5E5361C52A40454200BEDD8D /* 3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5361C42A40454200BEDD8D /* 3.swift */; };
+		5E5361C72A40454700BEDD8D /* 4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5361C62A40454700BEDD8D /* 4.swift */; };
+		5E5361C92A40454B00BEDD8D /* 5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5361C82A40454B00BEDD8D /* 5.swift */; };
 		786C24052A403BAC002E3F23 /* SafeAreaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786C24042A403BAC002E3F23 /* SafeAreaApp.swift */; };
 		786C24072A403BAC002E3F23 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786C24062A403BAC002E3F23 /* ContentView.swift */; };
 		786C24092A403BAD002E3F23 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 786C24082A403BAD002E3F23 /* Assets.xcassets */; };
@@ -17,6 +22,11 @@
 /* Begin PBXFileReference section */
 		282F5508BCF950633DFCBC2F /* Pods-SafeArea.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SafeArea.debug.xcconfig"; path = "Target Support Files/Pods-SafeArea/Pods-SafeArea.debug.xcconfig"; sourceTree = "<group>"; };
 		542256F46CC0CC56F7C7E930 /* Pods_SafeArea.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SafeArea.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E5361C02A40453500BEDD8D /* 1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 1.swift; sourceTree = "<group>"; };
+		5E5361C22A40453B00BEDD8D /* 2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 2.swift; sourceTree = "<group>"; };
+		5E5361C42A40454200BEDD8D /* 3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 3.swift; sourceTree = "<group>"; };
+		5E5361C62A40454700BEDD8D /* 4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 4.swift; sourceTree = "<group>"; };
+		5E5361C82A40454B00BEDD8D /* 5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 5.swift; sourceTree = "<group>"; };
 		695352883E3F02E1DAC44F26 /* Pods-SafeArea.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SafeArea.release.xcconfig"; path = "Target Support Files/Pods-SafeArea/Pods-SafeArea.release.xcconfig"; sourceTree = "<group>"; };
 		786C24012A403BAC002E3F23 /* SafeArea.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SafeArea.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		786C24042A403BAC002E3F23 /* SafeAreaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeAreaApp.swift; sourceTree = "<group>"; };
@@ -51,8 +61,75 @@
 				282F5508BCF950633DFCBC2F /* Pods-SafeArea.debug.xcconfig */,
 				695352883E3F02E1DAC44F26 /* Pods-SafeArea.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		5E5361B82A40444200BEDD8D /* App */ = {
+			isa = PBXGroup;
+			children = (
+				786C24042A403BAC002E3F23 /* SafeAreaApp.swift */,
+				786C24062A403BAC002E3F23 /* ContentView.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		5E5361B92A40444800BEDD8D /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				5E5361BC2A4044F500BEDD8D /* Extension */,
+				5E5361BB2A4044E300BEDD8D /* View */,
+				5E5361BA2A4044CF00BEDD8D /* Modifier */,
+			);
+			path = Global;
+			sourceTree = "<group>";
+		};
+		5E5361BA2A4044CF00BEDD8D /* Modifier */ = {
+			isa = PBXGroup;
+			children = (
+				5E5361C82A40454B00BEDD8D /* 5.swift */,
+			);
+			path = Modifier;
+			sourceTree = "<group>";
+		};
+		5E5361BB2A4044E300BEDD8D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5E5361C62A40454700BEDD8D /* 4.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5E5361BC2A4044F500BEDD8D /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				5E5361C42A40454200BEDD8D /* 3.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		5E5361BD2A40450100BEDD8D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5E5361BE2A40451100BEDD8D /* Fonts */,
+				786C24082A403BAD002E3F23 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		5E5361BE2A40451100BEDD8D /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				5E5361C22A40453B00BEDD8D /* 2.swift */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		5E5361BF2A40451D00BEDD8D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5E5361C02A40453500BEDD8D /* 1.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		786C23F82A403BAC002E3F23 = {
@@ -76,9 +153,10 @@
 		786C24032A403BAC002E3F23 /* SafeArea */ = {
 			isa = PBXGroup;
 			children = (
-				786C24042A403BAC002E3F23 /* SafeAreaApp.swift */,
-				786C24062A403BAC002E3F23 /* ContentView.swift */,
-				786C24082A403BAD002E3F23 /* Assets.xcassets */,
+				5E5361BF2A40451D00BEDD8D /* Model */,
+				5E5361BD2A40450100BEDD8D /* Resources */,
+				5E5361B92A40444800BEDD8D /* Global */,
+				5E5361B82A40444200BEDD8D /* App */,
 				786C240A2A403BAD002E3F23 /* Preview Content */,
 			);
 			path = SafeArea;
@@ -206,8 +284,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E5361C92A40454B00BEDD8D /* 5.swift in Sources */,
+				5E5361C52A40454200BEDD8D /* 3.swift in Sources */,
+				5E5361C12A40453500BEDD8D /* 1.swift in Sources */,
 				786C24072A403BAC002E3F23 /* ContentView.swift in Sources */,
+				5E5361C72A40454700BEDD8D /* 4.swift in Sources */,
 				786C24052A403BAC002E3F23 /* SafeAreaApp.swift in Sources */,
+				5E5361C32A40453B00BEDD8D /* 2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
