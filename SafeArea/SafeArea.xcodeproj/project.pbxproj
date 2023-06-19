@@ -10,9 +10,10 @@
 		174B7F3C85FD7590A5DA28FE /* Pods_SafeArea.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 542256F46CC0CC56F7C7E930 /* Pods_SafeArea.framework */; };
 		5E5361C12A40453500BEDD8D /* 1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5361C02A40453500BEDD8D /* 1.swift */; };
 		5E5361C32A40453B00BEDD8D /* 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5361C22A40453B00BEDD8D /* 2.swift */; };
-		5E5361C52A40454200BEDD8D /* 3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5361C42A40454200BEDD8D /* 3.swift */; };
 		5E5361C72A40454700BEDD8D /* 4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5361C62A40454700BEDD8D /* 4.swift */; };
 		5E5361C92A40454B00BEDD8D /* 5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5361C82A40454B00BEDD8D /* 5.swift */; };
+		786046222A404A5A007897B3 /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 786046212A404A5A007897B3 /* Secrets.plist */; };
+		786046242A404AB7007897B3 /* BundleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786046232A404AB7007897B3 /* BundleExtension.swift */; };
 		786C24052A403BAC002E3F23 /* SafeAreaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786C24042A403BAC002E3F23 /* SafeAreaApp.swift */; };
 		786C24072A403BAC002E3F23 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786C24062A403BAC002E3F23 /* ContentView.swift */; };
 		786C24092A403BAD002E3F23 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 786C24082A403BAD002E3F23 /* Assets.xcassets */; };
@@ -24,10 +25,11 @@
 		542256F46CC0CC56F7C7E930 /* Pods_SafeArea.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SafeArea.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E5361C02A40453500BEDD8D /* 1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 1.swift; sourceTree = "<group>"; };
 		5E5361C22A40453B00BEDD8D /* 2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 2.swift; sourceTree = "<group>"; };
-		5E5361C42A40454200BEDD8D /* 3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 3.swift; sourceTree = "<group>"; };
 		5E5361C62A40454700BEDD8D /* 4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 4.swift; sourceTree = "<group>"; };
 		5E5361C82A40454B00BEDD8D /* 5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 5.swift; sourceTree = "<group>"; };
 		695352883E3F02E1DAC44F26 /* Pods-SafeArea.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SafeArea.release.xcconfig"; path = "Target Support Files/Pods-SafeArea/Pods-SafeArea.release.xcconfig"; sourceTree = "<group>"; };
+		786046212A404A5A007897B3 /* Secrets.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Secrets.plist; sourceTree = "<group>"; };
+		786046232A404AB7007897B3 /* BundleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtension.swift; sourceTree = "<group>"; };
 		786C24012A403BAC002E3F23 /* SafeArea.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SafeArea.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		786C24042A403BAC002E3F23 /* SafeAreaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeAreaApp.swift; sourceTree = "<group>"; };
 		786C24062A403BAC002E3F23 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -102,7 +104,7 @@
 		5E5361BC2A4044F500BEDD8D /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				5E5361C42A40454200BEDD8D /* 3.swift */,
+				786046232A404AB7007897B3 /* BundleExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -112,6 +114,7 @@
 			children = (
 				5E5361BE2A40451100BEDD8D /* Fonts */,
 				786C24082A403BAD002E3F23 /* Assets.xcassets */,
+				786046212A404A5A007897B3 /* Secrets.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -231,6 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				786C240C2A403BAD002E3F23 /* Preview Assets.xcassets in Resources */,
+				786046222A404A5A007897B3 /* Secrets.plist in Resources */,
 				786C24092A403BAD002E3F23 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,12 +289,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E5361C92A40454B00BEDD8D /* 5.swift in Sources */,
-				5E5361C52A40454200BEDD8D /* 3.swift in Sources */,
 				5E5361C12A40453500BEDD8D /* 1.swift in Sources */,
 				786C24072A403BAC002E3F23 /* ContentView.swift in Sources */,
 				5E5361C72A40454700BEDD8D /* 4.swift in Sources */,
 				786C24052A403BAC002E3F23 /* SafeAreaApp.swift in Sources */,
 				5E5361C32A40453B00BEDD8D /* 2.swift in Sources */,
+				786046242A404AB7007897B3 /* BundleExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

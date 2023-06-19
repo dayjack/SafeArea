@@ -110,3 +110,6 @@ iOSInjectionProject/
 
 .DS_Store
 *.xcuserstate
+
+# .gitignore 중...
+Secrets.plist
