@@ -21,6 +21,7 @@
 		786C24072A403BAC002E3F23 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786C24062A403BAC002E3F23 /* ContentView.swift */; };
 		786C24092A403BAD002E3F23 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 786C24082A403BAD002E3F23 /* Assets.xcassets */; };
 		786C240C2A403BAD002E3F23 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 786C240B2A403BAD002E3F23 /* Preview Assets.xcassets */; };
+		78ED04E52A4073D5009FD225 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ED04E42A4073D5009FD225 /* ViewExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		786C24082A403BAD002E3F23 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		786C240B2A403BAD002E3F23 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		78ED04E12A406858009FD225 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		78ED04E42A4073D5009FD225 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				786046232A404AB7007897B3 /* BundleExtension.swift */,
+				78ED04E42A4073D5009FD225 /* ViewExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 				786C24072A403BAC002E3F23 /* ContentView.swift in Sources */,
 				5E5361C72A40454700BEDD8D /* 4.swift in Sources */,
 				5E5361D32A404A5800BEDD8D /* CoordinateToZscodeManager.swift in Sources */,
+				78ED04E52A4073D5009FD225 /* ViewExtension.swift in Sources */,
 				786C24052A403BAC002E3F23 /* SafeAreaApp.swift in Sources */,
 				5E5361C32A40453B00BEDD8D /* 2.swift in Sources */,
 				786046242A404AB7007897B3 /* BundleExtension.swift in Sources */,
