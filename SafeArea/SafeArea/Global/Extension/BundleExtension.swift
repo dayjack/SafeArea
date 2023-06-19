@@ -19,4 +19,13 @@ extension Bundle {//
         return key
     }
     
+    var chargingAPIKey: String? {
+        guard let file = self.path(forResource: "Secrets", ofType: "plist"),
+              let resource = NSDictionary(contentsOfFile: file),
+              let key = resource["ChargingAPIKey"] as? String else {
+            return nil
+        }
+        return key
+    }
+    
 }

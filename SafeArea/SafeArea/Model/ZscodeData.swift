@@ -9,6 +9,7 @@
 // To parse the JSON, add this file to your project and do:
 //
 //   let zscodeData = try? JSONDecoder().decode(ZscodeData.self, from: jsonData)
+// https://developers.kakao.com/docs/latest/ko/local/dev-guide#coord-to-district
 
 import Foundation
 
