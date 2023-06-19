@@ -25,6 +25,7 @@ class LocationViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = 0.4
         locationManager.startUpdatingLocation()
+        locationManager.requestWhenInUseAuthorization()
     }
     
     func requestPermission() {
