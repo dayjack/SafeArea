@@ -14,7 +14,7 @@
 import Foundation
 
 // MARK: - Welcome
-class ChargingStation: Codable, ObservableObject {
+class ChargingStation: Codable, ObservableObject, Identifiable {
     let resultMsg: String
     let totalCount: Int
     let items: Items
@@ -24,12 +24,12 @@ class ChargingStation: Codable, ObservableObject {
 }
 
 // MARK: - Items
-class Items: Codable, ObservableObject {
+class Items: Codable, ObservableObject, Identifiable {
     let item: [itemss]
 }
 
 // MARK: - Item
-class itemss: Codable, ObservableObject {
+class itemss: Codable, ObservableObject, Identifiable {
     let statNm,
         statID,
         chgerID,
