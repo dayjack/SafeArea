@@ -22,6 +22,7 @@
 		786C24092A403BAD002E3F23 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 786C24082A403BAD002E3F23 /* Assets.xcassets */; };
 		786C240C2A403BAD002E3F23 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 786C240B2A403BAD002E3F23 /* Preview Assets.xcassets */; };
 		78ED04E52A4073D5009FD225 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ED04E42A4073D5009FD225 /* ViewExtension.swift */; };
+		78ED04ED2A40848D009FD225 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ED04EC2A40848D009FD225 /* Weather.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		786C240B2A403BAD002E3F23 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		78ED04E12A406858009FD225 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		78ED04E42A4073D5009FD225 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
+		78ED04EC2A40848D009FD225 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +145,7 @@
 			children = (
 				5E5361CB2A4048A700BEDD8D /* ChargingStationModel.swift */,
 				5E5361CD2A4048CF00BEDD8D /* ZscodeData.swift */,
+				78ED04EC2A40848D009FD225 /* Weather.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 				5E5361CC2A4048A700BEDD8D /* ChargingStationModel.swift in Sources */,
 				786C24072A403BAC002E3F23 /* ContentView.swift in Sources */,
 				5E5361C72A40454700BEDD8D /* 4.swift in Sources */,
+				78ED04ED2A40848D009FD225 /* Weather.swift in Sources */,
 				5E5361D32A404A5800BEDD8D /* CoordinateToZscodeManager.swift in Sources */,
 				78ED04E52A4073D5009FD225 /* ViewExtension.swift in Sources */,
 				786C24052A403BAC002E3F23 /* SafeAreaApp.swift in Sources */,

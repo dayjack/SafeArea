@@ -49,6 +49,7 @@ struct ContentView: View {
                             print(self.chargingStationModelData?.items.item.first?.addr)
                         }
                     }
+                fetchWeather()
             }
     }
 }
