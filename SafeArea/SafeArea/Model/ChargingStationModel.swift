@@ -2,6 +2,14 @@
 // To parse the JSON, add this file to your project and do:
 //
 //   let welcome = try? JSONDecoder().decode(Welcome.self, from: jsonData)
+// https://www.data.go.kr/data/15013115/standard.do
+/*
+ https://apis.data.go.kr/B552584/EvCharger/getChargerInfo?
+ numOfRows=10
+ &pageNo=1
+ &zscode=47190
+ &dataType=JSON&serviceKey=3fN5XeyWbFOVDNr8xbmPsTXRwyTgskEJ6ghj0LFf131CQm3X52Rn%2BCMEwcttKysIzwU%2B45HuKQ4vXWX%2BC8LJ%2BQ%3D%3D
+ */
 
 import Foundation
 
@@ -49,4 +57,3 @@ class itemss: Codable, ObservableObject {
 
     
 }
-
