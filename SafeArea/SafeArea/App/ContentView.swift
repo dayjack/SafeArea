@@ -15,6 +15,7 @@ struct ContentView: View {
     @State var locationViewModel = LocationViewModel()
     @State var zscodeData: ZscodeData?
     @State var chargingStationModelData : ChargingStation?
+    @State var weatherData: Weather?
     var coordinate: CLLocationCoordinate2D? {
         locationViewModel.lastSeenLocation?.coordinate
     }
@@ -80,7 +81,6 @@ struct ContentView: View {
             locationViewModel.requestPermission()
             DispatchQueue.main.async {
                 fetchDatass(coordinate!)
-                //                fetchWeather()
                 
             }
         }

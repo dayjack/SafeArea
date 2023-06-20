@@ -64,7 +64,7 @@ extension ContentView {
         let url = "https://api.openweathermap.org/data/2.5/weather"
         let latitude = String(format: "%.2f", location.latitude)
         let longitude = String(format: "%.2f", location.longitude)
-        let params = ["lat" : latitude, "lon" : longitude, "appid" : "\(Bundle.main.weatherAPIKey!)"] as Dictionary
+        let params = ["lat" : latitude, "lon" : longitude, "appid" : "\(Bundle.main.weatherAPIKey!)", "units" : "metric"] as Dictionary
         let key = Bundle.main.weatherAPIKey!
         AF.request(url, method: .get ,parameters: params)
             .responseDecodable(of: Weather.self) { response in
@@ -72,7 +72,9 @@ extension ContentView {
                     print("Failed to decode fetchWeather")
                     return
                 }
-                print(response.value?.weather?.first?.description ?? "날씨 못불러옴")
+                self.weatherData = data
+                print("날씨 데이터 \(self.weatherData!.weather?.first?.description ?? "날씨 안되")")
+                print("날씨 온도 \(self.weatherData?.main?.temp)")
             }
     }
 }
