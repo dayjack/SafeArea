@@ -30,7 +30,7 @@ struct CustomBottomTabView: View {
                             .scaledToFit()
                             .frame(width: 31, height: 31)
                         Text("가이드라인")
-                            .font(.system(size: 12))
+                            .font(.custom("Pretendard-Medium", size: 12))
                             .fontWeight(.medium)
                             .foregroundColor(iconSelected == .guideline ? .safeGreen : .safeGray)
                     }
@@ -57,7 +57,7 @@ struct CustomBottomTabView: View {
                             .scaledToFit()
                             .frame(width: 31, height: 31)
                         Text("체크리스트")
-                            .font(.system(size: 12))
+                            .font(.custom("Pretendard-Medium", size: 12))
                             .fontWeight(.medium)
                             .foregroundColor(iconSelected == .checklist ? .safeGreen : .safeGray)
                     }
