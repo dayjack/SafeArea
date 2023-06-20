@@ -12,21 +12,60 @@ struct CustomWeekHeader: View {
     @State private var snappedItem = 0.0
     @State private var draggingItem = 0.0
     
+    @State private var greenDateList: [Date] = [
+        Date.now
+    ]
+    @State private var yellowDateList: [Date] = [
+        Date(timeIntervalSinceNow: 72000 * 2)
+    ]
+    @State private var redDateList: [Date] = [
+        Date(timeIntervalSinceNow: 72000)
+    ]
+    
     var body: some View {
         ZStack {
             ForEach(weekStore.allWeeks) { week in
                 VStack{
                     HStack(spacing: 20) {
                         ForEach(0..<7) { index in
+   
                             VStack(spacing: 20) {
                                 Text(weekStore.dateToString(date: week.date[index], format: "EEE"))
                                     .pretendarText(fontSize: 14, fontWeight: .semibold)
-                                Circle().frame(width: 35, height: 35).foregroundColor(.safeGray)
-                                    .overlay {
-                                        Text(weekStore.dateToString(date: week.date[index], format: "d"))
-                                            .pretendarText(fontSize: 16, fontWeight: .medium)
-                                            .foregroundColor(.white)
-                                    }
+                                
+                                
+                                if dateToString(date: greenDateList[0], format: "d") == weekStore.dateToString(date: week.date[index], format: "d")   {
+                                    Circle().frame(width: 35, height: 35).foregroundColor(.safeGreen)
+                                        .overlay {
+                                            Text(weekStore.dateToString(date: week.date[index], format: "d"))
+                                                .pretendarText(fontSize: 16, fontWeight: .medium)
+                                                .foregroundColor(.white)
+                                        }
+                                } else if dateToString(date: redDateList[0], format: "d") == weekStore.dateToString(date: week.date[index], format: "d")  {
+                                    Circle().frame(width: 35, height: 35).foregroundColor(.safeRed)
+                                        .overlay {
+                                            Text(weekStore.dateToString(date: week.date[index], format: "d"))
+                                                .pretendarText(fontSize: 16, fontWeight: .medium)
+                                                .foregroundColor(.white)
+                                            
+                                        }
+                                } else if dateToString(date: yellowDateList[0], format: "d") == weekStore.dateToString(date: week.date[index], format: "d") {
+                                    Circle().frame(width: 35, height: 35).foregroundColor(.yellow)
+                                        .overlay {
+                                            Text(weekStore.dateToString(date: week.date[index], format: "d"))
+                                                .pretendarText(fontSize: 16, fontWeight: .medium)
+                                                .foregroundColor(.white)
+                                        }
+                                }
+                                else {
+                                    Circle().frame(width: 35, height: 35).foregroundColor(.safeGray)
+                                        .overlay {
+                                            Text(weekStore.dateToString(date: week.date[index], format: "d"))
+                                                .pretendarText(fontSize: 16, fontWeight: .medium)
+                                                .foregroundColor(.white)
+                                        }
+                                }
+                               
                             }
                             .onTapGesture {
                                 // Updating Current Day
@@ -48,7 +87,7 @@ struct CustomWeekHeader: View {
             }
         }
         .frame(maxHeight: .infinity , alignment : .top)
-        .padding(.top,50)
+        .padding(.top, 16)
         .gesture(
             DragGesture()
                 .onChanged { value in
@@ -84,4 +123,14 @@ struct CustomWeekHeader_Previews: PreviewProvider {
     static var previews: some View {
         CustomWeekHeader()
     }
+}
+
+extension CustomWeekHeader {
+    func dateToString(date: Date, format: String) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = format
+        return formatter.string(from: date)
+    }
+    
+    
 }
