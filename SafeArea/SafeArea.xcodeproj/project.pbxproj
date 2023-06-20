@@ -17,6 +17,12 @@
 		5E5361ED2A4091E900BEDD8D /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E5361EC2A4091E900BEDD8D /* Secrets.plist */; };
 		5E5361EF2A40929F00BEDD8D /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5361EE2A40929F00BEDD8D /* LocationViewModel.swift */; };
 		5E8D42DA2A418E16000987E1 /* ContentViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8D42D92A418E16000987E1 /* ContentViewExtension.swift */; };
+
+		5E8D42F62A419499000987E1 /* MessageComposeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8D42F52A419499000987E1 /* MessageComposeView.swift */; };
+		783C92B52A41741900646999 /* CustomBottomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C92B42A41741900646999 /* CustomBottomTabView.swift */; };
+		783C92B72A41760300646999 /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C92B62A41760300646999 /* RoundedCorner.swift */; };
+		783C92B92A41870900646999 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C92B82A41870900646999 /* ColorExtension.swift */; };
+
 		783C92B52A41741900646999 /* CustomBottomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C92B42A41741900646999 /* CustomBottomTabView.swift */; };
 		783C92B72A41760300646999 /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C92B62A41760300646999 /* RoundedCorner.swift */; };
 		783C92B92A41870900646999 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C92B82A41870900646999 /* ColorExtension.swift */; };
@@ -26,6 +32,7 @@
 		783C92C22A4190CE00646999 /* Pretendard-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 783C92BD2A4190CE00646999 /* Pretendard-Medium.ttf */; };
 		783C92C32A4190CE00646999 /* Pretendard-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 783C92BE2A4190CE00646999 /* Pretendard-Light.ttf */; };
 		783C92C52A4190E900646999 /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C92C42A4190E900646999 /* FontExtension.swift */; };
+
 		786046242A404AB7007897B3 /* BundleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786046232A404AB7007897B3 /* BundleExtension.swift */; };
 		786C24052A403BAC002E3F23 /* SafeAreaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786C24042A403BAC002E3F23 /* SafeAreaApp.swift */; };
 		786C24072A403BAC002E3F23 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786C24062A403BAC002E3F23 /* ContentView.swift */; };
@@ -48,6 +55,7 @@
 		5E5361EC2A4091E900BEDD8D /* Secrets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Secrets.plist; sourceTree = "<group>"; };
 		5E5361EE2A40929F00BEDD8D /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
 		5E8D42D92A418E16000987E1 /* ContentViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewExtension.swift; sourceTree = "<group>"; };
+		5E8D42F52A419499000987E1 /* MessageComposeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageComposeView.swift; sourceTree = "<group>"; };
 		695352883E3F02E1DAC44F26 /* Pods-SafeArea.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SafeArea.release.xcconfig"; path = "Target Support Files/Pods-SafeArea/Pods-SafeArea.release.xcconfig"; sourceTree = "<group>"; };
 		783C92B42A41741900646999 /* CustomBottomTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBottomTabView.swift; sourceTree = "<group>"; };
 		783C92B62A41760300646999 /* RoundedCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
@@ -145,7 +153,9 @@
 				78ED04E42A4073D5009FD225 /* ViewExtension.swift */,
 				5E8D42D92A418E16000987E1 /* ContentViewExtension.swift */,
 				783C92B82A41870900646999 /* ColorExtension.swift */,
+
 				783C92C42A4190E900646999 /* FontExtension.swift */,
+
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -187,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				5E5361D02A404A4800BEDD8D /* ChargeDataManager.swift */,
+				5E8D42F52A419499000987E1 /* MessageComposeView.swift */,
 				5E5361D22A404A5800BEDD8D /* CoordinateToZscodeManager.swift */,
 			);
 			path = Helper;
@@ -353,6 +364,7 @@
 			files = (
 				5E5361C92A40454B00BEDD8D /* 5.swift in Sources */,
 				5E5361CE2A4048CF00BEDD8D /* ZscodeData.swift in Sources */,
+				5E8D42F62A419499000987E1 /* MessageComposeView.swift in Sources */,
 				5E5361CC2A4048A700BEDD8D /* ChargingStationModel.swift in Sources */,
 				786C24072A403BAC002E3F23 /* ContentView.swift in Sources */,
 				5E5361C72A40454700BEDD8D /* 4.swift in Sources */,
