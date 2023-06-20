@@ -114,6 +114,8 @@ struct CustomWeekHeader: View {
             self.checkListData = DBHelper.shared.readCheckListData()
             print("self.checkListData: \(DBHelper.shared.readCheckListData())")
             print("self.checkListData: \(checkListData)")
+            
+            print("EncodeTest: \(encodeBools(bools: [false, true, true, false, true]))")
         }
     }
     
