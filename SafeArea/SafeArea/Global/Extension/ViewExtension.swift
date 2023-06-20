@@ -43,8 +43,16 @@ extension View {
         return resultString
     }
     
-    func decodeBools() -> String {
-        return ""
+    func decodeBools(_ boolString: String) -> [Bool] {
+        
+        var temp = boolString
+        var resultBools: [Bool]  = []
+        
+        for boolChar in temp {
+            resultBools.append(boolChar == "1" ? true : false)
+        }
+        
+        return resultBools
     }
         
 }
