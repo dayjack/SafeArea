@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CustomBottomTabView: View {
+    
     var body: some View {
         ZStack {
             
@@ -21,13 +22,21 @@ struct CustomBottomTabView: View {
                 Button {
                     //
                 } label: {
-                    Text("d")
-                        .foregroundColor(.black)
+                    VStack(spacing: 5) {
+                        Image(IconName.guideline.rawValue)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 31, height: 31)
+                        Text("가이드라인")
+                            .font(.system(size: 12))
+                            .fontWeight(.medium)
+                    }
+                    .foregroundColor(.black)
                 }
                 Button {
                     
                 } label: {
-                    Text("d")
+                    Image(IconName.checklist.rawValue)
                         .frame(width: 73, height: 73)
                         .background(.white)
                         .clipShape(Circle())
@@ -39,8 +48,16 @@ struct CustomBottomTabView: View {
                 Button {
                     
                 } label: {
-                    Text("d")
-                        .foregroundColor(.black)
+                    VStack(spacing: 5) {
+                        Image(IconName.checklist.rawValue)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 31, height: 31)
+                        Text("체크리스트")
+                            .font(.system(size: 12))
+                            .fontWeight(.medium)
+                    }
+                    .foregroundColor(.black)
                 }
 
                 
@@ -63,4 +80,11 @@ extension View {
     func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
          clipShape(RoundedCorner(radius: radius, corners: corners))
      }
+}
+
+extension CustomBottomTabView {
+    enum IconName: String {
+        case guideline = "icon_guideline"
+        case checklist = "icon_checklist"
+    }
 }
