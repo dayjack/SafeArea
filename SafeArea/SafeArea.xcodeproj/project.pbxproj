@@ -16,6 +16,11 @@
 		5E5361EF2A40929F00BEDD8D /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5361EE2A40929F00BEDD8D /* LocationViewModel.swift */; };
 		5E8D42DA2A418E16000987E1 /* ContentViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8D42D92A418E16000987E1 /* ContentViewExtension.swift */; };
 		5E8D42F62A419499000987E1 /* MessageComposeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8D42F52A419499000987E1 /* MessageComposeView.swift */; };
+		5E8D42F82A41B8F7000987E1 /* GuidePageTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8D42F72A41B8F7000987E1 /* GuidePageTabView.swift */; };
+		5E8D42FA2A41C081000987E1 /* GuideSelectButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8D42F92A41C081000987E1 /* GuideSelectButtonView.swift */; };
+		5EFF36E22A41C33A004C768A /* GuideDetailView_1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFF36E12A41C33A004C768A /* GuideDetailView_1.swift */; };
+		5EFF36E42A41C34A004C768A /* GuideDetailView_2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFF36E32A41C34A004C768A /* GuideDetailView_2.swift */; };
+		5EFF36E62A41C355004C768A /* GuideDetailView_3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFF36E52A41C355004C768A /* GuideDetailView_3.swift */; };
 		783C92B52A41741900646999 /* CustomBottomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C92B42A41741900646999 /* CustomBottomTabView.swift */; };
 		783C92B72A41760300646999 /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C92B62A41760300646999 /* RoundedCorner.swift */; };
 		783C92B92A41870900646999 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C92B82A41870900646999 /* ColorExtension.swift */; };
@@ -53,6 +58,11 @@
 		5E5361EE2A40929F00BEDD8D /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
 		5E8D42D92A418E16000987E1 /* ContentViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewExtension.swift; sourceTree = "<group>"; };
 		5E8D42F52A419499000987E1 /* MessageComposeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageComposeView.swift; sourceTree = "<group>"; };
+		5E8D42F72A41B8F7000987E1 /* GuidePageTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidePageTabView.swift; sourceTree = "<group>"; };
+		5E8D42F92A41C081000987E1 /* GuideSelectButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideSelectButtonView.swift; sourceTree = "<group>"; };
+		5EFF36E12A41C33A004C768A /* GuideDetailView_1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideDetailView_1.swift; sourceTree = "<group>"; };
+		5EFF36E32A41C34A004C768A /* GuideDetailView_2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideDetailView_2.swift; sourceTree = "<group>"; };
+		5EFF36E52A41C355004C768A /* GuideDetailView_3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideDetailView_3.swift; sourceTree = "<group>"; };
 		695352883E3F02E1DAC44F26 /* Pods-SafeArea.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SafeArea.release.xcconfig"; path = "Target Support Files/Pods-SafeArea/Pods-SafeArea.release.xcconfig"; sourceTree = "<group>"; };
 		783C92B42A41741900646999 /* CustomBottomTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBottomTabView.swift; sourceTree = "<group>"; };
 		783C92B62A41760300646999 /* RoundedCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
@@ -149,7 +159,14 @@
 			children = (
 				783C92B42A41741900646999 /* CustomBottomTabView.swift */,
 				783C92B62A41760300646999 /* RoundedCorner.swift */,
+
 				783C92D62A41D02C00646999 /* CustomWeekHeader.swift */,
+				5E8D42F72A41B8F7000987E1 /* GuidePageTabView.swift */,
+				5E8D42F92A41C081000987E1 /* GuideSelectButtonView.swift */,
+				5EFF36E12A41C33A004C768A /* GuideDetailView_1.swift */,
+				5EFF36E32A41C34A004C768A /* GuideDetailView_2.swift */,
+				5EFF36E52A41C355004C768A /* GuideDetailView_3.swift */,
+
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -369,7 +386,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+
 				783C92CF2A41CF4C00646999 /* CheckboxStyle.swift in Sources */,
+
+				5E5361C92A40454B00BEDD8D /* 5.swift in Sources */,
+				5EFF36E42A41C34A004C768A /* GuideDetailView_2.swift in Sources */,
+
 				5E5361CE2A4048CF00BEDD8D /* ZscodeData.swift in Sources */,
 				5E8D42F62A419499000987E1 /* MessageComposeView.swift in Sources */,
 				783C92D52A41CFF400646999 /* WeekStore.swift in Sources */,
@@ -378,10 +400,16 @@
 				78ED04ED2A40848D009FD225 /* Weather.swift in Sources */,
 				783C92C52A4190E900646999 /* FontExtension.swift in Sources */,
 				783C92B92A41870900646999 /* ColorExtension.swift in Sources */,
+
 				783C92D72A41D02C00646999 /* CustomWeekHeader.swift in Sources */,
+
+				5EFF36E62A41C355004C768A /* GuideDetailView_3.swift in Sources */,
+
 				5E5361D32A404A5800BEDD8D /* CoordinateToZscodeManager.swift in Sources */,
 				783C92B52A41741900646999 /* CustomBottomTabView.swift in Sources */,
+				5E8D42FA2A41C081000987E1 /* GuideSelectButtonView.swift in Sources */,
 				783C92C92A419FFF00646999 /* MainGuideView.swift in Sources */,
+				5E8D42F82A41B8F7000987E1 /* GuidePageTabView.swift in Sources */,
 				783C92B72A41760300646999 /* RoundedCorner.swift in Sources */,
 				787C7BD12A409C080094A4A5 /* MapView.swift in Sources */,
 				78ED04E52A4073D5009FD225 /* ViewExtension.swift in Sources */,
@@ -389,6 +417,7 @@
 				783C92CB2A41A00800646999 /* MainCheckListView.swift in Sources */,
 				783C92CD2A41B7E900646999 /* PretendardTextModifier.swift in Sources */,
 				5E5361EF2A40929F00BEDD8D /* LocationViewModel.swift in Sources */,
+				5EFF36E22A41C33A004C768A /* GuideDetailView_1.swift in Sources */,
 				5E8D42DA2A418E16000987E1 /* ContentViewExtension.swift in Sources */,
 				786046242A404AB7007897B3 /* BundleExtension.swift in Sources */,
 				783C92C72A419FF500646999 /* MainMapView.swift in Sources */,

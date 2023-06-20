@@ -14,9 +14,9 @@ extension Color {
     static let black = Color(hex: "000000")
     */
     
-    static let safeGreen = Color(hex: "32C52F")
-    static let safeRed = Color(hex: "EC5832")
-    static let safeGray = Color(hex: "D9D9D9")
+    static let safeGreen = Color(hex: "6ECD6C")
+    static let safeRed = Color(hex: "EC583E")
+    static let safeGray = Color(hex: "EAEAEA")
     
     init(hex: String) {
         let scanner = Scanner(string: hex)
