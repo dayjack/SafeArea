@@ -41,7 +41,8 @@ extension ContentView {
     
     func fetchChargingStation(_ zscodes: String) {
         print(zscodes)
-        let chargingUrl = "https://apis.data.go.kr/B552584/EvCharger/getChargerInfo?numOfRows=9999&pageNo=1&zscode=\(zscodes)&dataType=JSON&serviceKey=\(Bundle.main.chargingAPIKey!)"
+//        let chargingUrl = "https://apis.data.go.kr/B552584/EvCharger/getChargerInfo?numOfRows=9999&pageNo=1&zscode=\(zscodes)&dataType=JSON&serviceKey=\(Bundle.main.chargingAPIKey!)"
+        let chargingUrl = "https://apis.data.go.kr/B552584/EvCharger/getChargerInfo?numOfRows=100&pageNo=1&zscode=\(zscodes)&dataType=JSON&serviceKey=\(Bundle.main.chargingAPIKey!)"
         
         
         print("\(Bundle.main.chargingAPIKey!)")
