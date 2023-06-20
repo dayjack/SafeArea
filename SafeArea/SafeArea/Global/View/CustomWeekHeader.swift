@@ -22,6 +22,9 @@ struct CustomWeekHeader: View {
         Date(timeIntervalSinceNow: 72000)
     ]
     
+    @State var checkListData: [CheckListModel] = []
+    
+    
     var body: some View {
         ZStack {
             ForEach(weekStore.allWeeks) { week in
@@ -106,16 +109,15 @@ struct CustomWeekHeader: View {
                     }
                 }
         )
+        .onAppear {
+            
+            self.checkListData = DBHelper.shared.readCheckListData()
+            print("self.checkListData: \(DBHelper.shared.readCheckListData())")
+            print("self.checkListData: \(checkListData)")
+        }
     }
     
-    func distance(_ item: Int) -> Double {
-        return (draggingItem - Double(item)).remainder(dividingBy: Double(weekStore.allWeeks.count))
-    }
-    
-    func myXOffset(_ item: Int) -> Double {
-        let angle = Double.pi * 2 / Double(weekStore.allWeeks.count) * distance(item)
-        return sin(angle) * 200
-    }
+   
     
 }
 
@@ -126,6 +128,16 @@ struct CustomWeekHeader_Previews: PreviewProvider {
 }
 
 extension CustomWeekHeader {
+    
+    func distance(_ item: Int) -> Double {
+        return (draggingItem - Double(item)).remainder(dividingBy: Double(weekStore.allWeeks.count))
+    }
+    
+    func myXOffset(_ item: Int) -> Double {
+        let angle = Double.pi * 2 / Double(weekStore.allWeeks.count) * distance(item)
+        return sin(angle) * 200
+    }
+    
     func dateToString(date: Date, format: String) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = format

@@ -21,6 +21,8 @@
 		5EFF36E22A41C33A004C768A /* GuideDetailView_1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFF36E12A41C33A004C768A /* GuideDetailView_1.swift */; };
 		5EFF36E42A41C34A004C768A /* GuideDetailView_2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFF36E32A41C34A004C768A /* GuideDetailView_2.swift */; };
 		5EFF36E62A41C355004C768A /* GuideDetailView_3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFF36E52A41C355004C768A /* GuideDetailView_3.swift */; };
+		783A42D92A41E5C30060F2ED /* DBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783A42D82A41E5C30060F2ED /* DBHelper.swift */; };
+		783A42DB2A41E7C50060F2ED /* CheckListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783A42DA2A41E7C50060F2ED /* CheckListModel.swift */; };
 		783C92B52A41741900646999 /* CustomBottomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C92B42A41741900646999 /* CustomBottomTabView.swift */; };
 		783C92B72A41760300646999 /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C92B62A41760300646999 /* RoundedCorner.swift */; };
 		783C92B92A41870900646999 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C92B82A41870900646999 /* ColorExtension.swift */; };
@@ -64,6 +66,8 @@
 		5EFF36E32A41C34A004C768A /* GuideDetailView_2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideDetailView_2.swift; sourceTree = "<group>"; };
 		5EFF36E52A41C355004C768A /* GuideDetailView_3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideDetailView_3.swift; sourceTree = "<group>"; };
 		695352883E3F02E1DAC44F26 /* Pods-SafeArea.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SafeArea.release.xcconfig"; path = "Target Support Files/Pods-SafeArea/Pods-SafeArea.release.xcconfig"; sourceTree = "<group>"; };
+		783A42D82A41E5C30060F2ED /* DBHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBHelper.swift; sourceTree = "<group>"; };
+		783A42DA2A41E7C50060F2ED /* CheckListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListModel.swift; sourceTree = "<group>"; };
 		783C92B42A41741900646999 /* CustomBottomTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBottomTabView.swift; sourceTree = "<group>"; };
 		783C92B62A41760300646999 /* RoundedCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
 		783C92B82A41870900646999 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
@@ -211,6 +215,7 @@
 				78ED04EC2A40848D009FD225 /* Weather.swift */,
 				5E5361EE2A40929F00BEDD8D /* LocationViewModel.swift */,
 				783C92D42A41CFF400646999 /* WeekStore.swift */,
+				783A42DA2A41E7C50060F2ED /* CheckListModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -221,6 +226,7 @@
 				5E5361D02A404A4800BEDD8D /* ChargeDataManager.swift */,
 				5E8D42F52A419499000987E1 /* MessageComposeView.swift */,
 				5E5361D22A404A5800BEDD8D /* CoordinateToZscodeManager.swift */,
+				783A42D82A41E5C30060F2ED /* DBHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -391,6 +397,7 @@
 				783C92D52A41CFF400646999 /* WeekStore.swift in Sources */,
 				5E5361CC2A4048A700BEDD8D /* ChargingStationModel.swift in Sources */,
 				786C24072A403BAC002E3F23 /* ContentView.swift in Sources */,
+				783A42D92A41E5C30060F2ED /* DBHelper.swift in Sources */,
 				78ED04ED2A40848D009FD225 /* Weather.swift in Sources */,
 				783C92C52A4190E900646999 /* FontExtension.swift in Sources */,
 				783C92B92A41870900646999 /* ColorExtension.swift in Sources */,
@@ -409,6 +416,7 @@
 				783C92CD2A41B7E900646999 /* PretendardTextModifier.swift in Sources */,
 				5E5361EF2A40929F00BEDD8D /* LocationViewModel.swift in Sources */,
 				5EFF36E22A41C33A004C768A /* GuideDetailView_1.swift in Sources */,
+				783A42DB2A41E7C50060F2ED /* CheckListModel.swift in Sources */,
 				5E8D42DA2A418E16000987E1 /* ContentViewExtension.swift in Sources */,
 				786046242A404AB7007897B3 /* BundleExtension.swift in Sources */,
 				783C92C72A419FF500646999 /* MainMapView.swift in Sources */,
@@ -542,7 +550,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SafeArea/Preview Content\"";
-				DEVELOPMENT_TEAM = C3U3CZ666D;
+				DEVELOPMENT_TEAM = UG6UT639QH;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SafeArea/Info.plist;
