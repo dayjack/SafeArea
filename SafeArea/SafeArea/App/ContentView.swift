@@ -12,7 +12,7 @@ import CoreLocation
 struct ContentView: View {
     
     // MARK: - PROPERTY
-    @StateObject var locationViewModel = LocationViewModel()
+    @State var locationViewModel = LocationViewModel()
     @State var zscodeData: ZscodeData?
     @State var chargingStationModelData : ChargingStation?
     var coordinate: CLLocationCoordinate2D? {
@@ -68,7 +68,7 @@ struct ContentView: View {
             case .checklist:
                 MainCheckListView()
             case .home:
-                MainMapView()
+                MainMapView(locationViewModel: $locationViewModel, zscodeData: $zscodeData, chargingStationModelData: $chargingStationModelData)
             }
             VStack {
                 Spacer()
