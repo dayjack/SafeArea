@@ -64,12 +64,15 @@ struct MainCheckListView: View {
                 Text("2023년 07월")
                     .pretendarText(fontSize: 16, fontWeight: .semibold)
                     .padding(.leading, 8)
-                Color.gray.opacity(0.1).frame(height: 68)
-                    .padding(.vertical)
+                Color.clear.overlay {
+                    CustomWeekHeader()
+                }
+                .frame(height: 68)
+                .padding(.bottom, 20)
                 Divider()
             }
             .frame(maxWidth: .infinity)
-            .padding(.leading, 16)
+            .padding(.horizontal, 16)
             Spacer()
                 .frame(height: 21)
                 .frame(maxWidth: .infinity)
@@ -102,19 +105,5 @@ struct MainCheckListView_Previews: PreviewProvider {
     }
 }
 
-struct CheckboxStyle: ToggleStyle {
-    
-    func makeBody(configuration: Self.Configuration) -> some View {
-        
-        return HStack {
-            Image(systemName: configuration.isOn ? "checkmark.square" : "square")
-                .resizable()
-                .frame(width: 18, height: 18)
-                .foregroundColor(configuration.isOn ? .safeGreen : .gray)
-            configuration.label
-            
-        }
-        .onTapGesture { configuration.isOn.toggle() }
-        
-    }
-}
+
+
