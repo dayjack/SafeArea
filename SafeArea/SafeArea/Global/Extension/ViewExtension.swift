@@ -26,5 +26,10 @@ extension View {
                 print(response.value?.weather?.first?.description ?? "날씨 못불러옴")
             }
     }
+    
+    func pretendarText(fontSize: CGFloat = 22, fontWeight: Font.Weight = .medium) -> some View {
+        modifier(PretendardTextModifier(fontSize: fontSize, fontWeight: fontWeight))
+    }
+        
 }
 //
