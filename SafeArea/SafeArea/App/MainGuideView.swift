@@ -15,7 +15,7 @@ struct MainGuideView: View {
         VStack(spacing: 0) {
             HStack {
                 Text("전기차 안전 가이드")
-                    .font(.system(size: 24, weight: .semibold))
+                    .pretendarText(fontSize: 24, fontWeight: .semibold)
                     .padding(EdgeInsets(top: 104, leading: 24, bottom: 21, trailing: 0))
                 Spacer()
             }
