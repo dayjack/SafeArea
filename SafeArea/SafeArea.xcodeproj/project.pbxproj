@@ -17,6 +17,7 @@
 		5E5361D32A404A5800BEDD8D /* CoordinateToZscodeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5361D22A404A5800BEDD8D /* CoordinateToZscodeManager.swift */; };
 		5E5361ED2A4091E900BEDD8D /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E5361EC2A4091E900BEDD8D /* Secrets.plist */; };
 		5E5361EF2A40929F00BEDD8D /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5361EE2A40929F00BEDD8D /* LocationViewModel.swift */; };
+		5E8D42DA2A418E16000987E1 /* ContentViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8D42D92A418E16000987E1 /* ContentViewExtension.swift */; };
 		786046242A404AB7007897B3 /* BundleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786046232A404AB7007897B3 /* BundleExtension.swift */; };
 		786C24052A403BAC002E3F23 /* SafeAreaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786C24042A403BAC002E3F23 /* SafeAreaApp.swift */; };
 		786C24072A403BAC002E3F23 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786C24062A403BAC002E3F23 /* ContentView.swift */; };
@@ -39,6 +40,7 @@
 		5E5361D22A404A5800BEDD8D /* CoordinateToZscodeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinateToZscodeManager.swift; sourceTree = "<group>"; };
 		5E5361EC2A4091E900BEDD8D /* Secrets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Secrets.plist; sourceTree = "<group>"; };
 		5E5361EE2A40929F00BEDD8D /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
+		5E8D42D92A418E16000987E1 /* ContentViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewExtension.swift; sourceTree = "<group>"; };
 		695352883E3F02E1DAC44F26 /* Pods-SafeArea.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SafeArea.release.xcconfig"; path = "Target Support Files/Pods-SafeArea/Pods-SafeArea.release.xcconfig"; sourceTree = "<group>"; };
 		786046232A404AB7007897B3 /* BundleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtension.swift; sourceTree = "<group>"; };
 		786C24012A403BAC002E3F23 /* SafeArea.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SafeArea.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,6 +125,7 @@
 			children = (
 				786046232A404AB7007897B3 /* BundleExtension.swift */,
 				78ED04E42A4073D5009FD225 /* ViewExtension.swift */,
+				5E8D42D92A418E16000987E1 /* ContentViewExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 				786C24052A403BAC002E3F23 /* SafeAreaApp.swift in Sources */,
 				5E5361EF2A40929F00BEDD8D /* LocationViewModel.swift in Sources */,
 				5E5361C32A40453B00BEDD8D /* 2.swift in Sources */,
+				5E8D42DA2A418E16000987E1 /* ContentViewExtension.swift in Sources */,
 				786046242A404AB7007897B3 /* BundleExtension.swift in Sources */,
 				5E5361D12A404A4800BEDD8D /* ChargeDataManager.swift in Sources */,
 			);
@@ -462,7 +466,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SafeArea/Preview Content\"";
-				DEVELOPMENT_TEAM = UG6UT639QH;
+				DEVELOPMENT_TEAM = C3U3CZ666D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SafeArea/Info.plist;
@@ -496,7 +500,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SafeArea/Preview Content\"";
-				DEVELOPMENT_TEAM = UG6UT639QH;
+				DEVELOPMENT_TEAM = C3U3CZ666D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SafeArea/Info.plist;
