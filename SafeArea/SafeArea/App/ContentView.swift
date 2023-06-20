@@ -20,6 +20,7 @@ struct ContentView: View {
     }
     @State private var isShowingMessageView = false
     @State private var showingAlert = false
+    @State private var iconSelected: IconName = .home
     
     
     
@@ -27,43 +28,54 @@ struct ContentView: View {
     
     
     var body: some View {
-        VStack {
-            Button(action: {
-                showingAlert = true
-            }) {
-                Text("긴급")
-                    .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
+//        VStack {
+//            Button(action: {
+//                showingAlert = true
+//            }) {
+//                Text("긴급")
+//                    .padding()
+//                    .background(Color.blue)
+//                    .foregroundColor(.white)
+//                    .cornerRadius(10)
+//            }
+//            .alert("119 긴급 신고를 하시겠습니까?", isPresented: $showingAlert) {
+//
+//                Button("취소", role: .cancel) {}
+//                Button("신고하기", role: .destructive) {isShowingMessageView = true}
+//
+//            }message: {
+//                Text("화재 경보 및 현재 충전소의 위치 정보가\n함께 신고 접수됩니다.")
+//            }
+//
+//
+//            // 메시지 보내는 코드
+//            .sheet(isPresented: $isShowingMessageView) {
+//                MessageComposeView(recipients: ["01040359646"], messageBody: "전기차에서 불났어요")
+//            }
+//
+//
+//            // MARK: - 값 체크
+//            Text("현재 latitude : \(coordinate?.latitude ?? 0)")
+//            Text("현재 longitude : \(coordinate?.longitude ?? 0)")
+//
+//            Text(self.chargingStationModelData?.items.item.first?.addr ?? "test")
+//        }
+        ZStack {
+            
+            switch iconSelected {
+            case .guideline:
+                MainGuideView()
+            case .checklist:
+                MainCheckListView()
+            case .home:
+                MainMapView()
             }
-            .alert("119 긴급 신고를 하시겠습니까?", isPresented: $showingAlert) {
-                
-                Button("취소", role: .cancel) {}
-                Button("신고하기", role: .destructive) {isShowingMessageView = true}
-
-            }message: {
-                Text("화재 경보 및 현재 충전소의 위치 정보가\n함께 신고 접수됩니다.")
+            VStack {
+                Spacer()
+                CustomBottomTabView(iconSelected: $iconSelected)
             }
-            
-            
-            // 메시지 보내는 코드
-            .sheet(isPresented: $isShowingMessageView) {
-                MessageComposeView(recipients: ["01040359646"], messageBody: "전기차에서 불났어요")
-            }
-            
-            
-            // MARK: - 값 체크
-            Text("현재 latitude : \(coordinate?.latitude ?? 0)")
-            Text("현재 longitude : \(coordinate?.longitude ?? 0)")
-            
-            Text(self.chargingStationModelData?.items.item.first?.addr ?? "test")
-        }
-        
-        
-        
-        
-        .padding()
+            .ignoresSafeArea()
+        }.ignoresSafeArea()
         .onAppear {
             locationViewModel.requestPermission()
             DispatchQueue.main.async {
@@ -82,3 +94,8 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
+enum IconName: String {
+    case guideline = "icon_guideline"
+    case checklist = "icon_checklist"
+    case home = "icon_home"
+}

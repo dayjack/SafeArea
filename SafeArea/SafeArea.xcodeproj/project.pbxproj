@@ -17,12 +17,7 @@
 		5E5361ED2A4091E900BEDD8D /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E5361EC2A4091E900BEDD8D /* Secrets.plist */; };
 		5E5361EF2A40929F00BEDD8D /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5361EE2A40929F00BEDD8D /* LocationViewModel.swift */; };
 		5E8D42DA2A418E16000987E1 /* ContentViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8D42D92A418E16000987E1 /* ContentViewExtension.swift */; };
-
 		5E8D42F62A419499000987E1 /* MessageComposeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8D42F52A419499000987E1 /* MessageComposeView.swift */; };
-		783C92B52A41741900646999 /* CustomBottomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C92B42A41741900646999 /* CustomBottomTabView.swift */; };
-		783C92B72A41760300646999 /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C92B62A41760300646999 /* RoundedCorner.swift */; };
-		783C92B92A41870900646999 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C92B82A41870900646999 /* ColorExtension.swift */; };
-
 		783C92B52A41741900646999 /* CustomBottomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C92B42A41741900646999 /* CustomBottomTabView.swift */; };
 		783C92B72A41760300646999 /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C92B62A41760300646999 /* RoundedCorner.swift */; };
 		783C92B92A41870900646999 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C92B82A41870900646999 /* ColorExtension.swift */; };
@@ -32,7 +27,9 @@
 		783C92C22A4190CE00646999 /* Pretendard-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 783C92BD2A4190CE00646999 /* Pretendard-Medium.ttf */; };
 		783C92C32A4190CE00646999 /* Pretendard-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 783C92BE2A4190CE00646999 /* Pretendard-Light.ttf */; };
 		783C92C52A4190E900646999 /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C92C42A4190E900646999 /* FontExtension.swift */; };
-
+		783C92C72A419FF500646999 /* MainMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C92C62A419FF500646999 /* MainMapView.swift */; };
+		783C92C92A419FFF00646999 /* MainGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C92C82A419FFF00646999 /* MainGuideView.swift */; };
+		783C92CB2A41A00800646999 /* MainCheckListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C92CA2A41A00800646999 /* MainCheckListView.swift */; };
 		786046242A404AB7007897B3 /* BundleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786046232A404AB7007897B3 /* BundleExtension.swift */; };
 		786C24052A403BAC002E3F23 /* SafeAreaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786C24042A403BAC002E3F23 /* SafeAreaApp.swift */; };
 		786C24072A403BAC002E3F23 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786C24062A403BAC002E3F23 /* ContentView.swift */; };
@@ -66,6 +63,9 @@
 		783C92BD2A4190CE00646999 /* Pretendard-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.ttf"; sourceTree = "<group>"; };
 		783C92BE2A4190CE00646999 /* Pretendard-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.ttf"; sourceTree = "<group>"; };
 		783C92C42A4190E900646999 /* FontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtension.swift; sourceTree = "<group>"; };
+		783C92C62A419FF500646999 /* MainMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMapView.swift; sourceTree = "<group>"; };
+		783C92C82A419FFF00646999 /* MainGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGuideView.swift; sourceTree = "<group>"; };
+		783C92CA2A41A00800646999 /* MainCheckListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCheckListView.swift; sourceTree = "<group>"; };
 		786046232A404AB7007897B3 /* BundleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtension.swift; sourceTree = "<group>"; };
 		786C24012A403BAC002E3F23 /* SafeArea.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SafeArea.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		786C24042A403BAC002E3F23 /* SafeAreaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeAreaApp.swift; sourceTree = "<group>"; };
@@ -113,6 +113,9 @@
 				786C24042A403BAC002E3F23 /* SafeAreaApp.swift */,
 				786C24062A403BAC002E3F23 /* ContentView.swift */,
 				787C7BD02A409C080094A4A5 /* MapView.swift */,
+				783C92C62A419FF500646999 /* MainMapView.swift */,
+				783C92C82A419FFF00646999 /* MainGuideView.swift */,
+				783C92CA2A41A00800646999 /* MainCheckListView.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -153,9 +156,7 @@
 				78ED04E42A4073D5009FD225 /* ViewExtension.swift */,
 				5E8D42D92A418E16000987E1 /* ContentViewExtension.swift */,
 				783C92B82A41870900646999 /* ColorExtension.swift */,
-
 				783C92C42A4190E900646999 /* FontExtension.swift */,
-
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -373,13 +374,16 @@
 				783C92B92A41870900646999 /* ColorExtension.swift in Sources */,
 				5E5361D32A404A5800BEDD8D /* CoordinateToZscodeManager.swift in Sources */,
 				783C92B52A41741900646999 /* CustomBottomTabView.swift in Sources */,
+				783C92C92A419FFF00646999 /* MainGuideView.swift in Sources */,
 				783C92B72A41760300646999 /* RoundedCorner.swift in Sources */,
 				787C7BD12A409C080094A4A5 /* MapView.swift in Sources */,
 				78ED04E52A4073D5009FD225 /* ViewExtension.swift in Sources */,
 				786C24052A403BAC002E3F23 /* SafeAreaApp.swift in Sources */,
+				783C92CB2A41A00800646999 /* MainCheckListView.swift in Sources */,
 				5E5361EF2A40929F00BEDD8D /* LocationViewModel.swift in Sources */,
 				5E8D42DA2A418E16000987E1 /* ContentViewExtension.swift in Sources */,
 				786046242A404AB7007897B3 /* BundleExtension.swift in Sources */,
+				783C92C72A419FF500646999 /* MainMapView.swift in Sources */,
 				5E5361D12A404A4800BEDD8D /* ChargeDataManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
