@@ -11,7 +11,8 @@ import SwiftUI
 struct SafeAreaApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+//            ContentView()
+            CustomBottomTabView()
         }
     }
 }
