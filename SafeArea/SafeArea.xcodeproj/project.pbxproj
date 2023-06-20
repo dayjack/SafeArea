@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		174B7F3C85FD7590A5DA28FE /* Pods_SafeArea.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 542256F46CC0CC56F7C7E930 /* Pods_SafeArea.framework */; };
 		5E5361C72A40454700BEDD8D /* 4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5361C62A40454700BEDD8D /* 4.swift */; };
-		5E5361C92A40454B00BEDD8D /* 5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5361C82A40454B00BEDD8D /* 5.swift */; };
 		5E5361CC2A4048A700BEDD8D /* ChargingStationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5361CB2A4048A700BEDD8D /* ChargingStationModel.swift */; };
 		5E5361CE2A4048CF00BEDD8D /* ZscodeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5361CD2A4048CF00BEDD8D /* ZscodeData.swift */; };
 		5E5361D12A404A4800BEDD8D /* ChargeDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5361D02A404A4800BEDD8D /* ChargeDataManager.swift */; };
@@ -30,6 +29,7 @@
 		783C92C72A419FF500646999 /* MainMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C92C62A419FF500646999 /* MainMapView.swift */; };
 		783C92C92A419FFF00646999 /* MainGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C92C82A419FFF00646999 /* MainGuideView.swift */; };
 		783C92CB2A41A00800646999 /* MainCheckListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C92CA2A41A00800646999 /* MainCheckListView.swift */; };
+		783C92CD2A41B7E900646999 /* PretendardTextModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C92CC2A41B7E900646999 /* PretendardTextModifier.swift */; };
 		786046242A404AB7007897B3 /* BundleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786046232A404AB7007897B3 /* BundleExtension.swift */; };
 		786C24052A403BAC002E3F23 /* SafeAreaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786C24042A403BAC002E3F23 /* SafeAreaApp.swift */; };
 		786C24072A403BAC002E3F23 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786C24062A403BAC002E3F23 /* ContentView.swift */; };
@@ -44,7 +44,6 @@
 		282F5508BCF950633DFCBC2F /* Pods-SafeArea.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SafeArea.debug.xcconfig"; path = "Target Support Files/Pods-SafeArea/Pods-SafeArea.debug.xcconfig"; sourceTree = "<group>"; };
 		542256F46CC0CC56F7C7E930 /* Pods_SafeArea.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SafeArea.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E5361C62A40454700BEDD8D /* 4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 4.swift; sourceTree = "<group>"; };
-		5E5361C82A40454B00BEDD8D /* 5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 5.swift; sourceTree = "<group>"; };
 		5E5361CB2A4048A700BEDD8D /* ChargingStationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargingStationModel.swift; sourceTree = "<group>"; };
 		5E5361CD2A4048CF00BEDD8D /* ZscodeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZscodeData.swift; sourceTree = "<group>"; };
 		5E5361D02A404A4800BEDD8D /* ChargeDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargeDataManager.swift; sourceTree = "<group>"; };
@@ -66,6 +65,7 @@
 		783C92C62A419FF500646999 /* MainMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMapView.swift; sourceTree = "<group>"; };
 		783C92C82A419FFF00646999 /* MainGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGuideView.swift; sourceTree = "<group>"; };
 		783C92CA2A41A00800646999 /* MainCheckListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCheckListView.swift; sourceTree = "<group>"; };
+		783C92CC2A41B7E900646999 /* PretendardTextModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PretendardTextModifier.swift; sourceTree = "<group>"; };
 		786046232A404AB7007897B3 /* BundleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtension.swift; sourceTree = "<group>"; };
 		786C24012A403BAC002E3F23 /* SafeArea.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SafeArea.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		786C24042A403BAC002E3F23 /* SafeAreaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeAreaApp.swift; sourceTree = "<group>"; };
@@ -134,7 +134,7 @@
 		5E5361BA2A4044CF00BEDD8D /* Modifier */ = {
 			isa = PBXGroup;
 			children = (
-				5E5361C82A40454B00BEDD8D /* 5.swift */,
+				783C92CC2A41B7E900646999 /* PretendardTextModifier.swift */,
 			);
 			path = Modifier;
 			sourceTree = "<group>";
@@ -363,7 +363,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5E5361C92A40454B00BEDD8D /* 5.swift in Sources */,
 				5E5361CE2A4048CF00BEDD8D /* ZscodeData.swift in Sources */,
 				5E8D42F62A419499000987E1 /* MessageComposeView.swift in Sources */,
 				5E5361CC2A4048A700BEDD8D /* ChargingStationModel.swift in Sources */,
@@ -380,6 +379,7 @@
 				78ED04E52A4073D5009FD225 /* ViewExtension.swift in Sources */,
 				786C24052A403BAC002E3F23 /* SafeAreaApp.swift in Sources */,
 				783C92CB2A41A00800646999 /* MainCheckListView.swift in Sources */,
+				783C92CD2A41B7E900646999 /* PretendardTextModifier.swift in Sources */,
 				5E5361EF2A40929F00BEDD8D /* LocationViewModel.swift in Sources */,
 				5E8D42DA2A418E16000987E1 /* ContentViewExtension.swift in Sources */,
 				786046242A404AB7007897B3 /* BundleExtension.swift in Sources */,
@@ -514,7 +514,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SafeArea/Preview Content\"";
-				DEVELOPMENT_TEAM = C3U3CZ666D;
+				DEVELOPMENT_TEAM = UG6UT639QH;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SafeArea/Info.plist;
@@ -548,7 +548,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SafeArea/Preview Content\"";
-				DEVELOPMENT_TEAM = C3U3CZ666D;
+				DEVELOPMENT_TEAM = UG6UT639QH;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SafeArea/Info.plist;
