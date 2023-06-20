@@ -92,7 +92,10 @@ struct MainCheckListView: View {
                     .toggleStyle(CheckboxStyle())
                 }
                 .ignoresSafeArea()
-
+                .onChange(of: bools) { newValue in
+                    print("bools change : \(newValue)")
+                }
+                
             }
             .padding(.leading, 24)
             .frame(maxWidth: .infinity)
