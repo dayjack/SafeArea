@@ -12,31 +12,32 @@ struct GuideSelectButtonView: View {
     @Binding var guidePageNumber: Int
     
     var body: some View {
-        ZStack {
+        VStack(spacing:-1) {
             HStack {
                 VStack(spacing: 17){
                     Button(action: {
                         guidePageNumber = 0
                     }) {
                         Text("전기차 관리")
-                            .fontWeight(.semibold)
+                            .pretendarText(fontSize: 18, fontWeight: .semibold)
                             .foregroundColor(guidePageNumber == 0 ? Color.safeGreen : Color(hex: "C5C5C5"))
                     }
+                    
                     Divider()
                         .frame(minHeight: 2)
-                        .overlay(guidePageNumber == 0 ? Color.safeGreen : Color(hex: "C5C5C5"))
+                        .overlay(guidePageNumber == 0 ? Color.safeGreen : Color.clear)
                 }
                 VStack(spacing: 17){
                     Button(action: {
                         guidePageNumber = 1
                     }) {
                         Text("전기차 충전")
-                            .fontWeight(.semibold)
+                            .pretendarText(fontSize: 18, fontWeight: .semibold)
                             .foregroundColor(guidePageNumber == 1 ? Color.safeGreen : Color(hex: "C5C5C5"))
                     }
                     Divider()
                         .frame(minHeight: 2)
-                        .overlay(guidePageNumber == 1 ? Color.safeGreen : Color(hex: "C5C5C5"))
+                        .overlay(guidePageNumber == 1 ? Color.safeGreen : Color.clear)
                         
                 }
                 VStack(spacing: 17){
@@ -44,12 +45,12 @@ struct GuideSelectButtonView: View {
                         guidePageNumber = 2
                     }) {
                         Text("긴급  상황")
-                            .fontWeight(.semibold)
+                            .pretendarText(fontSize: 18, fontWeight: .semibold)
                             .foregroundColor(guidePageNumber == 2 ? Color.safeGreen : Color(hex: "C5C5C5"))
                     }
                     Divider()
                         .frame(minHeight: 2)
-                        .overlay(guidePageNumber == 2 ? Color.safeGreen : Color(hex: "C5C5C5"))
+                        .overlay(guidePageNumber == 2 ? Color.safeGreen : Color.clear)
                 }
             }
             .padding(.leading, 25)
@@ -57,6 +58,7 @@ struct GuideSelectButtonView: View {
             
             .border(Color.black, width: 0)
             
+            Divider()
         }
     }
 }

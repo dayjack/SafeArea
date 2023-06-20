@@ -16,11 +16,11 @@ struct GuideDetailView_2: View {
             ForEach(0..<6){ index in
                 ZStack(alignment: .topLeading) {
                     Text("\(arrayText[index].0)")
-                        .font(.system(size: 16))
+                        .pretendarText(fontSize: 16)
                         .fontWeight(.semibold)
                         .padding(.leading, 24)
                     Text(arrayText[index].1)
-                        .font(.system(size: 16))
+                        .pretendarText(fontSize: 16)
                         .padding(.leading, 48)
                         .padding(.trailing, 24)
                 }
