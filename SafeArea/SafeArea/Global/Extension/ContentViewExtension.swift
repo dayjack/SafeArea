@@ -64,6 +64,7 @@ extension ContentView {
         let url = "https://api.openweathermap.org/data/2.5/weather"
         let latitude = String(format: "%.2f", location.latitude)
         let longitude = String(format: "%.2f", location.longitude)
+        print("날씨 위도 경도 \(latitude), \(longitude)")
         let params = ["lat" : latitude, "lon" : longitude, "appid" : "\(Bundle.main.weatherAPIKey!)", "units" : "metric"] as Dictionary
         let key = Bundle.main.weatherAPIKey!
         AF.request(url, method: .get ,parameters: params)
@@ -74,6 +75,7 @@ extension ContentView {
                 }
                 self.weatherData = data
                 print("날씨 데이터 \(self.weatherData!.weather?.first?.description ?? "날씨 안되")")
+                print("날씨 데이터2  \(self.weatherData!.weather?.first?.id ?? 2)")
                 print("날씨 온도 \(self.weatherData?.main?.temp)")
             }
     }

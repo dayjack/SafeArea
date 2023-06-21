@@ -69,20 +69,22 @@ struct ContentView: View {
             case .checklist:
                 MainCheckListView()
             case .home:
-                MainMapView(locationViewModel: $locationViewModel, zscodeData: $zscodeData, chargingStationModelData: $chargingStationModelData)
+                MainMapView(locationViewModel: $locationViewModel, zscodeData: $zscodeData, chargingStationModelData: $chargingStationModelData, weatherData: $weatherData)
             }
             VStack {
                 Spacer()
                 CustomBottomTabView(iconSelected: $iconSelected)
             }
             .ignoresSafeArea()
-        }.ignoresSafeArea()
+        }
+        .ignoresSafeArea()
         .onAppear {
             locationViewModel.requestPermission()
             DispatchQueue.main.async {
                 fetchDatass(coordinate!)
                 
             }
+            
         }
     }
 }
