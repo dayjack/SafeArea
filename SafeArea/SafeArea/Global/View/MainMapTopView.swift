@@ -124,6 +124,14 @@ struct MainMapTopView: View {
             }
             .padding(.top, 54)
             .padding(.leading, 21)
+            
+            HStack {
+                Spacer()
+                EmergencyButtonView()
+                    .padding(.top, 56)
+                    .padding(.trailing, 15)
+            }
+            
         }
     }
     
