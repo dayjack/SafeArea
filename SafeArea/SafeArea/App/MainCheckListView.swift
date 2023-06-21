@@ -44,19 +44,30 @@ struct MainCheckListView: View {
                 Text("오늘 하루 나의 차는 안전한가요?")
                     .pretendarText(fontSize: 14, fontWeight: .medium)
                     .padding(.bottom, 45)
-                Text("이번 달 나의 안전지수")
-                    .pretendarText(fontSize: 16, fontWeight: .medium)
-                HStack(spacing: 9) {
-                    Gauge(value: progress) {
-                        EmptyView()
+                
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("나의 안전지수 100% 충전 챌린지")
+                        .pretendarText(fontSize: 16, fontWeight: .semibold)
+                    HStack(spacing: 9) {
+                        Gauge(value: progress) {
+                            EmptyView()
+                        }
+                        .frame(width: 190)
+                        .frame(height: 10)
+                        .tint(.safeGreen)
+//                        .gaugeStyle(.accessoryLinearCapacity)
+                        
+                        Text("50%")
+                            .frame(height: 19)
+                            .pretendarText(fontSize: 12, fontWeight: .medium)
                     }
-                    .frame(width: 190)
-                    .frame(height: 10)
-                    .tint(.safeGreen)
-                    Text("50%")
-                        .frame(height: 19)
-                        .pretendarText(fontSize: 12, fontWeight: .medium)
                 }
+                .padding(.vertical, 11)
+                .padding(.horizontal, 18)
+                .background(Color.safeGreen.opacity(0.15))
+                .cornerRadius(11)
+                
+                
             }
             .frame(maxWidth: .infinity)
             .padding(.leading, 24)
