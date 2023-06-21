@@ -17,24 +17,52 @@ struct MainMapView: View {
     @Binding var locationViewModel: LocationViewModel
     @Binding var zscodeData: ZscodeData?
     @Binding var chargingStationModelData: ChargingStation?
+    @Binding var weatherData: Weather?
     var coordinate: CLLocationCoordinate2D? {
         locationViewModel.lastSeenLocation?.coordinate
     }
     
     var body: some View {
-        Map(coordinateRegion: $region, showsUserLocation: true, userTrackingMode: .constant(userTrackingMode), annotationItems: (self.chargingStationModelData?.items.item ?? .init())) { charging in
-            MapAnnotation(coordinate: .init(latitude: (charging.lat as! NSString).doubleValue, longitude: (charging.lng as! NSString).doubleValue)) {
-                Circle().foregroundColor(.brown).frame(width: 20, height: 20)
+        
+        ZStack {
+            Map(coordinateRegion: $region, showsUserLocation: true, userTrackingMode: .constant(userTrackingMode), annotationItems: (self.chargingStationModelData?.items.item ?? .init())) { charging in
+                MapAnnotation(coordinate: .init(latitude: (charging.lat as! NSString).doubleValue, longitude: (charging.lng as! NSString).doubleValue)) {
+                    Circle().foregroundColor(.brown).frame(width: 20, height: 20)
+                }
             }
+            .ignoresSafeArea()
+            .tint(.black)
+            .gesture(DragGesture().onChanged { _ in
+                userTrackingMode = .none
+            })
+            
+            
+            VStack(spacing: 0) {
+                
+                ZStack {
+                    MainMapTopView(locationViewModel: $locationViewModel, zscodeData: $zscodeData, chargingStationModelData: $chargingStationModelData, weatherData: $weatherData)
+                    //매개변수 locationViewModel: $locationViewModel, zscodeData: $zscodeData, chargingStationModelData: $chargingStationModelData, weatherData: $weatherData
+//                    Image("Union2")
+//                        .resizable()
+//                        .aspectRatio(contentMode: .fit)
+//
+////                    print("날씨 데이터 \(self.weatherData!.weather?.first?.description ?? "날씨 안되")")
+////                    print("날씨 온도 \(self.weatherData?.main?.temp)")
+//
+//                    Text("날씨 데이터 \(self.weatherData?.weather?.first?.id ?? 0)")
+                    
+                }
+                
+                
+                
+                Spacer()
+            }
+            
+            
+            
         }
-        .ignoresSafeArea()
-        .tint(.black)
-        .gesture(DragGesture().onChanged { _ in
-            userTrackingMode = .none
-        })
-        .onAppear {
-            print("charging count: \(chargingStationModelData?.items.item.count)")
-        }
+        
+        
     }
 }
 
