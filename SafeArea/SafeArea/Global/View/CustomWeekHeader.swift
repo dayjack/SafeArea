@@ -26,7 +26,7 @@ struct CustomWeekHeader: View {
         ZStack {
             ForEach(weekStore.allWeeks) { week in
                 VStack{
-                    HStack(spacing: 20) {
+                    HStack(spacing: 12) {
                         ForEach(0..<7) { index in
                            
                             
@@ -40,6 +40,10 @@ struct CustomWeekHeader: View {
                                             .foregroundColor(.white)
                                     }
                             }
+                            .padding(.horizontal, 4)
+                            .padding(.vertical, 5)
+                            .background(formatDate(date: weekStore.koreanTime()) == weekStore.dateToString(date: week.date[index], format: "yyyy-MM-dd") ? Color.init(hex: "EEEEEE") : .clear)
+                            .cornerRadius(14)
                             .onTapGesture {
                                 // Updating Current Day
                                 weekStore.currentDate = week.date[index]
