@@ -91,8 +91,9 @@ struct MainMapTopView: View {
                     RoundedRectangle(cornerRadius: 1)
                         .frame(width: 1.5, height: 16)
                         .padding(.trailing, 8)
-                    Text(zscodeData?.documents.first?.address_name ?? "로딩중")
+                    Text(zscodeData?.documents.first?.address_name ?? "")
                         .pretendarText(fontSize: 12, fontWeight: .medium)
+                        .foregroundColor(Color.black.opacity(0.5))
                     
                 }
                 .padding(.bottom, 8)
@@ -114,7 +115,7 @@ struct MainMapTopView: View {
                     MainMapTopDescriptionView_4()
                         .padding(.leading, 3)
                 default:
-                    Text("로딩중 입니다.")
+                    Text("")
                         .pretendarText(fontSize: 16)
                         .padding(.leading, 3)
                 }
@@ -125,12 +126,12 @@ struct MainMapTopView: View {
             .padding(.top, 54)
             .padding(.leading, 21)
             
-            HStack {
-                Spacer()
-                EmergencyButtonView()
-                    .padding(.top, 56)
-                    .padding(.trailing, 15)
-            }
+//            HStack {
+//                Spacer()
+//                EmergencyButtonView()
+//                    .padding(.top, 56)
+//                    .padding(.trailing, 15)
+//            }
             
         }
     }

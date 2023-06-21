@@ -72,6 +72,12 @@ struct ContentView: View {
                 MainMapView(locationViewModel: $locationViewModel, zscodeData: $zscodeData, chargingStationModelData: $chargingStationModelData, weatherData: $weatherData)
             }
             VStack {
+                HStack {
+                    Spacer()
+                    EmergencyButtonView()
+                        .padding(.top, 56)
+                        .padding(.trailing, 15)
+                }
                 Spacer()
                 CustomBottomTabView(iconSelected: $iconSelected)
             }
