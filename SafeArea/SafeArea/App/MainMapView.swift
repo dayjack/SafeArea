@@ -27,7 +27,7 @@ struct MainMapView: View {
         ZStack {
             Map(coordinateRegion: $region, showsUserLocation: true, userTrackingMode: .constant(userTrackingMode), annotationItems: (self.chargingStationModelData?.items.item ?? .init())) { charging in
                 MapAnnotation(coordinate: .init(latitude: (charging.lat as! NSString).doubleValue, longitude: (charging.lng as! NSString).doubleValue)) {
-                    Circle().foregroundColor(.brown).frame(width: 20, height: 20)
+                    PlaceAnnotationView()
                 }
             }
             .ignoresSafeArea()
