@@ -31,7 +31,7 @@ struct MainMapView: View {
                 }
             }
             .ignoresSafeArea()
-            .tint(.black)
+            .tint(.safeRed)
             .gesture(DragGesture().onChanged { _ in
                 userTrackingMode = .none
             })
