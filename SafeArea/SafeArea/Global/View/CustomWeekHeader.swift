@@ -163,10 +163,10 @@ extension CustomWeekHeader {
             return .safeYellow
         } else if redDateStringList.contains(dateStr) {
             print("dateColorFunc : red")
-            return .red
+            return .safeRed
         } else {
             print("dateColorFunc : gray")
-            return .gray
+            return .safeGray
         }
     }
 }
