@@ -26,7 +26,9 @@ struct MainCheckListView: View {
     ]
     
     @State var bools: [Bool] = [false, false, false, false, false, false, false, false, false, false]
-    
+    @State var checkListData: [CheckListModel] = []
+    @State var selectedDate: Date = Date.now
+    @State var weekStore = WeekStore()
     
     var body: some View {
         VStack(spacing: 0) {
@@ -66,7 +68,7 @@ struct MainCheckListView: View {
                     .pretendarText(fontSize: 16, fontWeight: .semibold)
                     .padding(.leading, 8)
                 Color.clear.overlay {
-                    CustomWeekHeader()
+                    CustomWeekHeader(weekStore: $weekStore, checkListData: $checkListData, bools: self.$bools, selectedDate: $selectedDate)
                 }
                 .frame(height: 68)
                 .padding(.bottom, 20)
@@ -93,7 +95,10 @@ struct MainCheckListView: View {
                 .ignoresSafeArea()
                 .onChange(of: bools) { newValue in
                     print("bools change : \(newValue)")
-                    DBHelper.shared.updateCheckListData(bools: encodeBools(bools: newValue), date: "111111")
+                    DBHelper.shared.updateCheckListData(bools: encodeBools(bools: newValue), date: formatDate(date: koreanTime(date: weekStore.currentDate)))
+                }
+                .onChange(of: selectedDate) { newValue in
+                    bindingCheckList(date: newValue)
                 }
                 
             }
@@ -102,6 +107,12 @@ struct MainCheckListView: View {
             Spacer()
         }
         .ignoresSafeArea(.all)
+        .onAppear {
+            self.checkListData = DBHelper.shared.readCheckListData(date: formatDate(date: koreanTime(date: Date.now)))
+            print("현재시간: \(koreanTime(date: Date.now))")
+            self.selectedDate = koreanTime(date: Date.now)
+            bindingCheckList(date: koreanTime(date: Date.now))
+        }
     }
     
 }
@@ -112,5 +123,17 @@ struct MainCheckListView_Previews: PreviewProvider {
     }
 }
 
-
-
+extension MainCheckListView {
+    
+    func bindingCheckList(date: Date) {
+        print("현재시간 in bind : \(date)")
+        print("현재시간 fotmat : \(formatDate(date: date))")
+        self.checkListData = DBHelper.shared.readCheckListData(date: formatDate(date: date))
+        print("bindingCheckList : \(decodeBools(self.checkListData.first?.bools ?? "Data none")), \(date)")
+        if checkListData.isEmpty {
+            self.bools = [false, false, false, false, false, false, false, false, false, false]
+        } else {
+            self.bools = decodeBools(self.checkListData.first?.bools ?? "Data none")
+        }
+    }
+}
