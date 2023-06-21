@@ -25,6 +25,10 @@ struct MainCheckListView: View {
         "🚧 주행 전 차량 주위 안전 점검"
     ]
     
+    @State var bools: [Bool] = [false, false, false, false, false, false, false, false, false, false]
+    @State var checkListData: [CheckListModel] = []
+    @State var selectedDate: Date = Date.now
+    @State var weekStore = WeekStore()
     
     var body: some View {
         VStack(spacing: 0) {
@@ -44,7 +48,6 @@ struct MainCheckListView: View {
                     Gauge(value: progress) {
                         EmptyView()
                     }
-                    .gaugeStyle(.accessoryLinearCapacity)
                     .frame(width: 190)
                     .frame(height: 10)
                     .tint(.safeGreen)
@@ -65,7 +68,7 @@ struct MainCheckListView: View {
                     .pretendarText(fontSize: 16, fontWeight: .semibold)
                     .padding(.leading, 8)
                 Color.clear.overlay {
-                    CustomWeekHeader()
+                    CustomWeekHeader(weekStore: $weekStore, checkListData: $checkListData, bools: self.$bools, selectedDate: $selectedDate)
                 }
                 .frame(height: 68)
                 .padding(.bottom, 20)
@@ -79,8 +82,9 @@ struct MainCheckListView: View {
             // MARK: - 체크 리스트
             VStack(alignment: .leading, spacing: 13) {
                 Spacer().frame(height: 1).frame(maxWidth: .infinity)
-                ForEach(checkList, id: \.self) { item in
-                    Toggle(isOn: $isOn) {
+                ForEach(checkList.indices, id: \.self) { index in
+                    let item = checkList[index]
+                    Toggle(isOn: $bools[index]) {
                         Text(item)
                             .pretendarText(fontSize: 16, fontWeight: .regular)
                             .foregroundColor(.black)
@@ -89,12 +93,26 @@ struct MainCheckListView: View {
                     .toggleStyle(CheckboxStyle())
                 }
                 .ignoresSafeArea()
+                .onChange(of: bools) { newValue in
+                    print("bools change : \(newValue)")
+                    DBHelper.shared.updateCheckListData(bools: encodeBools(bools: newValue), date: formatDate(date: koreanTime(date: weekStore.currentDate)))
+                }
+                .onChange(of: selectedDate) { newValue in
+                    bindingCheckList(date: newValue)
+                }
+                
             }
             .padding(.leading, 24)
             .frame(maxWidth: .infinity)
             Spacer()
         }
         .ignoresSafeArea(.all)
+        .onAppear {
+            self.checkListData = DBHelper.shared.readCheckListData(date: formatDate(date: koreanTime(date: Date.now)))
+            print("현재시간: \(koreanTime(date: Date.now))")
+            self.selectedDate = koreanTime(date: Date.now)
+            bindingCheckList(date: koreanTime(date: Date.now))
+        }
     }
     
 }
@@ -105,5 +123,17 @@ struct MainCheckListView_Previews: PreviewProvider {
     }
 }
 
-
-
+extension MainCheckListView {
+    
+    func bindingCheckList(date: Date) {
+        print("현재시간 in bind : \(date)")
+        print("현재시간 fotmat : \(formatDate(date: date))")
+        self.checkListData = DBHelper.shared.readCheckListData(date: formatDate(date: date))
+        print("bindingCheckList : \(decodeBools(self.checkListData.first?.bools ?? "Data none")), \(date)")
+        if checkListData.isEmpty {
+            self.bools = [false, false, false, false, false, false, false, false, false, false]
+        } else {
+            self.bools = decodeBools(self.checkListData.first?.bools ?? "Data none")
+        }
+    }
+}

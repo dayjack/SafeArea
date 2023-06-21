@@ -81,7 +81,7 @@ struct ContentView: View {
         .onAppear {
             locationViewModel.requestPermission()
             DispatchQueue.main.async {
-                fetchDatass(coordinate!)
+                fetchDatass(coordinate ?? .init())
                 
             }
             

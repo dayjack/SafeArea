@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CustomWeekHeader: View {
-    @StateObject var weekStore = WeekStore()
+    @Binding var weekStore: WeekStore
     @State private var snappedItem = 0.0
     @State private var draggingItem = 0.0
     
@@ -22,13 +22,17 @@ struct CustomWeekHeader: View {
         Date(timeIntervalSinceNow: 72000)
     ]
     
+    @Binding var checkListData: [CheckListModel]
+    @Binding var bools: [Bool]
+    @Binding var selectedDate: Date
+    
     var body: some View {
         ZStack {
             ForEach(weekStore.allWeeks) { week in
                 VStack{
                     HStack(spacing: 20) {
                         ForEach(0..<7) { index in
-   
+                            
                             VStack(spacing: 20) {
                                 Text(weekStore.dateToString(date: week.date[index], format: "EEE"))
                                     .pretendarText(fontSize: 14, fontWeight: .semibold)
@@ -65,12 +69,15 @@ struct CustomWeekHeader: View {
                                                 .foregroundColor(.white)
                                         }
                                 }
-                               
+                                
                             }
                             .onTapGesture {
                                 // Updating Current Day
                                 weekStore.currentDate = week.date[index]
-                                print("weekStore : \(weekStore.koreanTime())")
+                                print("currentDate :\(weekStore.koreanTime())")
+                                self.checkListData = DBHelper.shared.readCheckListData(date: formatDate(date: weekStore.koreanTime()))
+                                self.selectedDate = weekStore.koreanTime()
+                                bindingCheckList(date: weekStore.koreanTime())
                             }
                         }
                     }
@@ -107,6 +114,9 @@ struct CustomWeekHeader: View {
                 }
         )
     }
+}
+
+extension CustomWeekHeader {
     
     func distance(_ item: Int) -> Double {
         return (draggingItem - Double(item)).remainder(dividingBy: Double(weekStore.allWeeks.count))
@@ -117,15 +127,6 @@ struct CustomWeekHeader: View {
         return sin(angle) * 200
     }
     
-}
-
-struct CustomWeekHeader_Previews: PreviewProvider {
-    static var previews: some View {
-        CustomWeekHeader()
-    }
-}
-
-extension CustomWeekHeader {
     func dateToString(date: Date, format: String) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = format
@@ -133,4 +134,17 @@ extension CustomWeekHeader {
     }
     
     
+}
+
+extension CustomWeekHeader {
+    
+    func bindingCheckList(date: Date) {
+        self.checkListData = DBHelper.shared.readCheckListData(date: formatDate(date: koreanTime(date: date)))
+        print("bindingCheckList : \(decodeBools(self.checkListData.first?.bools ?? "Data none"))")
+        if checkListData.isEmpty {
+            self.bools = [false, false, false, false, false, false, false, false, false, false]
+        } else {
+            self.bools = decodeBools(self.checkListData.first?.bools ?? "Data none")
+        }
+    }
 }
