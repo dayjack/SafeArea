@@ -30,6 +30,29 @@ extension View {
     func pretendarText(fontSize: CGFloat = 22, fontWeight: Font.Weight = .medium) -> some View {
         modifier(PretendardTextModifier(fontSize: fontSize, fontWeight: fontWeight))
     }
+    
+    func encodeBools(bools: [Bool]) -> String {
+        
+        var temp = bools
+        var resultString = ""
+        
+        for boolItem in bools {
+            resultString.append(boolItem ? "1" : "0")
+        }
+        
+        return resultString
+    }
+    
+    func decodeBools(_ boolString: String) -> [Bool] {
+        
+        var temp = boolString
+        var resultBools: [Bool]  = []
+        
+        for boolChar in temp {
+            resultBools.append(boolChar == "1" ? true : false)
+        }
+        
+        return resultBools
+    }
         
 }
-//

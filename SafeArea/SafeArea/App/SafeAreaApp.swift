@@ -29,6 +29,10 @@ struct SafeAreaApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .onAppear {
+                    _ = DBHelper.shared.createDB()
+                    DBHelper.shared.createCheckListTable()
+                }
         }
     }
 }

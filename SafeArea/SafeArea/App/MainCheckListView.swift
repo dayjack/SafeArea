@@ -25,6 +25,8 @@ struct MainCheckListView: View {
         "🚧 주행 전 차량 주위 안전 점검"
     ]
     
+    @State var bools: [Bool] = [false, false, false, false, false, false, false, false, false, false]
+    
     
     var body: some View {
         VStack(spacing: 0) {
@@ -44,7 +46,6 @@ struct MainCheckListView: View {
                     Gauge(value: progress) {
                         EmptyView()
                     }
-                    .gaugeStyle(.accessoryLinearCapacity)
                     .frame(width: 190)
                     .frame(height: 10)
                     .tint(.safeGreen)
@@ -79,8 +80,9 @@ struct MainCheckListView: View {
             // MARK: - 체크 리스트
             VStack(alignment: .leading, spacing: 13) {
                 Spacer().frame(height: 1).frame(maxWidth: .infinity)
-                ForEach(checkList, id: \.self) { item in
-                    Toggle(isOn: $isOn) {
+                ForEach(checkList.indices, id: \.self) { index in
+                    let item = checkList[index]
+                    Toggle(isOn: $bools[index]) {
                         Text(item)
                             .pretendarText(fontSize: 16, fontWeight: .regular)
                             .foregroundColor(.black)
@@ -89,6 +91,11 @@ struct MainCheckListView: View {
                     .toggleStyle(CheckboxStyle())
                 }
                 .ignoresSafeArea()
+                .onChange(of: bools) { newValue in
+                    print("bools change : \(newValue)")
+                    DBHelper.shared.updateCheckListData(bools: encodeBools(bools: newValue), date: "111111")
+                }
+                
             }
             .padding(.leading, 24)
             .frame(maxWidth: .infinity)
