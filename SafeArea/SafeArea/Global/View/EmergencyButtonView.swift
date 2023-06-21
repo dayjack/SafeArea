@@ -13,7 +13,8 @@ struct EmergencyButtonView: View {
     @State private var showingAlert = false
     @State private var isPressing = false
     @State private var timer: Timer? = nil
-    let generator = UIImpactFeedbackGenerator(style: .heavy)
+    let generator = UIImpactFeedbackGenerator(style: .soft)
+    
     // MARK: - BODY
     var body: some View {
         ZStack{
@@ -21,7 +22,23 @@ struct EmergencyButtonView: View {
                 .resizable()
                 .frame(width: 88, height: 88)
                 .shadow(color: Color.black.opacity(0.25), radius: 10, x: 0, y: 4)
+                .overlay(
+                    Circle()
+                        .stroke(Color(hex: "EC583E"), lineWidth: 2)
+                        .frame(width: isPressing ? 115 : 85, height: isPressing ? 115 : 85)
+                )
+                .overlay(
+                    Circle()
+                        .stroke(Color(hex: "EC583E"), lineWidth: 2)
+                        .frame(width: isPressing ? 108 : 78, height: isPressing ? 108 : 78)
+                )
+                .overlay(
+                    Circle()
+                        .stroke(Color(hex: "EC583E"), lineWidth: 2)
+                        .frame(width: isPressing ? 101 : 71, height: isPressing ? 101 : 71)
+                )
         }
+        .animation(Animation.easeOut(duration: 3), value: isPressing)
         .gesture(
             LongPressGesture(minimumDuration: 3)
                 .onEnded { _ in
@@ -34,11 +51,14 @@ struct EmergencyButtonView: View {
                 .onChanged { value in
                     if !isPressing {
                         isPressing = true
+                        generator.impactOccurred()
                         timer = Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
                             isPressing = false
                             timer?.invalidate()
-                            print("Timeout - Press Duration Less Than 3 Seconds")
+                            print("Long Timeout - Press Duration Less Than 3 Seconds")
                         }
+                        
+                        
                         print("Long Press Started")
                     }
                 }
@@ -50,41 +70,8 @@ struct EmergencyButtonView: View {
             Text("화재 경보 및 현재 충전소의 위치 정보가\n함께 신고 접수됩니다.")
         }
         .sheet(isPresented: $isShowingMessageView) {
-            MessageComposeView(recipients: ["01040359646"], messageBody: "전기차에서 불났어요")
+            MessageComposeView(recipients: ["01040359646", "01087918713"], messageBody: "전기차에서 불났어요")
         }
-        
-        
-        //        .gesture(
-        //            LongPressGesture(minimumDuration: 3)
-        //                .onEnded{ _ in
-        //                    isPressing = false
-        //                    print("Long Press Ended")
-        //                }
-        //                .onChanged{ value in
-        //
-        //                    if !isPressing {
-        //                        isPressing = true
-        //                        print("Long Press Started")
-        //                    }
-        //                }
-        //        )
-        
-        
-        
-        //        .onTapGesture {
-        //            showingAlert = true
-        //        }
-        //        .alert("119 긴급 신고를 하시겠습니까?", isPresented: $showingAlert) {
-        //            Button("취소", role: .cancel) {}
-        //            Button("신고하기", role: .destructive) {isShowingMessageView = true}
-        //
-        //        }message: {
-        //            Text("화재 경보 및 현재 충전소의 위치 정보가\n함께 신고 접수됩니다.")
-        //        }
-        //
-        //        .sheet(isPresented: $isShowingMessageView) {
-        //            MessageComposeView(recipients: ["01040359646"], messageBody: "전기차에서 불났어요")
-        //        }
         
     }
 }
