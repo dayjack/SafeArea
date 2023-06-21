@@ -12,19 +12,15 @@ struct CustomWeekHeader: View {
     @State private var snappedItem = 0.0
     @State private var draggingItem = 0.0
     
-    @State private var greenDateList: [Date] = [
-        Date.now
-    ]
-    @State private var yellowDateList: [Date] = [
-        Date(timeIntervalSinceNow: 72000 * 2)
-    ]
-    @State private var redDateList: [Date] = [
-        Date(timeIntervalSinceNow: 72000)
-    ]
+    @State private var checkListAllData: [CheckListModel] = []
+    @State private var greenDateStringList: [String] = []
+    @State private var yellowDateStringList: [String] = []
+    @State private var redDateStringList: [String] = []
     
     @Binding var checkListData: [CheckListModel]
     @Binding var bools: [Bool]
     @Binding var selectedDate: Date
+    
     
     var body: some View {
         ZStack {
@@ -32,44 +28,17 @@ struct CustomWeekHeader: View {
                 VStack{
                     HStack(spacing: 20) {
                         ForEach(0..<7) { index in
+                           
                             
                             VStack(spacing: 20) {
                                 Text(weekStore.dateToString(date: week.date[index], format: "EEE"))
                                     .pretendarText(fontSize: 14, fontWeight: .semibold)
-                                
-                                
-                                if dateToString(date: greenDateList[0], format: "d") == weekStore.dateToString(date: week.date[index], format: "d")   {
-                                    Circle().frame(width: 35, height: 35).foregroundColor(.safeGreen)
-                                        .overlay {
-                                            Text(weekStore.dateToString(date: week.date[index], format: "d"))
-                                                .pretendarText(fontSize: 16, fontWeight: .medium)
-                                                .foregroundColor(.white)
-                                        }
-                                } else if dateToString(date: redDateList[0], format: "d") == weekStore.dateToString(date: week.date[index], format: "d")  {
-                                    Circle().frame(width: 35, height: 35).foregroundColor(.safeRed)
-                                        .overlay {
-                                            Text(weekStore.dateToString(date: week.date[index], format: "d"))
-                                                .pretendarText(fontSize: 16, fontWeight: .medium)
-                                                .foregroundColor(.white)
-                                            
-                                        }
-                                } else if dateToString(date: yellowDateList[0], format: "d") == weekStore.dateToString(date: week.date[index], format: "d") {
-                                    Circle().frame(width: 35, height: 35).foregroundColor(.yellow)
-                                        .overlay {
-                                            Text(weekStore.dateToString(date: week.date[index], format: "d"))
-                                                .pretendarText(fontSize: 16, fontWeight: .medium)
-                                                .foregroundColor(.white)
-                                        }
-                                }
-                                else {
-                                    Circle().frame(width: 35, height: 35).foregroundColor(.safeGray)
-                                        .overlay {
-                                            Text(weekStore.dateToString(date: week.date[index], format: "d"))
-                                                .pretendarText(fontSize: 16, fontWeight: .medium)
-                                                .foregroundColor(.white)
-                                        }
-                                }
-                                
+                                Circle().frame(width: 35, height: 35).foregroundColor(dateColorFunc(dateStr: weekStore.dateToString(date: week.date[index], format: "yyyy-MM-dd")))
+                                    .overlay {
+                                        Text(weekStore.dateToString(date: week.date[index], format: "d"))
+                                            .pretendarText(fontSize: 16, fontWeight: .medium)
+                                            .foregroundColor(.white)
+                                    }
                             }
                             .onTapGesture {
                                 // Updating Current Day
@@ -113,6 +82,33 @@ struct CustomWeekHeader: View {
                     }
                 }
         )
+            .onAppear {
+                self.checkListAllData = DBHelper.shared.readCheckListData()
+                for data in checkListAllData {
+                    let count = data.bools.filter { $0 == "1" }.count
+                    switch count {
+                    case 0 ..< 4 :
+                        print("0..<4 : \(data.date)")
+                        redDateStringList.append(data.date)
+                        print("redDateStringList.count : \(redDateStringList.count)")
+                        break
+                    case 4 ..< 8:
+                        print("4..<8 : \(data.date)")
+                        yellowDateStringList.append(data.date)
+                        print("yellowDateStringList.count : \(yellowDateStringList.count)")
+                        break
+                    case 8 ... 10:
+                        print("8..<10 : \(data.date)")
+                        greenDateStringList.append(data.date)
+                        print("greenDateStringList.count : \(greenDateStringList.count)")
+                        break
+                    default:
+                        print("switch count: \(count)")
+                        print("default.count")
+                    }
+                    
+                }
+            }
     }
 }
 
@@ -145,6 +141,26 @@ extension CustomWeekHeader {
             self.bools = [false, false, false, false, false, false, false, false, false, false]
         } else {
             self.bools = decodeBools(self.checkListData.first?.bools ?? "Data none")
+        }
+    }
+}
+
+extension CustomWeekHeader {
+    
+    func dateColorFunc(dateStr: String) -> Color {
+        print("dateColorFunc : dateStr -> \(dateStr)")
+        if greenDateStringList.contains(dateStr) {
+            print("dateColorFunc : green")
+            return .safeGreen
+        } else if yellowDateStringList.contains(dateStr) {
+            print("dateColorFunc : yellow")
+            return .yellow
+        } else if redDateStringList.contains(dateStr) {
+            print("dateColorFunc : red")
+            return .red
+        } else {
+            print("dateColorFunc : gray")
+            return .gray
         }
     }
 }
