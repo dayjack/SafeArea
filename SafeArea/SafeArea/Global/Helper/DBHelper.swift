@@ -92,11 +92,11 @@ extension DBHelper {
     func insertCheckListData(bools: String, date: String) {
         // id 는 Auto increment 속성을 갖고 있기에 값을 대입해 줄 필요는 없지만 쿼리문에는 있어야함
         let insertQuery = """
-            insert into CheckList (
-            `id`,
-            `bools`,
-            `date`
-            ) values (?, ?, ?);
+            INSERT INTO CheckList (`id`, `bools`, `date`)
+            SELECT ?, ?, ?
+            WHERE NOT EXISTS (
+                SELECT 1 FROM CheckList WHERE `date` = ?
+            );
             """
         
         var statement: OpaquePointer? = nil
@@ -104,6 +104,7 @@ extension DBHelper {
         if sqlite3_prepare_v2(self.db, insertQuery, -1, &statement, nil) == SQLITE_OK {
             sqlite3_bind_text(statement, 2, bools, -1, unsafeBitCast(-1, to: sqlite3_destructor_type.self))
             sqlite3_bind_text(statement, 3, date, -1, unsafeBitCast(-1, to: sqlite3_destructor_type.self))
+            sqlite3_bind_text(statement, 4, date, -1, unsafeBitCast(-1, to: sqlite3_destructor_type.self))
         }
         else {
             print("sqlite binding failure")
@@ -142,18 +143,51 @@ extension DBHelper {
         return result
     }
     
+    func readCheckListData(date: String) -> [CheckListModel] {
+        let query: String = "SELECT * FROM CheckList where date = '\(date)';"
+        var statement: OpaquePointer? = nil
+        
+        // 아래는 [MyModel]? 이 되면 값이 안 들어간다.
+        var result: [CheckListModel] = []
+        
+        if sqlite3_prepare(self.db, query, -1, &statement, nil) != SQLITE_OK {
+            let errorMessage = String(cString: sqlite3_errmsg(db)!)
+            print("error while prepare: \(errorMessage)")
+            return result
+        }
+        while sqlite3_step(statement) == SQLITE_ROW {
+            let id = sqlite3_column_int(statement, 0)
+            let bools = String(cString: sqlite3_column_text(statement, 1))
+            let date = String(cString: sqlite3_column_text(statement, 2))
+            
+            result.append(.init(id: Int(id), bools: bools, date: date))
+        }
+        sqlite3_finalize(statement)
+        print("result - readCheckListData: \(result)")
+        return result
+    }
+    
     func updateCheckListData(bools: String, date: String) {
-        // id 는 Auto increment 속성을 갖고 있기에 값을 대입해 줄 필요는 없지만 쿼리문에는 있어야함
-        let updateQuery = """
-            update CheckList set `bools` = "\(bools)" where `date` is \(date);
-            """
+        
+        var updateQuery = ""
+        print(readCheckListData(date: date))
+        if readCheckListData(date: date).isEmpty {
+            insertCheckListData(bools: bools, date: date)
+            print("insertCheckListData")
+            return
+        } else {
+            updateQuery = """
+                UPDATE CheckList SET `bools` = ? WHERE date = ?;
+                """
+            print("updateQuery")
+        }
         // UPDATE [테이블] SET [열] = '변경할값' WHERE [조건]
         
         var statement: OpaquePointer? = nil
         // prepare는 쿼리를 실행할 준비를 하는 단계
         if sqlite3_prepare_v2(self.db, updateQuery, -1, &statement, nil) == SQLITE_OK {
-            let errorMessage = String(cString: sqlite3_errmsg(db)!)
-            print("error while prepare: \(errorMessage)")
+            sqlite3_bind_text(statement, 1, bools, -1, unsafeBitCast(-1, to: sqlite3_destructor_type.self))
+            sqlite3_bind_text(statement, 2, date, -1, unsafeBitCast(-1, to: sqlite3_destructor_type.self))
         }
         else {
             print("sqlite binding failure")

@@ -46,7 +46,6 @@ struct MainCheckListView: View {
                     Gauge(value: progress) {
                         EmptyView()
                     }
-                    .gaugeStyle(.accessoryLinearCapacity)
                     .frame(width: 190)
                     .frame(height: 10)
                     .tint(.safeGreen)
@@ -94,6 +93,7 @@ struct MainCheckListView: View {
                 .ignoresSafeArea()
                 .onChange(of: bools) { newValue in
                     print("bools change : \(newValue)")
+                    DBHelper.shared.updateCheckListData(bools: encodeBools(bools: newValue), date: "111111")
                 }
                 
             }
