@@ -20,6 +20,8 @@ struct CustomWeekHeader: View {
     @Binding var checkListData: [CheckListModel]
     @Binding var bools: [Bool]
     @Binding var selectedDate: Date
+    @Binding var calendarYear: String
+    @Binding var calendarMonth: String
     
     
     var body: some View {
@@ -28,7 +30,7 @@ struct CustomWeekHeader: View {
                 VStack{
                     HStack(spacing: 12) {
                         ForEach(0..<7) { index in
-                           
+                            
                             
                             VStack(spacing: 20) {
                                 Text(weekStore.dateToString(date: week.date[index], format: "EEE"))
@@ -52,6 +54,7 @@ struct CustomWeekHeader: View {
                                 self.selectedDate = weekStore.koreanTime()
                                 bindingCheckList(date: weekStore.koreanTime())
                             }
+                            
                         }
                     }
                     .frame(width: UIScreen.main.bounds.width)
@@ -86,33 +89,33 @@ struct CustomWeekHeader: View {
                     }
                 }
         )
-            .onAppear {
-                self.checkListAllData = DBHelper.shared.readCheckListData()
-                for data in checkListAllData {
-                    let count = data.bools.filter { $0 == "1" }.count
-                    switch count {
-                    case 0 ..< 4 :
-                        print("0..<4 : \(data.date)")
-                        redDateStringList.append(data.date)
-                        print("redDateStringList.count : \(redDateStringList.count)")
-                        break
-                    case 4 ..< 8:
-                        print("4..<8 : \(data.date)")
-                        yellowDateStringList.append(data.date)
-                        print("yellowDateStringList.count : \(yellowDateStringList.count)")
-                        break
-                    case 8 ... 10:
-                        print("8..<10 : \(data.date)")
-                        greenDateStringList.append(data.date)
-                        print("greenDateStringList.count : \(greenDateStringList.count)")
-                        break
-                    default:
-                        print("switch count: \(count)")
-                        print("default.count")
-                    }
-                    
+        .onAppear {
+            self.checkListAllData = DBHelper.shared.readCheckListData()
+            for data in checkListAllData {
+                let count = data.bools.filter { $0 == "1" }.count
+                switch count {
+                case 0 ..< 4 :
+                    print("0..<4 : \(data.date)")
+                    redDateStringList.append(data.date)
+                    print("redDateStringList.count : \(redDateStringList.count)")
+                    break
+                case 4 ..< 8:
+                    print("4..<8 : \(data.date)")
+                    yellowDateStringList.append(data.date)
+                    print("yellowDateStringList.count : \(yellowDateStringList.count)")
+                    break
+                case 8 ... 10:
+                    print("8..<10 : \(data.date)")
+                    greenDateStringList.append(data.date)
+                    print("greenDateStringList.count : \(greenDateStringList.count)")
+                    break
+                default:
+                    print("switch count: \(count)")
+                    print("default.count")
                 }
+                
             }
+        }
     }
 }
 
