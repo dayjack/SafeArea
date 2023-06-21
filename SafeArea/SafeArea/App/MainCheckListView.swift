@@ -29,6 +29,8 @@ struct MainCheckListView: View {
     @State var checkListData: [CheckListModel] = []
     @State var selectedDate: Date = Date.now
     @State var weekStore = WeekStore()
+    @State var calendarYear = "2023"
+    @State var calendarMonth = "07"
     
     var body: some View {
         VStack(spacing: 0) {
@@ -42,19 +44,30 @@ struct MainCheckListView: View {
                 Text("오늘 하루 나의 차는 안전한가요?")
                     .pretendarText(fontSize: 14, fontWeight: .medium)
                     .padding(.bottom, 45)
-                Text("이번 달 나의 안전지수")
-                    .pretendarText(fontSize: 16, fontWeight: .medium)
-                HStack(spacing: 9) {
-                    Gauge(value: progress) {
-                        EmptyView()
+                
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("나의 안전지수 100% 충전 챌린지")
+                        .pretendarText(fontSize: 16, fontWeight: .semibold)
+                    HStack(spacing: 9) {
+                        Gauge(value: progress) {
+                            EmptyView()
+                        }
+                        .frame(width: 190)
+                        .frame(height: 10)
+                        .tint(.safeGreen)
+//                        .gaugeStyle(.accessoryLinearCapacity)
+                        
+                        Text("50%")
+                            .frame(height: 19)
+                            .pretendarText(fontSize: 12, fontWeight: .medium)
                     }
-                    .frame(width: 190)
-                    .frame(height: 10)
-                    .tint(.safeGreen)
-                    Text("50%")
-                        .frame(height: 19)
-                        .pretendarText(fontSize: 12, fontWeight: .medium)
                 }
+                .padding(.vertical, 11)
+                .padding(.horizontal, 18)
+                .background(Color.safeGreen.opacity(0.15))
+                .cornerRadius(11)
+                
+                
             }
             .frame(maxWidth: .infinity)
             .padding(.leading, 24)
@@ -64,11 +77,11 @@ struct MainCheckListView: View {
                 Spacer()
                     .frame(height: 5)
                     .frame(maxWidth: .infinity)
-                Text("2023년 07월")
+                Text("\(calendarYear)년 \(calendarMonth)월")
                     .pretendarText(fontSize: 16, fontWeight: .semibold)
                     .padding(.leading, 8)
                 Color.clear.overlay {
-                    CustomWeekHeader(weekStore: $weekStore, checkListData: $checkListData, bools: self.$bools, selectedDate: $selectedDate)
+                    CustomWeekHeader(weekStore: $weekStore, checkListData: $checkListData, bools: self.$bools, selectedDate: $selectedDate,calendarYear: $calendarYear, calendarMonth: $calendarMonth)
                 }
                 .frame(height: 68)
                 .padding(.bottom, 20)
@@ -80,28 +93,30 @@ struct MainCheckListView: View {
                 .frame(height: 21)
                 .frame(maxWidth: .infinity)
             // MARK: - 체크 리스트
-            VStack(alignment: .leading, spacing: 13) {
-                Spacer().frame(height: 1).frame(maxWidth: .infinity)
-                ForEach(checkList.indices, id: \.self) { index in
-                    let item = checkList[index]
-                    Toggle(isOn: $bools[index]) {
-                        Text(item)
-                            .pretendarText(fontSize: 16, fontWeight: .regular)
-                            .foregroundColor(.black)
+                VStack(alignment: .leading, spacing: 13) {
+                    Spacer().frame(height: 1).frame(maxWidth: .infinity)
+                    ForEach(checkList.indices, id: \.self) { index in
+                        let item = checkList[index]
+                        Toggle(isOn: $bools[index]) {
+                            Text(item)
+                                .pretendarText(fontSize: 16, fontWeight: .regular)
+                                .foregroundColor(.black)
+                        }
+                        .frame(height: 16)
+                        .toggleStyle(CheckboxStyle())
                     }
-                    .frame(height: 16)
-                    .toggleStyle(CheckboxStyle())
+                    .ignoresSafeArea()
+                    .onChange(of: bools) { newValue in
+                        print("bools change : \(newValue)")
+                        DBHelper.shared.updateCheckListData(bools: encodeBools(bools: newValue), date: formatDate(date: koreanTime(date: weekStore.currentDate)))
+                    }
+                    .onChange(of: selectedDate) { newValue in
+                        bindingCheckList(date: newValue)
+                        self.calendarYear = weekStore.dateToString(date: weekStore.koreanTime(), format: "yyyy")
+                        self.calendarMonth = weekStore.dateToString(date: weekStore.koreanTime(), format: "MM")
+                    }
+                    
                 }
-                .ignoresSafeArea()
-                .onChange(of: bools) { newValue in
-                    print("bools change : \(newValue)")
-                    DBHelper.shared.updateCheckListData(bools: encodeBools(bools: newValue), date: formatDate(date: koreanTime(date: weekStore.currentDate)))
-                }
-                .onChange(of: selectedDate) { newValue in
-                    bindingCheckList(date: newValue)
-                }
-                
-            }
             .padding(.leading, 24)
             .frame(maxWidth: .infinity)
             Spacer()
@@ -112,6 +127,8 @@ struct MainCheckListView: View {
             print("현재시간: \(koreanTime(date: Date.now))")
             self.selectedDate = koreanTime(date: Date.now)
             bindingCheckList(date: koreanTime(date: Date.now))
+            self.calendarYear = weekStore.dateToString(date: weekStore.koreanTime(), format: "yyyy")
+            self.calendarMonth = weekStore.dateToString(date: weekStore.koreanTime(), format: "MM")
         }
     }
     
