@@ -31,7 +31,7 @@ struct MainMapView: View {
                 }
             }
             .ignoresSafeArea()
-            .tint(.black)
+            .tint(.safeRed)
             .gesture(DragGesture().onChanged { _ in
                 userTrackingMode = .none
             })
@@ -56,6 +56,32 @@ struct MainMapView: View {
                 
                 
                 Spacer()
+                HStack {
+                    Spacer()
+                    Button {
+                        withAnimation(.easeIn(duration: 2)) {
+                            userTrackingMode = .follow
+                        }
+                        
+                    } label: {
+                        Circle().frame(width: 48, height: 48)
+                            .foregroundColor(.white)
+                            .overlay {
+                                Image(systemName: "location.fill")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 18.4, height: 18.4)
+                                    .foregroundColor(.black)
+                                    
+                            }
+                            .shadow(radius: 4, x: 0 , y: 1)
+                    }
+                }
+                .padding(.horizontal, 26)
+                .padding(.bottom, 116)
+                
+
+                
             }
             
             
