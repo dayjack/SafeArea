@@ -179,7 +179,7 @@ extension DBHelper {
             updateQuery = """
                 UPDATE CheckList SET `bools` = ? WHERE date = ?;
                 """
-            print("updateQuery")
+            print("updateQuery : \(bools) , \(date)")
         }
         // UPDATE [테이블] SET [열] = '변경할값' WHERE [조건]
         

@@ -90,7 +90,7 @@ class WeekStore: ObservableObject {
 
     func isToday(date: Date) -> Bool {
         let calendar = Calendar.current
-        return calendar.isDate(currentDate, inSameDayAs: date)
+        return calendar.isDate(koreanTime(), inSameDayAs: date)
     }
 
     func dateToString(date: Date, format: String) -> String {
@@ -100,7 +100,7 @@ class WeekStore: ObservableObject {
     }
 
     func fetchCurrentWeek() {
-        let today = currentDate
+        let today = koreanTime()
         var calendar = Calendar(identifier: .gregorian)
         calendar.timeZone = TimeZone(identifier: "Asia/Seoul")! // Set the timezone to Korean time
         calendar.firstWeekday = 7
