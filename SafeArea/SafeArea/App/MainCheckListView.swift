@@ -94,6 +94,7 @@ struct MainCheckListView: View {
                 .onChange(of: bools) { newValue in
                     print("bools change : \(newValue)")
                     DBHelper.shared.updateCheckListData(bools: encodeBools(bools: newValue), date: "111111")
+                    
                 }
                 
             }
@@ -102,6 +103,10 @@ struct MainCheckListView: View {
             Spacer()
         }
         .ignoresSafeArea(.all)
+        .onAppear {
+            print("DateFormat: \(formatDate(date: Date.now))")
+            print("DateFormat: \(formatDate(dateStr: "2023-04-21"))")
+        }
     }
     
 }

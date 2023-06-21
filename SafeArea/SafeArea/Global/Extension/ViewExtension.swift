@@ -54,5 +54,29 @@ extension View {
         
         return resultBools
     }
+    
+    func formatDate(date: Date) -> String {
         
+        var result = ""
+        let nowDate = date
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        result = dateFormatter.string(from: nowDate)
+        return result
+    }
+    
+    func formatDate(dateStr: String) -> Date {
+        let dateStr = dateStr
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd" // Input date format
+        dateFormatter.timeZone = TimeZone(identifier: "Asia/Seoul") // Set the timezone to Korea
+        
+        let convertDate = dateFormatter.date(from: dateStr) // Convert to Date type
+        
+        
+        let timezone = TimeZone.autoupdatingCurrent
+        let secondsFromGMT = timezone.secondsFromGMT(for: convertDate ?? Date())
+        let localizedDate = convertDate?.addingTimeInterval(TimeInterval(secondsFromGMT))
+        return localizedDate ?? Date()
+    }
 }
