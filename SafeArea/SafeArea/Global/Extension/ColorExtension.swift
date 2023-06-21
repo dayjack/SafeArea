@@ -17,6 +17,7 @@ extension Color {
     static let safeGreen = Color(hex: "6ECD6C")
     static let safeRed = Color(hex: "EC583E")
     static let safeGray = Color(hex: "EAEAEA")
+    static let safeYellow = Color(hex: "FED767")
     
     init(hex: String) {
         let scanner = Scanner(string: hex)
