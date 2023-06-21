@@ -30,31 +30,30 @@ struct CustomWeekHeader: View {
                 VStack{
                     HStack(spacing: 12) {
                         ForEach(0..<7) { index in
-                            
-                            
-                            VStack(spacing: 20) {
-                                Text(weekStore.dateToString(date: week.date[index], format: "EEE"))
-                                    .pretendarText(fontSize: 14, fontWeight: .semibold)
-                                Circle().frame(width: 35, height: 35).foregroundColor(dateColorFunc(dateStr: weekStore.dateToString(date: week.date[index], format: "yyyy-MM-dd")))
-                                    .overlay {
-                                        Text(weekStore.dateToString(date: week.date[index], format: "d"))
-                                            .pretendarText(fontSize: 16, fontWeight: .medium)
-                                            .foregroundColor(.white)
-                                    }
-                            }
-                            .padding(.horizontal, 4)
-                            .padding(.vertical, 5)
-                            .background(formatDate(date: weekStore.koreanTime()) == weekStore.dateToString(date: week.date[index], format: "yyyy-MM-dd") ? Color.init(hex: "EEEEEE") : .clear)
-                            .cornerRadius(14)
-                            .onTapGesture {
+                            Button {
                                 // Updating Current Day
                                 weekStore.currentDate = week.date[index]
                                 print("currentDate :\(weekStore.koreanTime())")
                                 self.checkListData = DBHelper.shared.readCheckListData(date: formatDate(date: weekStore.koreanTime()))
                                 self.selectedDate = weekStore.koreanTime()
                                 bindingCheckList(date: weekStore.koreanTime())
+                            } label: {
+                                VStack(spacing: 20) {
+                                    Text(weekStore.dateToString(date: week.date[index], format: "EEE"))
+                                        .pretendarText(fontSize: 12, fontWeight: .medium)
+                                        .foregroundColor(.black)
+                                    Circle().frame(width: 35, height: 35).foregroundColor(dateColorFunc(dateStr: weekStore.dateToString(date: week.date[index], format: "yyyy-MM-dd")))
+                                        .overlay {
+                                            Text(weekStore.dateToString(date: week.date[index], format: "d"))
+                                                .pretendarText(fontSize: 16, fontWeight: .medium)
+                                                .foregroundColor(.white)
+                                        }
+                                }
+                                .padding(.horizontal, 4)
+                                .padding(.vertical, 5)
+                                .background(formatDate(date: weekStore.koreanTime()) == weekStore.dateToString(date: week.date[index], format: "yyyy-MM-dd") ? Color.init(hex: "EEEEEE") : .clear)
+                                .cornerRadius(14)
                             }
-                            
                         }
                     }
                     .frame(width: UIScreen.main.bounds.width)
