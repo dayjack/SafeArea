@@ -108,7 +108,7 @@ class WeekStore: ObservableObject {
         let startOfWeek = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: today))!
 
         currentWeek.removeAll()
-        (0..<7).forEach { day in
+        (1...7).forEach { day in
             if let weekday = calendar.date(byAdding: .day, value: day, to: startOfWeek) {
                 currentWeek.append(weekday)
             }
