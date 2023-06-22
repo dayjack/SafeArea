@@ -10,6 +10,7 @@ import SwiftUI
 struct CustomBottomTabView: View {
     
     @Binding var iconSelected: IconName
+    @State var angle: Angle = Angle(degrees: 0)
     
     var body: some View {
             ZStack {
@@ -21,6 +22,7 @@ struct CustomBottomTabView: View {
                     
                     Button {
                         iconSelected = .guideline
+                        rotateHomeAngle(type: .guideline)
                     } label: {
                         VStack(spacing: 5) {
                             Image(iconSelected == .guideline ? "\(IconName.guideline.rawValue)_activated" : "\(IconName.guideline.rawValue)_unactivated")
@@ -38,19 +40,26 @@ struct CustomBottomTabView: View {
                         .foregroundColor(.black)
                     }
                 
-                    Image("\(IconName.checklist.rawValue)_unactivated")
-                        .frame(width: 73, height: 73)
-                        .background(.white)
-                        .clipShape(Circle())
-                        .offset(x: 0 , y: -41)
-                        .shadow(radius: 7)
-                        .foregroundColor(.black)
-                        .onTapGesture {
-                            iconSelected = .home
-                        }
+                    VStack(spacing: 0) {
+                        Circle().foregroundColor(.white)
+                            .frame(width: 73, height: 73)
+                            .shadow(radius: 7)
+                            .overlay {
+                                Image("icon_home")
+                                    .frame(width: 49, height: 49)
+                            }
+                            .onTapGesture {
+                                iconSelected = .home
+                                rotateHomeAngle(type: .home)
+                            }
+                            .rotationEffect(angle)
+                        Spacer().frame(height: 41)
+                    }
+                    
                     
                     Button {
                         iconSelected = .checklist
+                        rotateHomeAngle(type: .checklist)
                     } label: {
                         VStack(spacing: 5) {
                             Image(iconSelected == .checklist ? "\(IconName.checklist.rawValue)_activated" : "\(IconName.checklist.rawValue)_unactivated")
@@ -85,3 +94,24 @@ extension View {
      }
 }
 
+extension CustomBottomTabView {
+    
+    
+    func rotateHomeAngle(type: IconName) {
+        
+        switch type {
+        case .guideline:
+            withAnimation(.easeInOut(duration: 0.25)) {
+                self.angle = Angle(degrees: -45)
+            }
+        case .home:
+            withAnimation(.easeInOut(duration: 0.25)) {
+                self.angle = Angle(degrees: 0)
+            }
+        case .checklist:
+            withAnimation(.easeInOut(duration: 0.25)) {
+                self.angle = Angle(degrees: -45)
+            }
+        }
+    }
+}
