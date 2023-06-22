@@ -53,6 +53,7 @@
 		786C24092A403BAD002E3F23 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 786C24082A403BAD002E3F23 /* Assets.xcassets */; };
 		786C240C2A403BAD002E3F23 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 786C240B2A403BAD002E3F23 /* Preview Assets.xcassets */; };
 		787C7BD12A409C080094A4A5 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787C7BD02A409C080094A4A5 /* MapView.swift */; };
+		78E0C5E52A446F2400A91AB1 /* swiftui-bottom-sheet-drawer in Frameworks */ = {isa = PBXBuildFile; productRef = 78E0C5E42A446F2400A91AB1 /* swiftui-bottom-sheet-drawer */; };
 		78ED04E52A4073D5009FD225 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ED04E42A4073D5009FD225 /* ViewExtension.swift */; };
 		78ED04ED2A40848D009FD225 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ED04EC2A40848D009FD225 /* Weather.swift */; };
 /* End PBXBuildFile section */
@@ -117,6 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78E0C5E52A446F2400A91AB1 /* swiftui-bottom-sheet-drawer in Frameworks */,
 				174B7F3C85FD7590A5DA28FE /* Pods_SafeArea.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -312,6 +314,9 @@
 			dependencies = (
 			);
 			name = SafeArea;
+			packageProductDependencies = (
+				78E0C5E42A446F2400A91AB1 /* swiftui-bottom-sheet-drawer */,
+			);
 			productName = SafeArea;
 			productReference = 786C24012A403BAC002E3F23 /* SafeArea.app */;
 			productType = "com.apple.product-type.application";
@@ -340,6 +345,9 @@
 				Base,
 			);
 			mainGroup = 786C23F82A403BAC002E3F23;
+			packageReferences = (
+				78E0C5E32A446F2400A91AB1 /* XCRemoteSwiftPackageReference "swiftui-bottom-sheet-drawer" */,
+			);
 			productRefGroup = 786C24022A403BAC002E3F23 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -582,7 +590,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SafeArea/Preview Content\"";
-				DEVELOPMENT_TEAM = C3U3CZ666D;
+				DEVELOPMENT_TEAM = UG6UT639QH;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SafeArea/Info.plist;
@@ -616,7 +624,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SafeArea/Preview Content\"";
-				DEVELOPMENT_TEAM = C3U3CZ666D;
+				DEVELOPMENT_TEAM = UG6UT639QH;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SafeArea/Info.plist;
@@ -663,6 +671,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		78E0C5E32A446F2400A91AB1 /* XCRemoteSwiftPackageReference "swiftui-bottom-sheet-drawer" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/The-Igor/swiftui-bottom-sheet-drawer.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		78E0C5E42A446F2400A91AB1 /* swiftui-bottom-sheet-drawer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 78E0C5E32A446F2400A91AB1 /* XCRemoteSwiftPackageReference "swiftui-bottom-sheet-drawer" */;
+			productName = "swiftui-bottom-sheet-drawer";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 786C23F92A403BAC002E3F23 /* Project object */;
 }
