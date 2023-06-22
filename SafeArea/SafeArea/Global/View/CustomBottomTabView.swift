@@ -53,8 +53,8 @@ struct CustomBottomTabView: View {
                                 rotateHomeAngle(type: .home)
                             }
                             .rotationEffect(angle)
-                        Spacer().frame(height: 41)
                     }
+                    .offset(y: -41)
                     
                     
                     Button {
