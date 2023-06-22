@@ -120,16 +120,16 @@ extension ContentView {
             }
             self.chargingStationAnnotation.append(ChargingStationAnnotation(statNm: statNm, addr: addr, lat: lat, lng: lng, unknownStatus: unknownStatus, ready: ready, charging: charging, total: total))
             
-//            for item in self.chargingStationAnnotation ?? .init() {
-//                print("itemstatNm : \(item.statNm!)")
-//                print("address : \(item.addr!)")
-//                print("lat : \(item.lat!)")
-//                print("lng : \(item.lng!)")
-//                print("unknownStatus : \(item.unknownStatus!)")
-//                print("ready : \(item.ready!)")
-//                print("charging : \(item.charging!)")
-//                print("total : \(item.total!)")
-//            }
+            for item in self.chargingStationAnnotation ?? .init() {
+                print("itemstatNm : \(item.statNm!)")
+                print("address : \(item.addr!)")
+                print("lat : \(item.lat!)")
+                print("lng : \(item.lng!)")
+                print("unknownStatus : \(item.unknownStatus!)")
+                print("ready : \(item.ready!)")
+                print("charging : \(item.charging!)")
+                print("total : \(item.total!)")
+            }
             
         }
         

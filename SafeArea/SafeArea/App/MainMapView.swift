@@ -28,6 +28,7 @@ struct MainMapView: View {
             Map(coordinateRegion: $region, showsUserLocation: true, userTrackingMode: .constant(userTrackingMode), annotationItems: (self.chargingStationAnnotation ?? .init())) { charging in
                 MapAnnotation(coordinate: .init(latitude: (charging.lat as! NSString).doubleValue, longitude: (charging.lng as! NSString).doubleValue)) {
                     PlaceAnnotationView(charging: charging)
+                        
                 }
             }
             .ignoresSafeArea()
