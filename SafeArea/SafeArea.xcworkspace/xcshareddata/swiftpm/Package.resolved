@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "swiftui-bottom-sheet-drawer",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/The-Igor/swiftui-bottom-sheet-drawer.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "ebbf5e5584f6a01c50695a2d32a5c98c72383a63"
+      }
+    }
+  ],
+  "version" : 2
+}
