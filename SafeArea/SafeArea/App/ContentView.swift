@@ -70,7 +70,7 @@ struct ContentView: View {
             case .checklist:
                 MainCheckListView()
             case .home:
-                MainMapView(locationViewModel: $locationViewModel, zscodeData: $zscodeData, chargingStationModelData: $chargingStationModelData, weatherData: $weatherData)
+                MainMapView(locationViewModel: $locationViewModel, zscodeData: $zscodeData, weatherData: $weatherData, chargingStationAnnotation: $chargingStationAnnotation)
             }
             VStack {
                 HStack {

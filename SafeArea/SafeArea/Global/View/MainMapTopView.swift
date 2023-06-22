@@ -11,7 +11,6 @@ struct MainMapTopView: View {
     // MARK: - PROPERTY
     @Binding var locationViewModel: LocationViewModel
     @Binding var zscodeData: ZscodeData?
-    @Binding var chargingStationModelData: ChargingStation?
     @Binding var weatherData: Weather?
     
     @State var weatherid: Int = 501

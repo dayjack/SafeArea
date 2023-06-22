@@ -16,8 +16,8 @@ struct MainMapView: View {
     
     @Binding var locationViewModel: LocationViewModel
     @Binding var zscodeData: ZscodeData?
-    @Binding var chargingStationModelData: ChargingStation?
     @Binding var weatherData: Weather?
+    @Binding var chargingStationAnnotation: [ChargingStationAnnotation]
     var coordinate: CLLocationCoordinate2D? {
         locationViewModel.lastSeenLocation?.coordinate
     }
@@ -25,7 +25,7 @@ struct MainMapView: View {
     var body: some View {
         
         ZStack {
-            Map(coordinateRegion: $region, showsUserLocation: true, userTrackingMode: .constant(userTrackingMode), annotationItems: (self.chargingStationModelData?.items.item ?? .init())) { charging in
+            Map(coordinateRegion: $region, showsUserLocation: true, userTrackingMode: .constant(userTrackingMode), annotationItems: (self.chargingStationAnnotation ?? .init())) { charging in
                 MapAnnotation(coordinate: .init(latitude: (charging.lat as! NSString).doubleValue, longitude: (charging.lng as! NSString).doubleValue)) {
                     PlaceAnnotationView()
                 }
@@ -40,7 +40,7 @@ struct MainMapView: View {
             VStack(spacing: 0) {
                 
                 ZStack {
-                    MainMapTopView(locationViewModel: $locationViewModel, zscodeData: $zscodeData, chargingStationModelData: $chargingStationModelData, weatherData: $weatherData)
+                    MainMapTopView(locationViewModel: $locationViewModel, zscodeData: $zscodeData, weatherData: $weatherData)
                     //매개변수 locationViewModel: $locationViewModel, zscodeData: $zscodeData, chargingStationModelData: $chargingStationModelData, weatherData: $weatherData
 //                    Image("Union2")
 //                        .resizable()
