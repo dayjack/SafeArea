@@ -13,7 +13,6 @@ struct MainMapView: View {
     
     @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.748433, longitude: 127.123), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
     @State var userTrackingMode: MapUserTrackingMode = .follow
-    
     @Binding var locationViewModel: LocationViewModel
     @Binding var zscodeData: ZscodeData?
     @Binding var weatherData: Weather?
@@ -28,7 +27,6 @@ struct MainMapView: View {
             Map(coordinateRegion: $region, showsUserLocation: true, userTrackingMode: .constant(userTrackingMode), annotationItems: (self.chargingStationAnnotation ?? .init())) { charging in
                 MapAnnotation(coordinate: .init(latitude: (charging.lat as! NSString).doubleValue, longitude: (charging.lng as! NSString).doubleValue)) {
                     PlaceAnnotationView(charging: charging)
-                        
                 }
             }
             .ignoresSafeArea()
