@@ -13,6 +13,7 @@ struct ContentView: View {
     
     // MARK: - PROPERTY
     @State var locationViewModel = LocationViewModel()
+    @State var chargingStationAnnotation: [ChargingStationAnnotation] = []
     @State var zscodeData: ZscodeData?
     @State var chargingStationModelData : ChargingStation?
     @State var weatherData: Weather?

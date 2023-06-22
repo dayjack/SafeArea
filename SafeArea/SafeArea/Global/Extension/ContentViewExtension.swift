@@ -36,6 +36,11 @@ extension ContentView {
                 
                 fetchChargingStation(zscodes)
                 fetchWeathers(location)
+                
+//                ForEach(chargingStation?.items.item ?? .init()) {item in
+//                    print("dd")
+//                }
+                
             }
     }
     
@@ -54,10 +59,82 @@ extension ContentView {
                 return
             }
             self.chargingStationModelData = data
-            
+            print("dk 데이터 데이터 데이터 데이터 입력완료")
+            print(chargingStationModelData?.totalCount)
             print(chargingStationModelData?.items.item[0].statNm)
             
+            // MARK: - PROPERTY
+            var statNm: String = ""
+            var addr: String = ""
+            var lat: String = ""
+            var lng: String = ""
+            var unknownStatus: Int = 0
+            var ready: Int = 0
+            var charging: Int = 0
+            var total: Int = 0
+            
+            
+            
+            for item in self.chargingStationModelData?.items.item ?? .init() {
+                
+                if statNm != (item.statNm!) {     //다를 때 넣어준다.
+                    
+                    self.chargingStationAnnotation.append(ChargingStationAnnotation(statNm: statNm, addr: addr, lat: lat, lng: lng, unknownStatus: unknownStatus, ready: ready, charging: charging, total: total))
+                    
+                    statNm = item.statNm!
+                    addr = item.addr!
+                    lat = item.lat!
+                    lng = item.lng!
+                    unknownStatus = 0
+                    ready = 0
+                    charging = 0
+                    switch item.stat! {
+                    case "2":
+                        ready += 1
+                    case "3":
+                        charging += 1
+                    default:
+                        unknownStatus += 1
+                    }
+                    total = 1
+                    
+                    
+                }
+                else {
+                    
+                    switch item.stat! {
+                    case "2":
+                        ready += 1
+                    case "3":
+                        charging += 1
+                    default:
+                        unknownStatus += 1
+                    }
+                    total += 1
+                }
+                
+                
+            }
+            if self.chargingStationAnnotation.count != 0 {
+                self.chargingStationAnnotation.remove(at: 0)
+            }
+            self.chargingStationAnnotation.append(ChargingStationAnnotation(statNm: statNm, addr: addr, lat: lat, lng: lng, unknownStatus: unknownStatus, ready: ready, charging: charging, total: total))
+            
+//            for item in self.chargingStationAnnotation ?? .init() {
+//                print("itemstatNm : \(item.statNm!)")
+//                print("address : \(item.addr!)")
+//                print("lat : \(item.lat!)")
+//                print("lng : \(item.lng!)")
+//                print("unknownStatus : \(item.unknownStatus!)")
+//                print("ready : \(item.ready!)")
+//                print("charging : \(item.charging!)")
+//                print("total : \(item.total!)")
+//            }
+            
         }
+        
+        
+        
     }
     
     func fetchWeathers(_ location: CLLocationCoordinate2D) {
