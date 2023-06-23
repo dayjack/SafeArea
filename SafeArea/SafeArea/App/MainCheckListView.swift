@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainCheckListView: View {
     
-    @State private var progress = 0.5
+    @State var progress = 0.5
     @State private var isOn = false
     
     let checkList: [String] = [
@@ -57,7 +57,7 @@ struct MainCheckListView: View {
                         .tint(.safeGreen)
 //                        .gaugeStyle(.accessoryLinearCapacity)
                         
-                        Text("50%")
+                        Text("\(Int(progress * 100))%")
                             .frame(height: 19)
                             .pretendarText(fontSize: 12, fontWeight: .medium)
                     }
@@ -81,7 +81,7 @@ struct MainCheckListView: View {
                     .pretendarText(fontSize: 16, fontWeight: .semibold)
                     .padding(.leading, 8)
                 Color.clear.overlay {
-                    CustomWeekHeader(weekStore: $weekStore, checkListData: $checkListData, bools: self.$bools, selectedDate: $selectedDate,calendarYear: $calendarYear, calendarMonth: $calendarMonth)
+                    CustomWeekHeader(weekStore: $weekStore, checkListData: $checkListData, bools: self.$bools, selectedDate: $selectedDate,calendarYear: $calendarYear, calendarMonth: $calendarMonth, progress: $progress)
                 }
                 .frame(height: 68)
                 .padding(.bottom, 20)

@@ -23,6 +23,7 @@ struct CustomWeekHeader: View {
     @Binding var calendarYear: String
     @Binding var calendarMonth: String
     
+    @Binding var progress: Double
     
     var body: some View {
         ZStack {
@@ -114,6 +115,7 @@ struct CustomWeekHeader: View {
                 }
                 
             }
+            calProgress()
         }
         .onChange(of: bools) { newValue in
             redDateStringList.removeAll()
@@ -144,6 +146,7 @@ struct CustomWeekHeader: View {
                 }
                 
             }
+            calProgress()
         }
     }
 }
@@ -198,5 +201,24 @@ extension CustomWeekHeader {
             print("dateColorFunc : gray")
             return .safeGray
         }
+    }
+}
+
+extension CustomWeekHeader {
+    
+    
+    func calProgress() {
+        progress = 0.5
+        var dateNowMonth = formatDate(date: Date.now).prefix(7)
+        print("calProgress : \(dateNowMonth)")
+        for data in greenDateStringList {
+            if data.prefix(7) == dateNowMonth {
+                print("calProgress : if \(data.prefix(7)), \(dateNowMonth)")
+                progress += 0.05
+                print("calProgress : \(progress)")
+            }
+        }
+        
+        
     }
 }
