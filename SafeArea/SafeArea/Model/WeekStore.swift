@@ -30,15 +30,17 @@ class WeekStore: ObservableObject {
         appendAll()
     }
     
-    func koreanTime() -> Date {
-        let today = currentDate
-        let timezone = TimeZone.autoupdatingCurrent
-        let secondsFromGMT = timezone.secondsFromGMT(for: today)
-        let localizedDate = today.addingTimeInterval(TimeInterval(secondsFromGMT))
-        return localizedDate
-    }
-
-
+//    func koreanTime() -> Date {
+//
+//        let calendar = Calendar(identifier: .gregorian)
+//        let timezone = TimeZone(identifier: "Asia/Seoul")
+//
+//        var components = calendar.dateComponents(in: timezone!, from: currentDate)
+//        components.hour! -= 9 // UTC에서 한국 표준시로 변환
+//
+//        let convertedDate = calendar.date(from: components)!
+//        return convertedDate
+//    }
 
     func appendAll() {
         var newWeek = WeekValue(id: 0, date: currentWeek)
@@ -81,7 +83,7 @@ class WeekStore: ObservableObject {
         self.currentDate = today
         let startOfWeek = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: today))!
 
-        (1...7).forEach { day in
+        (2...8).forEach { day in
             if let weekday = calendar.date(byAdding: .day, value: day, to: startOfWeek) {
                 allWeeks[index].date.append(weekday)
             }
@@ -90,7 +92,7 @@ class WeekStore: ObservableObject {
 
     func isToday(date: Date) -> Bool {
         let calendar = Calendar.current
-        return calendar.isDate(koreanTime(), inSameDayAs: date)
+        return calendar.isDate(currentDate, inSameDayAs: date)
     }
 
     func dateToString(date: Date, format: String) -> String {
@@ -100,7 +102,7 @@ class WeekStore: ObservableObject {
     }
 
     func fetchCurrentWeek() {
-        let today = koreanTime()
+        let today = currentDate
         var calendar = Calendar(identifier: .gregorian)
         calendar.timeZone = TimeZone(identifier: "Asia/Seoul")! // Set the timezone to Korean time
         calendar.firstWeekday = 7
@@ -108,7 +110,7 @@ class WeekStore: ObservableObject {
         let startOfWeek = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: today))!
 
         currentWeek.removeAll()
-        (1...7).forEach { day in
+        (2...8).forEach { day in
             if let weekday = calendar.date(byAdding: .day, value: day, to: startOfWeek) {
                 currentWeek.append(weekday)
             }
@@ -127,7 +129,7 @@ class WeekStore: ObservableObject {
 
         let startOfWeekNext = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: nextWeekToday))!
 
-        (1...7).forEach { day in
+        (2...8).forEach { day in
             if let weekday = calendar.date(byAdding: .day, value: day, to: startOfWeekNext) {
                 nextWeek.append(weekday)
             }
@@ -138,7 +140,7 @@ class WeekStore: ObservableObject {
 
         let startOfWeekPrev = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: previousWeekToday))!
 
-        (1...7).forEach { day in
+        (2...8).forEach { day in
             if let weekday = calendar.date(byAdding: .day, value: day, to: startOfWeekPrev) {
                 previousWeek.append(weekday)
             }

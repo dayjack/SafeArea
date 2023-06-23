@@ -11,7 +11,7 @@ import SwiftUI
 import CoreLocation
 //
 extension View {
- 
+    
     func fetchWeather() {
         let url = "https://api.openweathermap.org/data/2.5/weather"
         let params = ["lat" : 36.11, "lon" : 120.99, "appid" : "\(Bundle.main.weatherAPIKey!)"] as Dictionary
@@ -56,15 +56,22 @@ extension View {
     }
     
     func formatDate(date: Date) -> String {
+        let calendar = Calendar(identifier: .gregorian)
         let timezone = TimeZone(identifier: "Asia/Seoul")
+        
+        var components = calendar.dateComponents(in: timezone!, from: date)
+        components.hour! -= 0 // UTC에서 한국 표준시로 변환
+        
+        let convertedDate = calendar.date(from: components)!
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         dateFormatter.timeZone = timezone
         
-        let formattedDate = dateFormatter.string(from: date)
+        let formattedDate = dateFormatter.string(from: convertedDate)
         return formattedDate
     }
-
+    
     
     func formatDate(dateStr: String) -> Date {
         let dateStr = dateStr
@@ -82,10 +89,14 @@ extension View {
     }
     
     func koreanTime(date: Date) -> Date {
-        let today = date
-        let timezone = TimeZone.autoupdatingCurrent
-        let secondsFromGMT = timezone.secondsFromGMT(for: today)
-        let localizedDate = today.addingTimeInterval(TimeInterval(secondsFromGMT))
-        return localizedDate
+  
+        let calendar = Calendar(identifier: .gregorian)
+        let timezone = TimeZone(identifier: "Asia/Seoul")
+        
+        var components = calendar.dateComponents(in: timezone!, from: date)
+        components.hour! -= 9 // UTC에서 한국 표준시로 변환
+        
+        let convertedDate = calendar.date(from: components)!
+        return convertedDate
     }
 }
