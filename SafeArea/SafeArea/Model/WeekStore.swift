@@ -83,7 +83,7 @@ class WeekStore: ObservableObject {
         self.currentDate = today
         let startOfWeek = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: today))!
 
-        (1...7).forEach { day in
+        (2...8).forEach { day in
             if let weekday = calendar.date(byAdding: .day, value: day, to: startOfWeek) {
                 allWeeks[index].date.append(weekday)
             }
@@ -110,7 +110,7 @@ class WeekStore: ObservableObject {
         let startOfWeek = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: today))!
 
         currentWeek.removeAll()
-        (1...7).forEach { day in
+        (2...8).forEach { day in
             if let weekday = calendar.date(byAdding: .day, value: day, to: startOfWeek) {
                 currentWeek.append(weekday)
             }
@@ -129,7 +129,7 @@ class WeekStore: ObservableObject {
 
         let startOfWeekNext = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: nextWeekToday))!
 
-        (1...7).forEach { day in
+        (2...8).forEach { day in
             if let weekday = calendar.date(byAdding: .day, value: day, to: startOfWeekNext) {
                 nextWeek.append(weekday)
             }
@@ -140,7 +140,7 @@ class WeekStore: ObservableObject {
 
         let startOfWeekPrev = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: previousWeekToday))!
 
-        (1...7).forEach { day in
+        (2...8).forEach { day in
             if let weekday = calendar.date(byAdding: .day, value: day, to: startOfWeekPrev) {
                 previousWeek.append(weekday)
             }
