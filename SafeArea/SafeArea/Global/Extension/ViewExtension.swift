@@ -56,12 +56,19 @@ extension View {
     }
     
     func formatDate(date: Date) -> String {
+        let calendar = Calendar(identifier: .gregorian)
         let timezone = TimeZone(identifier: "Asia/Seoul")
+        
+        var components = calendar.dateComponents(in: timezone!, from: date)
+        components.hour! -= 9 // UTC에서 한국 표준시로 변환
+        
+        let convertedDate = calendar.date(from: components)!
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         dateFormatter.timeZone = timezone
         
-        let formattedDate = dateFormatter.string(from: date)
+        let formattedDate = dateFormatter.string(from: convertedDate)
         return formattedDate
     }
 

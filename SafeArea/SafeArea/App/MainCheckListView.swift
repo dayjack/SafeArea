@@ -123,10 +123,10 @@ struct MainCheckListView: View {
         }
         .ignoresSafeArea(.all)
         .onAppear {
-            self.checkListData = DBHelper.shared.readCheckListData(date: formatDate(date: koreanTime(date: Date.now)))
-            print("현재시간: \(koreanTime(date: Date.now))")
-            self.selectedDate = koreanTime(date: Date.now)
-            bindingCheckList(date: koreanTime(date: Date.now))
+            self.checkListData = DBHelper.shared.readCheckListData(date: formatDate(date: koreanTime(date: Date())))
+            print("현재시간: \(koreanTime(date: Date()))")
+            self.selectedDate = koreanTime(date: Date())
+            bindingCheckList(date: koreanTime(date: Date()))
             self.calendarYear = weekStore.dateToString(date: weekStore.koreanTime(), format: "yyyy")
             self.calendarMonth = weekStore.dateToString(date: weekStore.koreanTime(), format: "MM")
         }
