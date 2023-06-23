@@ -56,36 +56,13 @@ extension View {
     }
     
     func formatDate(date: Date) -> String {
-        let calendar = Calendar(identifier: .gregorian)
-        let timezone = TimeZone(identifier: "Asia/Seoul")
-        
-        var components = calendar.dateComponents(in: timezone!, from: date)
-        components.hour! -= 0 // UTC에서 한국 표준시로 변환
-        
-        let convertedDate = calendar.date(from: components)!
+    
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        dateFormatter.timeZone = timezone
         
-        let formattedDate = dateFormatter.string(from: convertedDate)
+        let formattedDate = dateFormatter.string(from: date)
         return formattedDate
-    }
-    
-    
-    func formatDate(dateStr: String) -> Date {
-        let dateStr = dateStr
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd" // Input date format
-        dateFormatter.timeZone = TimeZone(identifier: "Asia/Seoul") // Set the timezone to Korea
-        
-        let convertDate = dateFormatter.date(from: dateStr) // Convert to Date type
-        
-        
-        let timezone = TimeZone.autoupdatingCurrent
-        let secondsFromGMT = timezone.secondsFromGMT(for: convertDate ?? Date())
-        let localizedDate = convertDate?.addingTimeInterval(TimeInterval(secondsFromGMT))
-        return localizedDate ?? Date()
     }
     
     func koreanTime(date: Date) -> Date {
