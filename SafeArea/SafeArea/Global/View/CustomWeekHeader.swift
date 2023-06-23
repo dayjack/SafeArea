@@ -34,25 +34,25 @@ struct CustomWeekHeader: View {
                             Button {
                                 // Updating Current Day
                                 weekStore.currentDate = week.date[index]
-                                print("currentDate :\(weekStore.koreanTime())")
-                                self.checkListData = DBHelper.shared.readCheckListData(date: formatDate(date: weekStore.koreanTime()))
-                                self.selectedDate = weekStore.koreanTime()
-                                bindingCheckList(date: weekStore.koreanTime())
+                                self.checkListData = DBHelper.shared.readCheckListData(date: formatDate(date: koreanTime(date: weekStore.currentDate)))
+                                self.selectedDate = koreanTime(date: weekStore.currentDate)
+                                print("selectedDate : \(selectedDate)")
+                                bindingCheckList(date: koreanTime(date: weekStore.currentDate))
                             } label: {
                                 VStack(spacing: 20) {
-                                    Text(weekStore.dateToString(date: week.date[index], format: "EEE"))
+                                    Text(weekStore.dateToString(date: koreanTime(date: week.date[index]), format: "EEE"))
                                         .pretendarText(fontSize: 12, fontWeight: .medium)
                                         .foregroundColor(.black)
-                                    Circle().frame(width: 35, height: 35).foregroundColor(dateColorFunc(dateStr: weekStore.dateToString(date: week.date[index], format: "yyyy-MM-dd")))
+                                    Circle().frame(width: 35, height: 35).foregroundColor(dateColorFunc(dateStr: weekStore.dateToString(date: koreanTime(date: week.date[index]), format: "yyyy-MM-dd")))
                                         .overlay {
-                                            Text(weekStore.dateToString(date: week.date[index], format: "d"))
+                                            Text(weekStore.dateToString(date: koreanTime(date: week.date[index]), format: "d"))
                                                 .pretendarText(fontSize: 16, fontWeight: .medium)
                                                 .foregroundColor(.white)
                                         }
                                 }
                                 .padding(.horizontal, 4)
                                 .padding(.vertical, 5)
-                                .background(formatDate(date: weekStore.koreanTime()) == weekStore.dateToString(date: week.date[index], format: "yyyy-MM-dd") ? Color.init(hex: "EEEEEE") : .clear)
+                                .background(formatDate(date: koreanTime(date: weekStore.currentDate)) == weekStore.dateToString(date: koreanTime(date: week.date[index]), format: "yyyy-MM-dd") ? Color.init(hex: "EEEEEE") : .clear)
                                 .cornerRadius(14)
                             }
                         }

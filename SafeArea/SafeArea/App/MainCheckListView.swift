@@ -112,8 +112,8 @@ struct MainCheckListView: View {
                     }
                     .onChange(of: selectedDate) { newValue in
                         bindingCheckList(date: newValue)
-                        self.calendarYear = weekStore.dateToString(date: weekStore.koreanTime(), format: "yyyy")
-                        self.calendarMonth = weekStore.dateToString(date: weekStore.koreanTime(), format: "MM")
+                        self.calendarYear = weekStore.dateToString(date: weekStore.currentDate, format: "yyyy")
+                        self.calendarMonth = weekStore.dateToString(date: weekStore.currentDate, format: "MM")
                     }
                     
                 }
@@ -127,8 +127,8 @@ struct MainCheckListView: View {
             print("현재시간: \(koreanTime(date: Date()))")
             self.selectedDate = koreanTime(date: Date())
             bindingCheckList(date: koreanTime(date: Date()))
-            self.calendarYear = weekStore.dateToString(date: weekStore.koreanTime(), format: "yyyy")
-            self.calendarMonth = weekStore.dateToString(date: weekStore.koreanTime(), format: "MM")
+            self.calendarYear = weekStore.dateToString(date: weekStore.currentDate, format: "yyyy")
+            self.calendarMonth = weekStore.dateToString(date: weekStore.currentDate, format: "MM")
         }
     }
     
@@ -145,7 +145,7 @@ extension MainCheckListView {
     func bindingCheckList(date: Date) {
         print("현재시간 in bind : \(date)")
         print("현재시간 fotmat : \(formatDate(date: date))")
-        self.checkListData = DBHelper.shared.readCheckListData(date: formatDate(date: date))
+        self.checkListData = DBHelper.shared.readCheckListData(date: formatDate(date: koreanTime(date: date)))
         print("bindingCheckList : \(decodeBools(self.checkListData.first?.bools ?? "Data none")), \(date)")
         if checkListData.isEmpty {
             self.bools = [false, false, false, false, false, false, false, false, false, false]
