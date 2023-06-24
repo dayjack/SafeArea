@@ -51,4 +51,9 @@ class LocationViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
             self.currentPlacemark = placemarks?.first
         }
     }
+    
+    func getCurrentLocation() -> CLLocationCoordinate2D? {
+        guard let lastSeenLocation = lastSeenLocation else { return nil }
+        return lastSeenLocation.coordinate
+    }
 }

@@ -24,6 +24,7 @@ struct MarkerInfoView: View {
         locationViewModel.lastSeenLocation?.coordinate
     }
     @State var distance = "0m"
+    @State var coordinate2d: CLLocationCoordinate2D = .init()
     
     // MARK: - BODY
     var body: some View {
@@ -68,11 +69,20 @@ struct MarkerInfoView: View {
             .padding(.top, 18)
             .padding(.leading, 24)
             .onAppear {
-                guard let endlat = Double(charging?.lat ?? "0.0"), let endlng = Double(charging?.lng ?? "0.0") else {
+                
+                let tempcoor = coordinate2d
+                
+                let tempLat = tempcoor.latitude
+                let formattedStartLat = String(format: "%.6f", tempLat ?? 0.0)
+                
+                let tempLng = tempcoor.longitude
+                let formattedStartLng = String(format: "%.6f", tempLng ?? 0.0)
+                
+                guard let startlat = Double(formattedStartLat), let startlng = Double(formattedStartLng), let endlat = Double(charging?.lat ?? "0.0"), let endlng = Double(charging?.lng ?? "0.0") else {
                     return
                 }
                 
-                let startLocation = CLLocation(latitude: 36.0228141, longitude: 129.3164021)
+                let startLocation = CLLocation(latitude: startlat, longitude: startlng)
                 let endLocation = CLLocation(latitude: endlat, longitude: endlng)
                 
                 calculateDrivingDistance(startLocation: startLocation, endLocation: endLocation) { drivingDistance in
@@ -84,8 +94,9 @@ struct MarkerInfoView: View {
                     } else {
                         distance = "\(drivingDistance)m"
                     }
+                    print("distance my: \(tempcoor)")
+                    print("distance my: \(startlat) , \(startlng)")
                     
-                    print("distance : \(coordinate?.latitude ?? 0.0) , \(coordinate?.longitude ?? 0.0)")
                     print("distance : \(charging?.lat ?? "0.0") , \(charging?.lng ?? "0.0")")
                     print("distance : \(drivingDistance)")
                     print("distance : \(distance)")
