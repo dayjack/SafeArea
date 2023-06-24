@@ -5,11 +5,25 @@
 //  Created by 신상용 on 2023/06/24.
 //
 
+//
+//  MarkerInfoView.swift
+//  SafeArea
+//
+//  Created by 신상용 on 2023/06/24.
+//
+
 import SwiftUI
+import CoreLocation
+import MapKit
 
 struct MarkerInfoView: View {
     // MARK: - PROPERTY
     @Binding var charging: ChargingStationAnnotation?
+    @State var locationViewModel = LocationViewModel()
+    var coordinate: CLLocationCoordinate2D? {
+        locationViewModel.lastSeenLocation?.coordinate
+    }
+    @State var distance = "0m"
     
     // MARK: - BODY
     var body: some View {
@@ -23,7 +37,7 @@ struct MarkerInfoView: View {
                         Text(charging?.addr ?? "주소 미확인")
                             .pretendarText(fontSize: 12, fontWeight: .regular)
                         Text("  |  ")
-                        Text("435m")
+                        Text(distance)
                             .pretendarText(fontSize: 12, fontWeight: .medium)
                     }
                     .opacity(0.5)
@@ -53,13 +67,49 @@ struct MarkerInfoView: View {
             }
             .padding(.top, 18)
             .padding(.leading, 24)
+            .onAppear {
+                guard let endlat = Double(charging?.lat ?? "0.0"), let endlng = Double(charging?.lng ?? "0.0") else {
+                    return
+                }
+                
+                let startLocation = CLLocation(latitude: 36.0228141, longitude: 129.3164021)
+                let endLocation = CLLocation(latitude: endlat, longitude: endlng)
+                
+                calculateDrivingDistance(startLocation: startLocation, endLocation: endLocation) { drivingDistance in
+                    // Use the drivingDistance value here
+                    print("Driving distance: \(drivingDistance)")
+                    
+                    if drivingDistance >= 1000 {
+                        distance = "\(drivingDistance / 1000)km"
+                    } else {
+                        distance = "\(drivingDistance)m"
+                    }
+                    
+                    print("distance : \(coordinate?.latitude ?? 0.0) , \(coordinate?.longitude ?? 0.0)")
+                    print("distance : \(charging?.lat ?? "0.0") , \(charging?.lng ?? "0.0")")
+                    print("distance : \(drivingDistance)")
+                    print("distance : \(distance)")
+                }
+            }
         } //: ZSTACK
     }
+    
+    func calculateDrivingDistance(startLocation: CLLocation, endLocation: CLLocation, completion: @escaping (CLLocationDistance) -> Void) {
+        let request = MKDirections.Request()
+        request.source = MKMapItem(placemark: MKPlacemark(coordinate: startLocation.coordinate))
+        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: endLocation.coordinate))
+        request.transportType = .automobile
+        
+        let directions = MKDirections(request: request)
+        directions.calculate { response, error in
+            guard let route = response?.routes.first else {
+                // Handle error
+                print(error)
+                completion(0.0) // Return 0.0 if an error occurred
+                return
+            }
+            print("distance func: \(route.distance)")
+            completion(route.distance)
+        }
+    }
 }
-
-//struct MarkerInfoView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        MarkerInfoView()
-//            .previewLayout(.fixed(width: 391, height: 191))
-//    }
-//}
