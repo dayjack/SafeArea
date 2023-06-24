@@ -19,6 +19,8 @@ struct MainMapView: View {
     @Binding var weatherData: Weather?
     @Binding var chargingStationAnnotation: [ChargingStationAnnotation]
     
+    @State var isChargingStationInfo: Bool = false
+    @State var chargingStationInfo: ChargingStationAnnotation?
     // MARK: - swiftui_bottom_sheet_drawer
     @State var isFixed = false
     @State var position: BottomSheetPosition = .down(0)
@@ -33,7 +35,7 @@ struct MainMapView: View {
         ZStack {
             Map(coordinateRegion: $region, showsUserLocation: true, userTrackingMode: .constant(userTrackingMode), annotationItems: (self.chargingStationAnnotation ?? .init())) { charging in
                 MapAnnotation(coordinate: .init(latitude: (charging.lat as! NSString).doubleValue, longitude: (charging.lng as! NSString).doubleValue)) {
-                    PlaceAnnotationView(charging: charging)
+                    PlaceAnnotationView(charging: charging, chargingStationInfo: $chargingStationInfo, isChargingStationInfo: $isChargingStationInfo)
                 }
             }
             .ignoresSafeArea()
@@ -104,54 +106,62 @@ struct MainMapView: View {
                 
                 ZStack {
                     MainMapTopView(locationViewModel: $locationViewModel, zscodeData: $zscodeData, weatherData: $weatherData)
-                    //매개변수 locationViewModel: $locationViewModel, zscodeData: $zscodeData, chargingStationModelData: $chargingStationModelData, weatherData: $weatherData
-                    //                    Image("Union2")
-                    //                        .resizable()
-                    //                        .aspectRatio(contentMode: .fit)
-                    //
-                    ////                    print("날씨 데이터 \(self.weatherData!.weather?.first?.description ?? "날씨 안되")")
-                    ////                    print("날씨 온도 \(self.weatherData?.main?.temp)")
-                    //
-                    //                    Text("날씨 데이터 \(self.weatherData?.weather?.first?.id ?? 0)")
                     
                 }
                 
                 
                 
                 Spacer()
-                HStack {
-                    Spacer()
-                    Button {
-                        withAnimation(.easeIn(duration: 2)) {
-                            userTrackingMode = .follow
-                        }
-                        
-                    } label: {
-                        Circle().frame(width: 48, height: 48)
-                            .foregroundColor(.white)
-                            .overlay {
-                                Image(systemName: "location.fill")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 18.4, height: 18.4)
-                                    .foregroundColor(.black)
+                if !isChargingStationInfo {
+                    ZStack {
+                        HStack {
+                            Spacer()
+                            Button {
+                                withAnimation(.easeIn(duration: 2)) {
+                                    userTrackingMode = .follow
+                                }
                                 
+                            } label: {
+                                Circle().frame(width: 48, height: 48)
+                                    .foregroundColor(.white)
+                                    .overlay {
+                                        
+                                        Image(systemName: "location.fill")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 18.4, height: 18.4)
+                                            .foregroundColor(.black)
+                                        
+                                    }
+                                    .shadow(radius: 4, x: 0 , y: 1)
                             }
-                            .shadow(radius: 4, x: 0 , y: 1)
+                            .opacity(position.isDown ? 1 : 0)
+                            
+                        }
+                        .padding(.horizontal, 26)
+                        .padding(.bottom, 180)
+                        
                     }
-                    .opacity(position.isDown ? 1 : 0)
                     
                 }
-                .padding(.horizontal, 26)
-                .padding(.bottom, 180)
-                
-                
                 
             }
             
+            ZStack{
+                if isChargingStationInfo {
+                    VStack {
+                        Spacer()
+                        MarkerInfoView(charging: $chargingStationInfo)
+                            .frame(width: 391, height: 210)
+                            .background(
+                                Color.white
+                            )
+                        
+                    }
+                }
+            }
             
-            
-        }
+        } //: ZSTACK
         
         
     }
