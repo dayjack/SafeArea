@@ -151,7 +151,7 @@ struct MainMapView: View {
                 if isChargingStationInfo {
                     VStack {
                         Spacer()
-                        MarkerInfoView(charging: $chargingStationInfo)
+                        MarkerInfoView(charging: $chargingStationInfo, coordinate2d: coordinate ?? .init())
                             .frame(width: 391, height: 210)
                             .background(
                                 Color.white

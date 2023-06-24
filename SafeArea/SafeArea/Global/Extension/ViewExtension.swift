@@ -9,6 +9,7 @@ import Alamofire
 import Foundation
 import SwiftUI
 import CoreLocation
+import MapKit
 //
 extension View {
     
@@ -94,4 +95,27 @@ extension View {
 
         return formattedDate
     }
+    
+    // MARK: - 거리 계산
+//    func calculateDrivingDistance(startLocation: CLLocation, endLocation: CLLocation, completion: @escaping (CLLocationDistance) -> Void) {
+//        let request = MKDirections.Request()
+//        request.source = MKMapItem(placemark: MKPlacemark(coordinate: startLocation.coordinate))
+//        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: endLocation.coordinate))
+//        request.transportType = .automobile
+//
+//        let directions = MKDirections(request: request)
+//        directions.calculate { response, error in
+//            if let route = response?.routes.first {
+//                print("Driving distance: \(route.distance)")
+//                completion(route.distance)
+//            } else {
+//                // If driving distance couldn't be calculated, calculate straight-line distance
+//                let straightLineDistance = startLocation.distance(from: endLocation)
+//                print("Straight-line distance: \(straightLineDistance)")
+//                completion(straightLineDistance)
+//            }
+//        }
+//    }
+
+
 }
