@@ -64,25 +64,27 @@ struct ContentView: View {
 //        }
         ZStack {
             
-            switch iconSelected {
-            case .guideline:
-                MainGuideView()
-            case .checklist:
-                MainCheckListView()
-            case .home:
-                MainMapView(locationViewModel: $locationViewModel, zscodeData: $zscodeData, weatherData: $weatherData, chargingStationAnnotation: $chargingStationAnnotation)
-            }
-            VStack {
-                HStack {
-                    Spacer()
-                    EmergencyButtonView()
-                        .padding(.top, 56)
-                        .padding(.trailing, 15)
+                switch iconSelected {
+                case .guideline:
+                    MainGuideView()
+                case .checklist:
+                    MainCheckListView()
+                case .home:
+                    MainMapView(locationViewModel: $locationViewModel, zscodeData: $zscodeData, weatherData: $weatherData, chargingStationAnnotation: $chargingStationAnnotation)
                 }
-                Spacer()
-                CustomBottomTabView(iconSelected: $iconSelected)
-            }
+                VStack {
+                    HStack {
+                        Spacer()
+                        EmergencyButtonView(showingAlert: $showingAlert)
+                            .padding(.top, 56)
+                            .padding(.trailing, 15)
+                    }
+                    Spacer()
+                    CustomBottomTabView(iconSelected: $iconSelected)
+                }
             .ignoresSafeArea()
+            Color.safeRed.opacity(showingAlert ? 0.25 : 0).allowsHitTesting(false)
+            
         }
         .ignoresSafeArea()
         .onAppear {
