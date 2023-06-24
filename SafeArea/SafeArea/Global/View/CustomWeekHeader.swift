@@ -25,6 +25,8 @@ struct CustomWeekHeader: View {
     
     @Binding var progress: Double
     
+    @State var isFirst = true
+    
     var body: some View {
         ZStack {
             ForEach(weekStore.allWeeks) { week in
@@ -121,7 +123,35 @@ struct CustomWeekHeader: View {
             self.selectedDate = koreanTime(date: Date())
         }
         .onChange(of: bools) { newValue in
+            
+            if !isFirst {
+                print("updateNew \(extractLocalDate(from: self.selectedDate))")
+                greenDateStringList.removeAll()
+                yellowDateStringList.removeAll()
+                redDateStringList.removeAll()
+                self.checkListAllData = DBHelper.shared.readCheckListData()
+                for data in checkListAllData {
+                    let count = data.bools.filter { $0 == "1" }.count
+                    switch count {
+                    case 0 ..< 4 :
+                        redDateStringList.append(data.date)
+                        break
+                    case 4 ..< 8:
+                        yellowDateStringList.append(data.date)
+                        break
+                    case 8 ... 10:
+                        greenDateStringList.append(data.date)
+                        break
+                    default:
+                        print("switch count: \(count)")
+                        print("default.count")
+                    }
+                    
+                }
+            }
+            
             calProgress()
+            isFirst = false
         }
     }
 }
