@@ -71,7 +71,7 @@ extension View {
         let timezone = TimeZone(identifier: "Asia/Seoul")
         
         var components = calendar.dateComponents(in: timezone!, from: date)
-        components.hour! -= 9 // UTC에서 한국 표준시로 변환
+        components.hour! += 9 // UTC에서 한국 표준시로 변환
         
         let convertedDate = calendar.date(from: components)!
         return convertedDate

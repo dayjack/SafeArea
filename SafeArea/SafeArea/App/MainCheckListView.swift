@@ -124,7 +124,7 @@ struct MainCheckListView: View {
         .ignoresSafeArea(.all)
         .onAppear {
             self.checkListData = DBHelper.shared.readCheckListData(date: formatDate(date: koreanTime(date: Date())))
-            print("현재시간: \(koreanTime(date: Date()))")
+            print("현재시간 Main: \(koreanTime(date: Date()))")
             self.selectedDate = koreanTime(date: Date())
             bindingCheckList(date: koreanTime(date: Date()))
             self.calendarYear = weekStore.dateToString(date: weekStore.currentDate, format: "yyyy")
@@ -144,8 +144,9 @@ extension MainCheckListView {
     
     func bindingCheckList(date: Date) {
         print("현재시간 in bind : \(date)")
-        print("현재시간 fotmat : \(formatDate(date: date))")
-        self.checkListData = DBHelper.shared.readCheckListData(date: formatDate(date: koreanTime(date: date)))
+        print("현재시간 in bind2 : \(date)")
+        print("현재시간 fotmat : \(formatDate(date: date)))")
+        self.checkListData = DBHelper.shared.readCheckListData(date: formatDate(date: date))
         print("bindingCheckList : \(decodeBools(self.checkListData.first?.bools ?? "Data none")), \(date)")
         if checkListData.isEmpty {
             self.bools = [false, false, false, false, false, false, false, false, false, false]
