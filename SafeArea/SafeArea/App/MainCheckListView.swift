@@ -108,7 +108,11 @@ struct MainCheckListView: View {
                     .ignoresSafeArea()
                     .onChange(of: bools) { newValue in
                         print("bools change : \(newValue)")
-                        DBHelper.shared.updateCheckListData(bools: encodeBools(bools: newValue), date: formatDate(date: koreanTime(date: weekStore.currentDate)))
+                        print("WIW : \(formatDate(date: selectedDate)) : \(formatDate(date: koreanTime(date: Date())))")
+                        
+                        if formatDate(date: selectedDate) == formatDate(date: koreanTime(date: Date())) {
+                            DBHelper.shared.updateCheckListData(bools: encodeBools(bools: newValue), date: formatDate(date: koreanTime(date: weekStore.currentDate)))
+                        }
                     }
                     .onChange(of: selectedDate) { newValue in
                         bindingCheckList(date: newValue)
