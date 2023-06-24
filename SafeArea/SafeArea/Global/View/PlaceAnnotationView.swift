@@ -38,6 +38,7 @@ struct PlaceAnnotationView: View {
                                         HStack {
                                             Text("충전 가능")
                                                 .pretendarText(fontSize: 12, fontWeight: .regular)
+                                                .foregroundColor(.safeGreen)
                                             Text("\(charging?.charging ?? 0) / \(charging?.total ?? 0)")
                                                 .pretendarText(fontSize: 12, fontWeight: .regular)
                                         }
