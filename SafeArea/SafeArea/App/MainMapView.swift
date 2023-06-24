@@ -28,8 +28,6 @@ struct MainMapView: View {
     @State var position: BottomSheetPosition = .down(0)
     @State var listOpacity = 0
     
-    @State var distance = ""
-    
     var coordinate: CLLocationCoordinate2D? {
         locationViewModel.lastSeenLocation?.coordinate
     }
@@ -68,7 +66,8 @@ struct MainMapView: View {
                                                 Text(item.addr ?? "주소 미확인")
                                                     .pretendarText(fontSize: 12, fontWeight: .regular)
                                                 Text("  |  ")
-                                                Text("\(distance)")
+                                                
+                                                Text(item.distance >= 1000 ? String(format: "%.1fkm", item.distance / 1000) : "\(Int(item.distance))m")
                                                     .pretendarText(fontSize: 12, fontWeight: .medium)
                                                     .onAppear {
                                                         
@@ -90,18 +89,7 @@ struct MainMapView: View {
                                                         calculateDrivingDistance(startLocation: startLocation, endLocation: endLocation) { drivingDistance in
                                                             // Use the drivingDistance value here
                                                             print("Driving distance: \(drivingDistance)")
-                                                            
-                                                            if drivingDistance >= 1000 {
-                                                                distance = "\(drivingDistance / 1000)km"
-                                                            } else {
-                                                                distance = "\(drivingDistance)m"
-                                                            }
-                                                            print("distance my: \(tempcoor)")
-                                                            print("distance my: \(startlat) , \(startlng)")
-                                                            
-                                                            print("distance : \(item.lat ?? "0.0") , \(item.lng ?? "0.0")")
-                                                            print("distance : \(drivingDistance)")
-                                                            print("distance : \(distance)")
+                                                            item.distance = drivingDistance
                                                         }
                                                         
                                                     }

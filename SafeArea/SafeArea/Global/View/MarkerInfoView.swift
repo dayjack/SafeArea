@@ -91,7 +91,7 @@ struct MarkerInfoView: View {
                         print("Driving distance: \(drivingDistance)")
                         
                         if drivingDistance >= 1000 {
-                            distance = "\(drivingDistance / 1000)km"
+                            distance = String(format: "%.1fkm", drivingDistance / 1000)
                         } else {
                             distance = "\(drivingDistance)m"
                         }
