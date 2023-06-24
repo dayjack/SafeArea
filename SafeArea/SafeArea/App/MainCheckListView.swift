@@ -107,15 +107,17 @@ struct MainCheckListView: View {
                     }
                     .ignoresSafeArea()
                     .onChange(of: bools) { newValue in
-                        print("bools change : \(newValue)")
-                        print("WIW : \(formatDate(date: selectedDate)) : \(formatDate(date: koreanTime(date: Date())))")
-                        
-                        if formatDate(date: selectedDate) == formatDate(date: koreanTime(date: Date())) {
-                            DBHelper.shared.updateCheckListData(bools: encodeBools(bools: newValue), date: formatDate(date: koreanTime(date: weekStore.currentDate)))
+
+                        print("Calendar selectedDate: \(selectedDate)")
+                        print("Calendar selectedDate: \(koreanTime(date: Date()))")
+                        if extractLocalDate(from: selectedDate) == extractLocalDate(from: koreanTime(date: Date())) {
+                            DBHelper.shared.updateCheckListData(bools: encodeBools(bools: newValue), date: extractLocalDate(from: selectedDate))
                         }
                     }
                     .onChange(of: selectedDate) { newValue in
+                        print("newValue: \(newValue)")
                         bindingCheckList(date: newValue)
+                        
                         self.calendarYear = weekStore.dateToString(date: weekStore.currentDate, format: "yyyy")
                         self.calendarMonth = weekStore.dateToString(date: weekStore.currentDate, format: "MM")
                     }
@@ -127,9 +129,7 @@ struct MainCheckListView: View {
         }
         .ignoresSafeArea(.all)
         .onAppear {
-            self.checkListData = DBHelper.shared.readCheckListData(date: formatDate(date: koreanTime(date: Date())))
-            print("현재시간 Main: \(koreanTime(date: Date()))")
-            self.selectedDate = koreanTime(date: Date())
+            self.checkListData = DBHelper.shared.readCheckListData(date: extractLocalDate(from: Date()))
             bindingCheckList(date: koreanTime(date: Date()))
             self.calendarYear = weekStore.dateToString(date: weekStore.currentDate, format: "yyyy")
             self.calendarMonth = weekStore.dateToString(date: weekStore.currentDate, format: "MM")
@@ -147,10 +147,7 @@ struct MainCheckListView_Previews: PreviewProvider {
 extension MainCheckListView {
     
     func bindingCheckList(date: Date) {
-        print("현재시간 in bind : \(date)")
-        print("현재시간 in bind2 : \(date)")
-        print("현재시간 fotmat : \(formatDate(date: date)))")
-        self.checkListData = DBHelper.shared.readCheckListData(date: formatDate(date: date))
+        self.checkListData = DBHelper.shared.readCheckListData(date: extractLocalDate(from: date))
         print("bindingCheckList : \(decodeBools(self.checkListData.first?.bools ?? "Data none")), \(date)")
         if checkListData.isEmpty {
             self.bools = [false, false, false, false, false, false, false, false, false, false]
