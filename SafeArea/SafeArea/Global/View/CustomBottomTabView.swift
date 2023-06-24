@@ -12,6 +12,7 @@ struct CustomBottomTabView: View {
     @Binding var iconSelected: IconName
     @State var angle: Angle = Angle(degrees: 0)
     @State var imageGrayScale: Double = 0.0
+    @State var imageOpacity: Double = 1.0
     
     var body: some View {
             ZStack {
@@ -48,6 +49,7 @@ struct CustomBottomTabView: View {
                             .overlay {
                                 Image("icon_home")
                                     .grayscale(imageGrayScale)
+                                    .opacity(imageOpacity)
                                     .frame(width: 49, height: 49)
                             }
                             .onTapGesture {
@@ -104,16 +106,19 @@ extension CustomBottomTabView {
         switch type {
         case .guideline:
             withAnimation(.easeInOut(duration: 0.25)) {
+                self.imageOpacity = 0.4
                 self.imageGrayScale = 1
                 self.angle = Angle(degrees: -45)
             }
         case .home:
             withAnimation(.easeInOut(duration: 0.25)) {
+                self.imageOpacity = 1
                 self.imageGrayScale = 0
                 self.angle = Angle(degrees: 0)
             }
         case .checklist:
             withAnimation(.easeInOut(duration: 0.25)) {
+                self.imageOpacity = 0.4
                 self.imageGrayScale = 1
                 self.angle = Angle(degrees: -45)
             }
