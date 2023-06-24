@@ -24,44 +24,13 @@ struct ContentView: View {
     @State private var showingAlert = false
     @State private var iconSelected: IconName = .home
     
-    
+    @State var chargingStationList: [ChargingStationAnnotation] = []
     
     // MARK: - BODY
     
     
     var body: some View {
-//        VStack {
-//            Button(action: {
-//                showingAlert = true
-//            }) {
-//                Text("긴급")
-//                    .padding()
-//                    .background(Color.blue)
-//                    .foregroundColor(.white)
-//                    .cornerRadius(10)
-//            }
-//            .alert("119 긴급 신고를 하시겠습니까?", isPresented: $showingAlert) {
-//
-//                Button("취소", role: .cancel) {}
-//                Button("신고하기", role: .destructive) {isShowingMessageView = true}
-//
-//            }message: {
-//                Text("화재 경보 및 현재 충전소의 위치 정보가\n함께 신고 접수됩니다.")
-//            }
-//
-//
-//            // 메시지 보내는 코드
-//            .sheet(isPresented: $isShowingMessageView) {
-//                MessageComposeView(recipients: ["01040359646"], messageBody: "전기차에서 불났어요")
-//            }
-//
-//
-//            // MARK: - 값 체크
-//            Text("현재 latitude : \(coordinate?.latitude ?? 0)")
-//            Text("현재 longitude : \(coordinate?.longitude ?? 0)")
-//
-//            Text(self.chargingStationModelData?.items.item.first?.addr ?? "test")
-//        }
+
         ZStack {
             
                 switch iconSelected {
@@ -70,7 +39,7 @@ struct ContentView: View {
                 case .checklist:
                     MainCheckListView()
                 case .home:
-                    MainMapView(locationViewModel: $locationViewModel, zscodeData: $zscodeData, weatherData: $weatherData, chargingStationAnnotation: $chargingStationAnnotation)
+                    MainMapView(locationViewModel: $locationViewModel, zscodeData: $zscodeData, weatherData: $weatherData, chargingStationAnnotation: $chargingStationAnnotation, chargingStationList: $chargingStationList)
                 }
                 VStack {
                     HStack {

@@ -97,25 +97,24 @@ extension View {
     }
     
     // MARK: - 거리 계산
-//    func calculateDrivingDistance(startLocation: CLLocation, endLocation: CLLocation, completion: @escaping (CLLocationDistance) -> Void) {
-//        let request = MKDirections.Request()
-//        request.source = MKMapItem(placemark: MKPlacemark(coordinate: startLocation.coordinate))
-//        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: endLocation.coordinate))
-//        request.transportType = .automobile
-//
-//        let directions = MKDirections(request: request)
-//        directions.calculate { response, error in
-//            if let route = response?.routes.first {
-//                print("Driving distance: \(route.distance)")
-//                completion(route.distance)
-//            } else {
-//                // If driving distance couldn't be calculated, calculate straight-line distance
-//                let straightLineDistance = startLocation.distance(from: endLocation)
-//                print("Straight-line distance: \(straightLineDistance)")
-//                completion(straightLineDistance)
-//            }
-//        }
-//    }
+    func calculateDrivingDistance(startLocation: CLLocation, endLocation: CLLocation, completion: @escaping (CLLocationDistance) -> Void) {
+        let request = MKDirections.Request()
+        request.source = MKMapItem(placemark: MKPlacemark(coordinate: startLocation.coordinate))
+        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: endLocation.coordinate))
+        request.transportType = .automobile
+        
+        let directions = MKDirections(request: request)
+        directions.calculate { response, error in
+            guard let route = response?.routes.first else {
+                // Handle error
+                print(error)
+                completion(0.0) // Return 0.0 if an error occurred
+                return
+            }
+            print("distance func: \(route.distance)")
+            completion(route.distance)
+        }
+    }
 
 
 }

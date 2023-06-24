@@ -18,6 +18,8 @@ struct MainMapView: View {
     @Binding var zscodeData: ZscodeData?
     @Binding var weatherData: Weather?
     @Binding var chargingStationAnnotation: [ChargingStationAnnotation]
+    @Binding var chargingStationList: [ChargingStationAnnotation]
+    //    @State var coordinate: CLLocationCoordinate2D= .init()
     
     @State var isChargingStationInfo: Bool = false
     @State var chargingStationInfo: ChargingStationAnnotation?
@@ -43,43 +45,101 @@ struct MainMapView: View {
             .gesture(DragGesture().onChanged { _ in
                 userTrackingMode = .none
             })
-                BottomSheet(
-                    content:
-                            ZStack {
-                                Color.white
-                                    .cornerRadius(20)
-                                    .offset(y: -14)
-                                VStack {
+            BottomSheet(
+                content:
+                    ZStack {
+                        Color.white
+                            .cornerRadius(20)
+                            .offset(y: -14)
+                        VStack {
+                            
+                            List {
+                                
+                                ForEach(chargingStationList, id: \.self) { item in
                                     
-                                    List {
-                                        
-                                        ForEach(0..<5) { _ in
-                                            VStack(alignment: .leading, spacing: 0) {
-                                                Text("충전소")
-                                                    .pretendarText(fontSize: 16, fontWeight: .medium)
-                                                    .padding(.bottom, 8)
-                                                Text("라아ㅓㅗㄹ어ㅏㅗㅁ라ㅓㅗㅇ러ㅗ아로아ㅓ로아ㅓㅗㄹ")
-                                                    .pretendarText(fontSize: 16, fontWeight: .medium)
-                                                    .padding(.bottom, 7)
-                                                Text("포항시 남구 지곡동")
+                                    HStack {
+                                        VStack(alignment: .leading, spacing: 0){
+                                            Text(item.statNm ?? "데이터 없음")
+                                                .pretendarText(fontSize: 16, fontWeight: .medium)
+                                                .padding(.bottom, 8)
+                                            HStack {
+                                                Text(item.addr ?? "주소 미확인")
+                                                    .pretendarText(fontSize: 12, fontWeight: .regular)
+                                                Text("  |  ")
+                                                
+                                                Text(item.distance >= 1000 ? String(format: "%.1fkm", item.distance / 1000) : "\(Int(item.distance))m")
                                                     .pretendarText(fontSize: 12, fontWeight: .medium)
-                                                    .foregroundColor(Color.init(hex: "808080"))
+                                                    .onAppear {
+                                                        
+                                                        let tempcoor = coordinate
+                                                        
+                                                        let tempLat = tempcoor?.latitude
+                                                        let formattedStartLat = String(format: "%.6f", tempLat ?? 0.0)
+                                                        
+                                                        let tempLng = tempcoor?.longitude
+                                                        let formattedStartLng = String(format: "%.6f", tempLng ?? 0.0)
+                                                        
+                                                        guard let startlat = Double(formattedStartLat), let startlng = Double(formattedStartLng), let endlat = Double(item.lat ?? "0.0"), let endlng = Double(item.lng ?? "0.0") else {
+                                                            return
+                                                        }
+                                                        
+                                                        let startLocation = CLLocation(latitude: startlat, longitude: startlng)
+                                                        let endLocation = CLLocation(latitude: endlat, longitude: endlng)
+                                                        
+                                                        calculateDrivingDistance(startLocation: startLocation, endLocation: endLocation) { drivingDistance in
+                                                            // Use the drivingDistance value here
+                                                            print("Driving distance: \(drivingDistance)")
+                                                            item.distance = drivingDistance
+                                                        }
+                                                        
+                                                    }
                                             }
+                                            .opacity(0.5)
+                                            .padding(.bottom, 9)
+                                            
+                                            if (item.ready == 0) {
+                                                HStack(spacing: 0) {
+                                                    Text("모두 이용 중")
+                                                        .pretendarText(fontSize: 12, fontWeight: .regular)
+                                                        .foregroundColor(Color.safeRed)
+                                                        .padding(.trailing)
+                                                    Text("\(item.charging ?? 0) / \(item.total ?? 0)")
+                                                        .pretendarText(fontSize: 12, fontWeight: .regular)
+                                                }
+                                            }
+                                            else {
+                                                HStack {
+                                                    Text("충전 가능")
+                                                        .pretendarText(fontSize: 12, fontWeight: .regular)
+                                                        .foregroundColor(.safeGreen)
+                                                    Text("\(item.charging ?? 0) / \(item.total ?? 0)")
+                                                        .pretendarText(fontSize: 12, fontWeight: .regular)
+                                                }
+                                            }
+                                            Spacer()
                                         }
+                                        Spacer()
                                     }
-                                    .listStyle(.plain)
-                                    .opacity(Double(listOpacity))
-                                    
+                                    .padding(.top, 18)
+                                    .padding(.leading, 24)
                                 }
-                                .padding(.leading, 4)
-                                .padding(.vertical, 26)
-                                .opacity(isFixed ? 0 : 1)
+                                
+                                
+                                
                             }
-                        .shadow(color: .black.opacity(0), radius: 0, x: 0, y: 0)
-                    ,
-                    shift: 154,
-                    topIndentation: 184
-                )
+                            .listStyle(.plain)
+                            .opacity(Double(listOpacity))
+                            
+                        }
+                        .padding(.leading, 4)
+                        .padding(.vertical, 26)
+                        .opacity(isFixed ? 0 : 1)
+                    }
+                    .shadow(color: .black.opacity(0), radius: 0, x: 0, y: 0)
+                ,
+                shift: 154,
+                topIndentation: 184
+            )
             .onPositionChanged{
                 position = $0
                 if !position.isDown {
@@ -110,7 +170,6 @@ struct MainMapView: View {
                 }
                 
                 
-                
                 Spacer()
                 if !isChargingStationInfo {
                     ZStack {
@@ -137,32 +196,35 @@ struct MainMapView: View {
                             }
                             .opacity(position.isDown ? 1 : 0)
                             
+                            
+                            .padding(.horizontal, 26)
+                            .padding(.bottom, 180)
+                            
                         }
-                        .padding(.horizontal, 26)
-                        .padding(.bottom, 180)
                         
                     }
                     
                 }
                 
-            }
-            
-            ZStack{
-                if isChargingStationInfo {
-                    VStack {
-                        Spacer()
-                        MarkerInfoView(charging: $chargingStationInfo, coordinate2d: coordinate ?? .init())
-                            .frame(width: 391, height: 210)
-                            .background(
-                                Color.white
-                            )
-                        
+                ZStack{
+                    if isChargingStationInfo {
+                        VStack {
+                            Spacer()
+                            MarkerInfoView(charging: $chargingStationInfo, coordinate2d: coordinate ?? .init())
+                                .frame(width: 391, height: 210)
+                                .background(
+                                    Color.white
+                                )
+                            
+                        }
                     }
                 }
+                
             }
-            
-        } //: ZSTACK
-        
+        }
+        .onAppear {
+            print("LastDance : \(coordinate)")
+        }
         
     }
 }
