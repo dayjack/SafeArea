@@ -19,6 +19,7 @@ struct MainMapView: View {
     @Binding var weatherData: Weather?
     @Binding var chargingStationAnnotation: [ChargingStationAnnotation]
     @Binding var chargingStationList: [ChargingStationAnnotation]
+    //    @State var coordinate: CLLocationCoordinate2D= .init()
     
     @State var isChargingStationInfo: Bool = false
     @State var chargingStationInfo: ChargingStationAnnotation?
@@ -26,6 +27,8 @@ struct MainMapView: View {
     @State var isFixed = false
     @State var position: BottomSheetPosition = .down(0)
     @State var listOpacity = 0
+    
+    @State var distance = ""
     
     var coordinate: CLLocationCoordinate2D? {
         locationViewModel.lastSeenLocation?.coordinate
@@ -65,8 +68,43 @@ struct MainMapView: View {
                                                 Text(item.addr ?? "주소 미확인")
                                                     .pretendarText(fontSize: 12, fontWeight: .regular)
                                                 Text("  |  ")
-                                                Text("\(item.distance)")
+                                                Text("\(distance)")
                                                     .pretendarText(fontSize: 12, fontWeight: .medium)
+                                                    .onAppear {
+                                                        
+                                                        let tempcoor = coordinate
+                                                        
+                                                        let tempLat = tempcoor?.latitude
+                                                        let formattedStartLat = String(format: "%.6f", tempLat ?? 0.0)
+                                                        
+                                                        let tempLng = tempcoor?.longitude
+                                                        let formattedStartLng = String(format: "%.6f", tempLng ?? 0.0)
+                                                        
+                                                        guard let startlat = Double(formattedStartLat), let startlng = Double(formattedStartLng), let endlat = Double(item.lat ?? "0.0"), let endlng = Double(item.lng ?? "0.0") else {
+                                                            return
+                                                        }
+                                                        
+                                                        let startLocation = CLLocation(latitude: startlat, longitude: startlng)
+                                                        let endLocation = CLLocation(latitude: endlat, longitude: endlng)
+                                                        
+                                                        calculateDrivingDistance(startLocation: startLocation, endLocation: endLocation) { drivingDistance in
+                                                            // Use the drivingDistance value here
+                                                            print("Driving distance: \(drivingDistance)")
+                                                            
+                                                            if drivingDistance >= 1000 {
+                                                                distance = "\(drivingDistance / 1000)km"
+                                                            } else {
+                                                                distance = "\(drivingDistance)m"
+                                                            }
+                                                            print("distance my: \(tempcoor)")
+                                                            print("distance my: \(startlat) , \(startlng)")
+                                                            
+                                                            print("distance : \(item.lat ?? "0.0") , \(item.lng ?? "0.0")")
+                                                            print("distance : \(drivingDistance)")
+                                                            print("distance : \(distance)")
+                                                        }
+                                                        
+                                                    }
                                             }
                                             .opacity(0.5)
                                             .padding(.bottom, 9)
@@ -195,6 +233,9 @@ struct MainMapView: View {
                 }
                 
             }
+        }
+        .onAppear {
+            print("LastDance : \(coordinate)")
         }
         
     }
