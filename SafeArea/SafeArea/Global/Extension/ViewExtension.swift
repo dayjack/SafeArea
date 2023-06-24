@@ -56,17 +56,21 @@ extension View {
     }
     
     func formatDate(date: Date) -> String {
-    
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        
+        let dateFormatter: DateFormatter = {
+            let df = DateFormatter()
+            df.locale = Locale(identifier: "ko_KR")
+            df.timeZone = TimeZone(abbreviation: "KST")
+            df.dateFormat = "yyyy-MM-dd"
+            return df
+        }()
         let formattedDate = dateFormatter.string(from: date)
+        print("현재시간 formatDate: \(koreanTime(date: date))")
+        print("현재시간 formattedDate: \(formattedDate)")
         return formattedDate
     }
     
     func koreanTime(date: Date) -> Date {
-  
+        
         let calendar = Calendar(identifier: .gregorian)
         let timezone = TimeZone(identifier: "Asia/Seoul")
         
@@ -75,5 +79,19 @@ extension View {
         
         let convertedDate = calendar.date(from: components)!
         return convertedDate
+    }
+    
+    func extractLocalDate(from date: Date) -> String {
+        
+        let formatter = DateFormatter()
+        let calendar = Calendar.current
+        let timeZone = TimeZone(identifier: "UTC") // UTC 시간대로 설정하고자 한다면 "UTC"를 사용
+
+        formatter.calendar = calendar
+        formatter.timeZone = timeZone
+        formatter.dateFormat = "yyyy-MM-dd"
+        let formattedDate = formatter.string(from: date)
+
+        return formattedDate
     }
 }

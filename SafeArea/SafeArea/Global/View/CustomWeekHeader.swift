@@ -38,7 +38,7 @@ struct CustomWeekHeader: View {
                                 self.selectedDate = koreanTime(date: weekStore.currentDate)
                                 print("selectedDate : \(selectedDate)")
                                 print("selectedDate ->  : \(koreanTime(date: weekStore.currentDate))")
-                                bindingCheckList(date: koreanTime(date: weekStore.currentDate))
+                                bindingCheckList(date: weekStore.currentDate)
                             } label: {
                                 VStack(spacing: 20) {
                                     Text(weekStore.dateToString(date: koreanTime(date: week.date[index]), format: "EEE"))
@@ -53,8 +53,15 @@ struct CustomWeekHeader: View {
                                 }
                                 .padding(.horizontal, 4)
                                 .padding(.vertical, 5)
-                                .background(formatDate(date: koreanTime(date: weekStore.currentDate)) == weekStore.dateToString(date: koreanTime(date: week.date[index]), format: "yyyy-MM-dd") ? Color.init(hex: "EEEEEE") : .clear)
+                                .background(formatDate(date: weekStore.currentDate) == weekStore.dateToString(date: koreanTime(date: week.date[index]), format: "yyyy-MM-dd") ? Color.init(hex: "EEEEEE") : .clear)
                                 .cornerRadius(14)
+                                .onAppear {
+//                                    print("BtnAppear : \(koreanTime(date: week.date[index])) : \(self.selectedDate)")
+//                                    print("BtnAppear : \(koreanTime(date: week.date[index])) : \(formatDate(date: weekStore.currentDate))")
+//                                    print("BtnAppearBack : \(formatDate(date: koreanTime(date: weekStore.currentDate))) : \(weekStore.dateToString(date: week.date[index], format: "yyyy-MM-dd"))")
+                                    print("BtnAppearIndex: \(week.date[index]) : \(formatDate(date: koreanTime(date: weekStore.currentDate)))")
+                                    print("BtnAppearIndex: \(week.date[index]) : \(formatDate(date: weekStore.currentDate))")
+                                }
                             }
                         }
                     }
@@ -96,19 +103,13 @@ struct CustomWeekHeader: View {
                 let count = data.bools.filter { $0 == "1" }.count
                 switch count {
                 case 0 ..< 4 :
-                    print("0..<4 : \(data.date)")
                     redDateStringList.append(data.date)
-                    print("redDateStringList.count : \(redDateStringList.count)")
                     break
                 case 4 ..< 8:
-                    print("4..<8 : \(data.date)")
                     yellowDateStringList.append(data.date)
-                    print("yellowDateStringList.count : \(yellowDateStringList.count)")
                     break
                 case 8 ... 10:
-                    print("8..<10 : \(data.date)")
                     greenDateStringList.append(data.date)
-                    print("greenDateStringList.count : \(greenDateStringList.count)")
                     break
                 default:
                     print("switch count: \(count)")
@@ -117,37 +118,9 @@ struct CustomWeekHeader: View {
                 
             }
             calProgress()
+            self.selectedDate = koreanTime(date: Date())
         }
         .onChange(of: bools) { newValue in
-//            redDateStringList.removeAll()
-//            greenDateStringList.removeAll()
-//            yellowDateStringList.removeAll()
-//            self.checkListAllData = DBHelper.shared.readCheckListData()
-//            for data in checkListAllData {
-//                let count = data.bools.filter { $0 == "1" }.count
-//                switch count {
-//                case 0 ..< 4 :
-//                    print("0..<4 : \(data.date)")
-//                    redDateStringList.append(data.date)
-//                    print("redDateStringList.count : \(redDateStringList.count)")
-//                    break
-//                case 4 ..< 8:
-//                    print("4..<8 : \(data.date)")
-//                    yellowDateStringList.append(data.date)
-//                    print("yellowDateStringList.count : \(yellowDateStringList.count)")
-//                    break
-//                case 8 ... 10:
-//                    print("8..<10 : \(data.date)")
-//                    greenDateStringList.append(data.date)
-//                    print("greenDateStringList.count : \(greenDateStringList.count)")
-//                    break
-//                default:
-//                    print("switch count: \(count)")
-//                    print("default.count")
-//                }
-//
-//            }
-
             calProgress()
         }
     }
@@ -177,7 +150,6 @@ extension CustomWeekHeader {
     
     func bindingCheckList(date: Date) {
         self.checkListData = DBHelper.shared.readCheckListData(date: formatDate(date: koreanTime(date: date)))
-        print("bindingCheckList : \(decodeBools(self.checkListData.first?.bools ?? "Data none"))")
         if checkListData.isEmpty {
             self.bools = [false, false, false, false, false, false, false, false, false, false]
         } else {
@@ -189,18 +161,13 @@ extension CustomWeekHeader {
 extension CustomWeekHeader {
     
     func dateColorFunc(dateStr: String) -> Color {
-        print("dateColorFunc : dateStr -> \(dateStr)")
         if greenDateStringList.contains(dateStr) {
-            print("dateColorFunc : green")
             return .safeGreen
         } else if yellowDateStringList.contains(dateStr) {
-            print("dateColorFunc : yellow")
             return .safeYellow
         } else if redDateStringList.contains(dateStr) {
-            print("dateColorFunc : red")
             return .safeRed
         } else {
-            print("dateColorFunc : gray")
             return .safeGray
         }
     }
@@ -217,7 +184,6 @@ extension CustomWeekHeader {
             if progress >= 1 {
                 return
             }
-            print("calProgress : \(progress)")
         }
     }
 }
