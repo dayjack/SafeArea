@@ -10,7 +10,7 @@ import SwiftUI
 struct EmergencyButtonView: View {
     // MARK: - PROPERTY
     @State private var isShowingMessageView = false
-    @State private var showingAlert = false
+    @Binding var showingAlert: Bool
     @State private var isPressing = false
     @State private var timer: Timer? = nil
     let generator = UIImpactFeedbackGenerator(style: .soft)
@@ -79,7 +79,7 @@ struct EmergencyButtonView: View {
 // MARK: - PREVIEW
 struct EmergencyButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        EmergencyButtonView()
+        EmergencyButtonView(showingAlert: .constant(false))
             .previewLayout(.sizeThatFits)
     }
 }
