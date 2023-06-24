@@ -11,58 +11,64 @@ struct PlaceAnnotationView: View {
     
     @State var charging: ChargingStationAnnotation?
     @State var isclicked: Bool = false
-    
+    @Binding var chargingStationInfo: ChargingStationAnnotation?
+    @Binding var isChargingStationInfo: Bool
     var body: some View {
-        VStack {
-            if isclicked {
-                Color.white.opacity(0.85).cornerRadius(12)
-                    .frame(width: 158, height: 56)
-                    .overlay {
-                        HStack {
-                            VStack(alignment: .leading) {
-                                Text(charging?.statNm ?? "데이터 없음")
-                                    .pretendarText(fontSize: 16, fontWeight: .semibold)
-                                
-                                if (charging?.ready == 0) {
-                                    HStack {
-                                        Text("모두 이용 중")
-                                            .pretendarText(fontSize: 12, fontWeight: .regular)
-                                            .foregroundColor(Color.safeRed)
-                                        Text("\(charging?.charging ?? 0) / \(charging?.total ?? 0)")
-                                            .pretendarText(fontSize: 12, fontWeight: .regular)
-                                    }
-                                }
-                                else {
-                                    HStack {
-                                        Text("충전 가능")
-                                            .pretendarText(fontSize: 12, fontWeight: .regular)
-                                        Text("\(charging?.charging ?? 0) / \(charging?.total ?? 0)")
-                                            .pretendarText(fontSize: 12, fontWeight: .regular)
-                                    }
-                                }
-                                
-                            }
-                            .padding(.leading, 10)
-                            Spacer()
-                        }
-                        
-                    }
-                    .offset(x: 79, y: 10)
-            }
-            
-            ZStack {
+        ZStack {
+            VStack {
                 if isclicked {
-                    Image("placeMarker_2")
-                } else {
-                    Image("placeMarker_1")
+                    Color.white.opacity(0.85).cornerRadius(12)
+                        .frame(width: 158, height: 56)
+                        .overlay {
+                            HStack {
+                                VStack(alignment: .leading) {
+                                    Text(charging?.statNm ?? "데이터 없음")
+                                        .pretendarText(fontSize: 16, fontWeight: .semibold)
+                                    
+                                    if (charging?.ready == 0) {
+                                        HStack {
+                                            Text("모두 이용 중")
+                                                .pretendarText(fontSize: 12, fontWeight: .regular)
+                                                .foregroundColor(Color.safeRed)
+                                            Text("\(charging?.charging ?? 0) / \(charging?.total ?? 0)")
+                                                .pretendarText(fontSize: 12, fontWeight: .regular)
+                                        }
+                                    }
+                                    else {
+                                        HStack {
+                                            Text("충전 가능")
+                                                .pretendarText(fontSize: 12, fontWeight: .regular)
+                                            Text("\(charging?.charging ?? 0) / \(charging?.total ?? 0)")
+                                                .pretendarText(fontSize: 12, fontWeight: .regular)
+                                        }
+                                    }
+                                    
+                                }
+                                .padding(.leading, 10)
+                                Spacer()
+                            }
+                            
+                        }
+                        .offset(x: 79, y: 10)
                 }
-            } .onTapGesture {
-                print("clicked")
-                isclicked.toggle()
+                
+                ZStack {
+                    if isclicked {
+                        Image("placeMarker_2")
+                    } else {
+                        Image("placeMarker_1")
+                    }
+                } .onTapGesture {
+                    print("clicked")
+                    isclicked.toggle()
+                    
+                    chargingStationInfo = charging
+                    isChargingStationInfo.toggle()
+                }
             }
+            .offset(y: isclicked ? -50 : 0)
+            
         }
-        .offset(y: isclicked ? -50 : 0)
-        
         
     }
 }

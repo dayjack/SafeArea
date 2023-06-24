@@ -174,12 +174,9 @@ extension CustomWeekHeader {
 }
 
 extension CustomWeekHeader {
-    
-    
     func calProgress() {
         progress = 0.5
         for data in greenDateStringList {
-            
             progress += 0.01
             if progress >= 1 {
                 return
