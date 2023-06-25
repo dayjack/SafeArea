@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PlaceAnnotationView: View {
     
-    @State var charging: ChargingStationAnnotation?
+    var charging: ChargingStationAnnotation?
     @State var isclicked: Bool = false
     @Binding var chargingStationInfo: ChargingStationAnnotation?
     @Binding var isChargingStationInfo: Bool
