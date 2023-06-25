@@ -37,16 +37,16 @@ extension ContentView {
                 fetchChargingStation(zscodes, location: location)
                 fetchWeathers(location)
                 
-                //                ForEach(chargingStation?.items.item ?? .init()) {item in
-                //                    print("dd")
-                //                }
+//                ForEach(chargingStation?.items.item ?? .init()) {item in
+//                    print("dd")
+//                }
                 
             }
     }
     
     func fetchChargingStation(_ zscodes: String, location: CLLocationCoordinate2D) {
         print(zscodes)
-        //        let chargingUrl = "https://apis.data.go.kr/B552584/EvCharger/getChargerInfo?numOfRows=9999&pageNo=1&zscode=\(zscodes)&dataType=JSON&serviceKey=\(Bundle.main.chargingAPIKey!)"
+//        let chargingUrl = "https://apis.data.go.kr/B552584/EvCharger/getChargerInfo?numOfRows=9999&pageNo=1&zscode=\(zscodes)&dataType=JSON&serviceKey=\(Bundle.main.chargingAPIKey!)"
         let chargingUrl = "https://apis.data.go.kr/B552584/EvCharger/getChargerInfo?numOfRows=500&pageNo=1&zscode=\(zscodes)&dataType=JSON&serviceKey=\(Bundle.main.chargingAPIKey!)"
         
         
@@ -66,22 +66,22 @@ extension ContentView {
                 print(chargingStationModelData?.items.item[0].statNm)
                 
                 // MARK: - PROPERTY
-                var statNm: String = ""
-                var addr: String = ""
-                var lat: String = ""
-                var lng: String = ""
+                var statNm: String = (self.chargingStationModelData?.items.item.first!.statNm)!
+                var addr: String = (self.chargingStationModelData?.items.item.first!.addr)!
+                var lat: String = (self.chargingStationModelData?.items.item.first!.lat)!
+                var lng: String = (self.chargingStationModelData?.items.item.first!.lng)!
                 var unknownStatus: Int = 0
                 var ready: Int = 0
                 var charging: Int = 0
                 var total: Int = 0
                 var distance: Double = 0.0
                 
-                
                 for item in self.chargingStationModelData?.items.item ?? [] {
-                    
+                    print("EugeneTest item : \(item.statNm!) \(item.lat!) \(item.lng!)")
                     if statNm != (item.statNm!) {     //다를 때 넣어준다.
-                       
-                        
+                        print("EugeneTest before : \(statNm) \(lat) \(lng)")
+                        self.chargingStationAnnotation.append(ChargingStationAnnotation(statNm: statNm, addr: addr, lat: lat, lng: lng, unknownStatus: unknownStatus, ready: ready, charging: charging, total: total, distance: distance))
+                        print("EugeneTest  after : \(chargingStationAnnotation.last!.statNm!) \(chargingStationAnnotation.last!.lat!) \(chargingStationAnnotation.last!.lng!)")
                         statNm = item.statNm!
                         addr = item.addr!
                         lat = item.lat!
@@ -99,11 +99,7 @@ extension ContentView {
                         }
                         total = 1
                         distance = abs(currentLocation.latitude - (Double(item.lat ?? "0.0") ?? 0.0)) + abs(currentLocation.longitude - (Double(item.lng ?? "0.0") ?? 0.0))
-                        
-                        print("FinalTest - before.append: \(item.statNm), lat : \(item.lat), lng : \(item.lng)")
-                        self.chargingStationAnnotation.append(ChargingStationAnnotation(statNm: statNm, addr: addr, lat: lat, lng: lng, unknownStatus: unknownStatus, ready: ready, charging: charging, total: total, distance: distance))
-                        print("FinalTest - after.append: \(chargingStationAnnotation.last?.statNm), lat : \(chargingStationAnnotation.last?.lat), lng : \(chargingStationAnnotation.last?.lng)")
-                        print("FinalTest ----")
+                        print("sortDistance : \(distance)")
                         
                     }
                     else {
