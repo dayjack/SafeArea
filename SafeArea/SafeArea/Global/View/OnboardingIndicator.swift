@@ -21,12 +21,12 @@ struct OnboardingIndicator: View {
                         Capsule()
                             .frame(width: 16, height: 8)
                             .foregroundColor(Color.safeGreen)
-                            .padding(.trailing, 7)
+                            .padding(.trailing, index == 5 ? 0 : 7)
                     } else {
                         Circle()
                             .frame(width: 8, height: 8)
                             .foregroundColor(Color.safeGray)
-                            .padding(.trailing, 7)
+                            .padding(.trailing, index == 5 ? 0 : 7)
                     }
                 }
                 
@@ -38,7 +38,7 @@ struct OnboardingIndicator: View {
 // MARK: - PREVIEW
 struct OnboardingIndicator_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingIndicator(pageNm: .constant(2))
+        OnboardingIndicator(pageNm: .constant(5))
             .previewLayout(.fixed(width: 390, height: 8))
             .padding()
     }
