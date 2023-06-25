@@ -56,7 +56,6 @@ struct MainMapView: View {
                             VStack {
                                 
                                 List {
-                                    
                                     ForEach(chargingStationList, id: \.self) { item in
                                         
                                         HStack {
@@ -125,12 +124,11 @@ struct MainMapView: View {
                                         .padding(.top, 18)
                                         .padding(.leading, 24)
                                     }
-                                    
-                                    
-                                    
+                                    Spacer().frame(height: 250)
                                 }
                                 .listStyle(.plain)
                                 .opacity(Double(listOpacity))
+                                
                                 
                             }
                             .padding(.leading, 4)
