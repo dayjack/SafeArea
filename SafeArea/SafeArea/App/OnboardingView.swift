@@ -8,71 +8,58 @@
 import SwiftUI
 
 struct OnboardingView: View {
-    // MARK: - PROPERTY
-    
     @State var pageNm: Int = 1
-    @AppStorage("onboarding") var isOnboardingViewActive : Bool = false
-    // MARK: - BODY
+    @AppStorage("onboarding") var isOnboardingViewActive: Bool = false
+    
     var body: some View {
-        ZStack() {
-            
-            TabView {
+        ZStack {
+            TabView(selection: $pageNm) { // selection 매개변수로 현재 페이지 번호 추적
                 Image("onbo_1")
-                    .tag(0)
                     .ignoresSafeArea()
-                    
+                    .tag(1) // 페이지 번호 태그
+                
                 Image("onbo_2")
-                    .tag(1)
                     .ignoresSafeArea()
-                    .onAppear {
-                        pageNm += 1
-                    }
-                Image("onbo_3")
                     .tag(2)
+                
+                Image("onbo_3")
                     .ignoresSafeArea()
-                    .onAppear {
-                        pageNm += 1
-                    }
-                Image("onbo_4")
                     .tag(3)
+                
+                Image("onbo_4")
                     .ignoresSafeArea()
-                    .onAppear {
-                        pageNm += 1
-                    }
-                ZStack{
+                    .tag(4)
+                
+                ZStack {
                     Image("onbo_5")
-                        .tag(4)
                         .ignoresSafeArea()
-                    VStack{
+                    VStack {
                         Spacer()
                         OnboardingButton()
                             .frame(width: 217, height: 52)
                             .padding(.bottom, 70)
                             .onTapGesture {
-                                //
-//                                isOnboardingViewActive = false
+                                // isOnboardingViewActive = false
                                 print("dd")
                             }
                     }
                 }
-                .onAppear {
-                    pageNm += 1
-                }
+                .tag(5)
             }
             .tabViewStyle(.page(indexDisplayMode: .never))
-        .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .never))
-            VStack(spacing: 0){
-                OnboardingIndicator(pageNm: pageNm)
+            .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .never))
+            
+            VStack(spacing: 0) {
+                OnboardingIndicator(pageNm: $pageNm)
                     .padding(.top, 90)
                     .padding(.bottom, 23)
                 Spacer()
             }
         }
         .ignoresSafeArea()
-        
-        
     }
 }
+
 
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {

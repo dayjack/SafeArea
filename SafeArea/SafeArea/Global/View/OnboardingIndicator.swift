@@ -10,13 +10,13 @@ import SwiftUI
 struct OnboardingIndicator: View {
     // MARK: - PROPERTY
     
-    @State var pageNm: Int = 2
+    @Binding var pageNm: Int
     
     // MARK: - BODY
     var body: some View {
         VStack(spacing: 0){
             HStack(spacing: 0){
-                ForEach(1..<5, id: \.self) { index in
+                ForEach(1...5, id: \.self) { index in
                     if (pageNm == index){
                         Capsule()
                             .frame(width: 16, height: 8)
@@ -29,15 +29,6 @@ struct OnboardingIndicator: View {
                             .padding(.trailing, 7)
                     }
                 }
-                if (pageNm == 5) {
-                    Capsule()
-                        .frame(width: 16, height: 8)
-                        .foregroundColor(Color.safeGreen)
-                } else {
-                    Circle()
-                        .frame(width: 8, height: 8)
-                        .foregroundColor(Color.safeGray)
-                }
                 
             } //: HSTACK
         } //: VSTACK
@@ -47,7 +38,7 @@ struct OnboardingIndicator: View {
 // MARK: - PREVIEW
 struct OnboardingIndicator_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingIndicator()
+        OnboardingIndicator(pageNm: .constant(2))
             .previewLayout(.fixed(width: 390, height: 8))
             .padding()
     }
