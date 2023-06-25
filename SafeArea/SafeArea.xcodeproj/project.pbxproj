@@ -14,6 +14,7 @@
 		5E5361D32A404A5800BEDD8D /* CoordinateToZscodeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5361D22A404A5800BEDD8D /* CoordinateToZscodeManager.swift */; };
 		5E5361ED2A4091E900BEDD8D /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E5361EC2A4091E900BEDD8D /* Secrets.plist */; };
 		5E5361EF2A40929F00BEDD8D /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5361EE2A40929F00BEDD8D /* LocationViewModel.swift */; };
+		5E8362E72A47D4160098B526 /* OnboardingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8362E62A47D4160098B526 /* OnboardingIndicator.swift */; };
 		5E84753C2A46C72B008A4BBF /* MarkerInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E84753B2A46C72B008A4BBF /* MarkerInfoView.swift */; };
 		5E8D42DA2A418E16000987E1 /* ContentViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8D42D92A418E16000987E1 /* ContentViewExtension.swift */; };
 		5E8D42F62A419499000987E1 /* MessageComposeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8D42F52A419499000987E1 /* MessageComposeView.swift */; };
@@ -68,6 +69,7 @@
 		5E5361D22A404A5800BEDD8D /* CoordinateToZscodeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinateToZscodeManager.swift; sourceTree = "<group>"; };
 		5E5361EC2A4091E900BEDD8D /* Secrets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Secrets.plist; sourceTree = "<group>"; };
 		5E5361EE2A40929F00BEDD8D /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
+		5E8362E62A47D4160098B526 /* OnboardingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingIndicator.swift; sourceTree = "<group>"; };
 		5E84753B2A46C72B008A4BBF /* MarkerInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerInfoView.swift; sourceTree = "<group>"; };
 		5E8D42D92A418E16000987E1 /* ContentViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewExtension.swift; sourceTree = "<group>"; };
 		5E8D42F52A419499000987E1 /* MessageComposeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageComposeView.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 				5EFF36F32A42F800004C768A /* EmergencyButtonView.swift */,
 				7826DD212A4321D900DD0AF1 /* PlaceAnnotationView.swift */,
 				5E84753B2A46C72B008A4BBF /* MarkerInfoView.swift */,
+				5E8362E62A47D4160098B526 /* OnboardingIndicator.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -441,6 +444,7 @@
 				5EFF36F42A42F800004C768A /* EmergencyButtonView.swift in Sources */,
 				78ED04ED2A40848D009FD225 /* Weather.swift in Sources */,
 				783C92C52A4190E900646999 /* FontExtension.swift in Sources */,
+				5E8362E72A47D4160098B526 /* OnboardingIndicator.swift in Sources */,
 				783C92B92A41870900646999 /* ColorExtension.swift in Sources */,
 				783C92D72A41D02C00646999 /* CustomWeekHeader.swift in Sources */,
 				5EFF36EA2A42E978004C768A /* MainMapTopDescriptionView_1.swift in Sources */,
@@ -594,7 +598,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SafeArea/Preview Content\"";
-				DEVELOPMENT_TEAM = UG6UT639QH;
+				DEVELOPMENT_TEAM = C3U3CZ666D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SafeArea/Info.plist;
