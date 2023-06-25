@@ -21,9 +21,6 @@
 		5E8D42F82A41B8F7000987E1 /* GuidePageTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8D42F72A41B8F7000987E1 /* GuidePageTabView.swift */; };
 		5E8D42FA2A41C081000987E1 /* GuideSelectButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8D42F92A41C081000987E1 /* GuideSelectButtonView.swift */; };
 		5EC0ADE02A47DC2A0035B571 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC0ADDF2A47DC2A0035B571 /* OnboardingView.swift */; };
-		5EC0ADE22A47DC910035B571 /* OnboardingView_1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC0ADE12A47DC910035B571 /* OnboardingView_1.swift */; };
-		5EC0ADE42A47E1D20035B571 /* OnboardingView_2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC0ADE32A47E1D20035B571 /* OnboardingView_2.swift */; };
-		5EC0ADE62A47E4020035B571 /* OnboardingView_3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC0ADE52A47E4020035B571 /* OnboardingView_3.swift */; };
 		5EC0ADE82A47E94D0035B571 /* OnboardingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC0ADE72A47E94D0035B571 /* OnboardingButton.swift */; };
 		5EC0ADEA2A47EE7F0035B571 /* MainApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC0ADE92A47EE7F0035B571 /* MainApp.swift */; };
 		5EFF36E22A41C33A004C768A /* GuideDetailView_1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFF36E12A41C33A004C768A /* GuideDetailView_1.swift */; };
@@ -82,9 +79,6 @@
 		5E8D42F72A41B8F7000987E1 /* GuidePageTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidePageTabView.swift; sourceTree = "<group>"; };
 		5E8D42F92A41C081000987E1 /* GuideSelectButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideSelectButtonView.swift; sourceTree = "<group>"; };
 		5EC0ADDF2A47DC2A0035B571 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
-		5EC0ADE12A47DC910035B571 /* OnboardingView_1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView_1.swift; sourceTree = "<group>"; };
-		5EC0ADE32A47E1D20035B571 /* OnboardingView_2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView_2.swift; sourceTree = "<group>"; };
-		5EC0ADE52A47E4020035B571 /* OnboardingView_3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView_3.swift; sourceTree = "<group>"; };
 		5EC0ADE72A47E94D0035B571 /* OnboardingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingButton.swift; sourceTree = "<group>"; };
 		5EC0ADE92A47EE7F0035B571 /* MainApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainApp.swift; sourceTree = "<group>"; };
 		5EFF36E12A41C33A004C768A /* GuideDetailView_1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideDetailView_1.swift; sourceTree = "<group>"; };
@@ -214,9 +208,6 @@
 				7826DD212A4321D900DD0AF1 /* PlaceAnnotationView.swift */,
 				5E84753B2A46C72B008A4BBF /* MarkerInfoView.swift */,
 				5E8362E62A47D4160098B526 /* OnboardingIndicator.swift */,
-				5EC0ADE12A47DC910035B571 /* OnboardingView_1.swift */,
-				5EC0ADE32A47E1D20035B571 /* OnboardingView_2.swift */,
-				5EC0ADE52A47E4020035B571 /* OnboardingView_3.swift */,
 				5EC0ADE72A47E94D0035B571 /* OnboardingButton.swift */,
 			);
 			path = View;
@@ -449,7 +440,6 @@
 				5E84753C2A46C72B008A4BBF /* MarkerInfoView.swift in Sources */,
 				783C92CF2A41CF4C00646999 /* CheckboxStyle.swift in Sources */,
 				5EFF36E42A41C34A004C768A /* GuideDetailView_2.swift in Sources */,
-				5EC0ADE22A47DC910035B571 /* OnboardingView_1.swift in Sources */,
 				5E5361CE2A4048CF00BEDD8D /* ZscodeData.swift in Sources */,
 				5E8D42F62A419499000987E1 /* MessageComposeView.swift in Sources */,
 				5EFF36F62A441BE6004C768A /* ChargingStationAnnotationModel.swift in Sources */,
@@ -466,11 +456,9 @@
 				5E8362E72A47D4160098B526 /* OnboardingIndicator.swift in Sources */,
 				783C92B92A41870900646999 /* ColorExtension.swift in Sources */,
 				783C92D72A41D02C00646999 /* CustomWeekHeader.swift in Sources */,
-				5EC0ADE42A47E1D20035B571 /* OnboardingView_2.swift in Sources */,
 				5EFF36EA2A42E978004C768A /* MainMapTopDescriptionView_1.swift in Sources */,
 				5EFF36E62A41C355004C768A /* GuideDetailView_3.swift in Sources */,
 				5E5361D32A404A5800BEDD8D /* CoordinateToZscodeManager.swift in Sources */,
-				5EC0ADE62A47E4020035B571 /* OnboardingView_3.swift in Sources */,
 				783C92B52A41741900646999 /* CustomBottomTabView.swift in Sources */,
 				5E8D42FA2A41C081000987E1 /* GuideSelectButtonView.swift in Sources */,
 				783C92C92A419FFF00646999 /* MainGuideView.swift in Sources */,
@@ -622,7 +610,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SafeArea/Preview Content\"";
-				DEVELOPMENT_TEAM = UG6UT639QH;
+				DEVELOPMENT_TEAM = C3U3CZ666D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SafeArea/Info.plist;
@@ -656,7 +644,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SafeArea/Preview Content\"";
-				DEVELOPMENT_TEAM = UG6UT639QH;
+				DEVELOPMENT_TEAM = C3U3CZ666D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SafeArea/Info.plist;
