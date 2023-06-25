@@ -49,7 +49,8 @@ struct OnboardingView: View {
                             .frame(width: 217, height: 52)
                             .padding(.bottom, 70)
                             .onTapGesture {
-                                isOnboardingViewActive = false
+                                //
+//                                isOnboardingViewActive = false
                                 print("dd")
                             }
                     }
