@@ -66,10 +66,10 @@ extension ContentView {
                 print(chargingStationModelData?.items.item[0].statNm)
                 
                 // MARK: - PROPERTY
-                var statNm: String = (self.chargingStationModelData?.items.item.first!.statNm)!
-                var addr: String = (self.chargingStationModelData?.items.item.first!.addr)!
-                var lat: String = (self.chargingStationModelData?.items.item.first!.lat)!
-                var lng: String = (self.chargingStationModelData?.items.item.first!.lng)!
+                var statNm: String = ""
+                var addr: String = ""
+                var lat: String = ""
+                var lng: String = ""
                 var unknownStatus: Int = 0
                 var ready: Int = 0
                 var charging: Int = 0
