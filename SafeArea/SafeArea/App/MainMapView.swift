@@ -21,6 +21,7 @@ struct MainMapView: View {
     @Binding var chargingStationList: [ChargingStationAnnotation]
     //    @State var coordinate: CLLocationCoordinate2D= .init()
     
+    @State var isChargingStationCount: Int = 0
     @State var isChargingStationInfo: Bool = false
     @State var chargingStationInfo: ChargingStationAnnotation?
     // MARK: - swiftui_bottom_sheet_drawer
@@ -39,7 +40,7 @@ struct MainMapView: View {
         ZStack {
             Map(coordinateRegion: $region, showsUserLocation: true, userTrackingMode: .constant(userTrackingMode), annotationItems: (self.chargingStationAnnotation ?? .init())) { charging in
                 MapAnnotation(coordinate: .init(latitude: (charging.lat as! NSString).doubleValue, longitude: (charging.lng as! NSString).doubleValue)) {
-                    PlaceAnnotationView(charging: charging, chargingStationInfo: $chargingStationInfo, isChargingStationInfo: $isChargingStationInfo)
+                    PlaceAnnotationView(charging: charging, chargingStationInfo: $chargingStationInfo, isChargingStationInfo: $isChargingStationInfo, isChargingStationCount : $isChargingStationCount)
                 }
             }
             .ignoresSafeArea()
