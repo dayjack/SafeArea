@@ -13,6 +13,7 @@ struct PlaceAnnotationView: View {
     @State var isclicked: Bool = false
     @Binding var chargingStationInfo: ChargingStationAnnotation?
     @Binding var isChargingStationInfo: Bool
+    @Binding var isChargingStationCount: Int
     var body: some View {
         ZStack {
             VStack {
@@ -64,7 +65,19 @@ struct PlaceAnnotationView: View {
                     isclicked.toggle()
                     
                     chargingStationInfo = charging
-                    isChargingStationInfo.toggle()
+//                    isChargingStationInfo.toggle()
+                    if isclicked {
+                        isChargingStationCount += 1
+                    } else {
+                        isChargingStationCount -= 1
+                    }
+                    if isChargingStationCount > 0 {
+                        isChargingStationInfo = true
+                    } else {
+                        isChargingStationInfo = false
+                    }
+                    
+                    
                 }
             }
             .offset(y: isclicked ? -50 : 0)
