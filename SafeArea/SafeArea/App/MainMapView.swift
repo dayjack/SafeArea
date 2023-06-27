@@ -12,8 +12,7 @@ import swiftui_bottom_sheet_drawer
 
 struct MainMapView: View {
     
-    @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.748433, longitude: 127.123), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
-    @StateObject private var regionWrapper = RegionWrapper()
+    @State private var regionWrapper = RegionWrapper(_region: .init())
     @State var userTrackingMode: MapUserTrackingMode = .follow
     @Binding var locationViewModel: LocationViewModel
     @Binding var zscodeData: ZscodeData?
@@ -272,6 +271,7 @@ struct MainMapView: View {
         }
         .onAppear {
             print("LastDance : \(coordinate)")
+            self.regionWrapper = RegionWrapper(_region: MKCoordinateRegion(center: coordinate ?? .init(), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5)))
         }
         
     }

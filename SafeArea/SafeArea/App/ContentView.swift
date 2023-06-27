@@ -30,27 +30,27 @@ struct ContentView: View {
     
     
     var body: some View {
-
+        
         ZStack {
             
-                switch iconSelected {
-                case .guideline:
-                    MainGuideView()
-                case .checklist:
-                    MainCheckListView()
-                case .home:
-                    MainMapView(locationViewModel: $locationViewModel, zscodeData: $zscodeData, weatherData: $weatherData, chargingStationAnnotation: $chargingStationAnnotation, chargingStationList: $chargingStationList)
-                }
-                VStack {
-                    HStack {
-                        Spacer()
-                        EmergencyButtonView(showingAlert: $showingAlert, chargingStationList: $chargingStationList)
-                            .padding(.top, 56)
-                            .padding(.trailing, 15)
-                    }
+            switch iconSelected {
+            case .guideline:
+                MainGuideView()
+            case .checklist:
+                MainCheckListView()
+            case .home:
+                MainMapView(locationViewModel: $locationViewModel, zscodeData: $zscodeData, weatherData: $weatherData, chargingStationAnnotation: $chargingStationAnnotation, chargingStationList: $chargingStationList)
+            }
+            VStack {
+                HStack {
                     Spacer()
-                    CustomBottomTabView(iconSelected: $iconSelected)
+                    EmergencyButtonView(showingAlert: $showingAlert, chargingStationList: $chargingStationList)
+                        .padding(.top, 56)
+                        .padding(.trailing, 15)
                 }
+                Spacer()
+                CustomBottomTabView(iconSelected: $iconSelected)
+            }
             .ignoresSafeArea()
             Color.safeRed.opacity(showingAlert ? 0.25 : 0).allowsHitTesting(false)
             

@@ -21,4 +21,9 @@ class RegionWrapper: ObservableObject {
         )
     }
     @Published var flag = false
+    
+    init(_region: MKCoordinateRegion, flag: Bool = false) {
+        self._region = _region
+        self.flag = flag
+    }
 }
