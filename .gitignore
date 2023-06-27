@@ -112,4 +112,4 @@ iOSInjectionProject/
 *.xcuserstate
 
 # .gitignore 중...
-Secrets.plist
+*.Secrets.plist
