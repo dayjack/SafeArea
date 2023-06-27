@@ -57,7 +57,9 @@ struct MainMapView: View {
                         VStack {
                             
                             List {
-                                ForEach(chargingStationList, id: \.self) { item in
+                                ForEach(self.chargingStationList.sorted { (station1, station2) -> Bool in
+                                    return station1.distance < station2.distance
+                                }, id: \.self) { item in
                                     
                                     HStack {
                                         VStack(alignment: .leading, spacing: 0){
@@ -105,7 +107,7 @@ struct MainMapView: View {
                                                         .pretendarText(fontSize: 12, fontWeight: .regular)
                                                         .foregroundColor(Color.safeRed)
                                                         .padding(.trailing)
-                                                   
+                                                    
                                                     
                                                     Text("\(item.total ?? 0) / \(item.total ?? 0)")
                                                         .pretendarText(fontSize: 12, fontWeight: .regular)
@@ -272,6 +274,8 @@ struct MainMapView: View {
         .onAppear {
             print("LastDance : \(coordinate)")
             self.regionWrapper = RegionWrapper(_region: MKCoordinateRegion(center: coordinate ?? .init(), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5)))
+            //            chargingStationList
+            print("LastSort : \(self.chargingStationList.count)")
         }
         
     }
