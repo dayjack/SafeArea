@@ -26,11 +26,27 @@ struct PlaceAnnotationView: View {
                                     Text(charging?.statNm ?? "데이터 없음")
                                         .pretendarText(fontSize: 16, fontWeight: .semibold)
                                     
-                                    if (charging?.ready == 0) {
-                                        HStack {
+                                    if (charging?.charging == 0 && charging?.ready == 0) {
+                                        HStack(spacing: 0) {
                                             Text("모두 이용 중")
                                                 .pretendarText(fontSize: 12, fontWeight: .regular)
                                                 .foregroundColor(Color.safeRed)
+                                                .padding(.trailing)
+                                           
+                                            
+                                            Text("\(charging?.total ?? 0) / \(charging?.total ?? 0)")
+                                                .pretendarText(fontSize: 12, fontWeight: .regular)
+                                        }
+                                    }
+                                    
+                                    else if (charging?.ready == 0) {
+                                        HStack(spacing: 0) {
+                                            Text("모두 이용 중")
+                                                .pretendarText(fontSize: 12, fontWeight: .regular)
+                                                .foregroundColor(Color.safeRed)
+                                                .padding(.trailing)
+                                            
+                                            
                                             Text("\(charging?.charging ?? 0) / \(charging?.total ?? 0)")
                                                 .pretendarText(fontSize: 12, fontWeight: .regular)
                                         }
@@ -40,6 +56,8 @@ struct PlaceAnnotationView: View {
                                             Text("충전 가능")
                                                 .pretendarText(fontSize: 12, fontWeight: .regular)
                                                 .foregroundColor(.safeGreen)
+                                            
+                                            
                                             Text("\(charging?.charging ?? 0) / \(charging?.total ?? 0)")
                                                 .pretendarText(fontSize: 12, fontWeight: .regular)
                                         }

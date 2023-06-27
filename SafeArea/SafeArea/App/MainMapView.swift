@@ -100,12 +100,27 @@ struct MainMapView: View {
                                             .opacity(0.5)
                                             .padding(.bottom, 9)
                                             
-                                            if (item.ready == 0) {
+                                            if (item.charging == 0 && item.ready == 0) {
                                                 HStack(spacing: 0) {
                                                     Text("모두 이용 중")
                                                         .pretendarText(fontSize: 12, fontWeight: .regular)
                                                         .foregroundColor(Color.safeRed)
                                                         .padding(.trailing)
+                                                   
+                                                    
+                                                    Text("\(item.total ?? 0) / \(item.total ?? 0)")
+                                                        .pretendarText(fontSize: 12, fontWeight: .regular)
+                                                }
+                                            }
+                                            
+                                            else if (item.ready == 0) {
+                                                HStack(spacing: 0) {
+                                                    Text("모두 이용 중")
+                                                        .pretendarText(fontSize: 12, fontWeight: .regular)
+                                                        .foregroundColor(Color.safeRed)
+                                                        .padding(.trailing)
+                                                    
+                                                    
                                                     Text("\(item.charging ?? 0) / \(item.total ?? 0)")
                                                         .pretendarText(fontSize: 12, fontWeight: .regular)
                                                 }
@@ -115,6 +130,8 @@ struct MainMapView: View {
                                                     Text("충전 가능")
                                                         .pretendarText(fontSize: 12, fontWeight: .regular)
                                                         .foregroundColor(.safeGreen)
+                                                    
+                                                    
                                                     Text("\(item.charging ?? 0) / \(item.total ?? 0)")
                                                         .pretendarText(fontSize: 12, fontWeight: .regular)
                                                 }
