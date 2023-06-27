@@ -276,6 +276,10 @@ struct MainMapView: View {
             self.regionWrapper = RegionWrapper(_region: MKCoordinateRegion(center: coordinate ?? .init(), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)))
             //            chargingStationList
             print("LastSort : \(self.chargingStationList.count)")
+            userTrackingMode = .follow
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                userTrackingMode = .none
+            }
         }
         
     }
