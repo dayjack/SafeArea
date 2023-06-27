@@ -44,12 +44,27 @@ struct MarkerInfoView: View {
                     .opacity(0.5)
                     .padding(.bottom, 9)
                     
-                    if (charging?.ready == 0) {
+                    if (charging?.charging == 0 && charging?.ready == 0) {
                         HStack(spacing: 0) {
                             Text("모두 이용 중")
                                 .pretendarText(fontSize: 12, fontWeight: .regular)
                                 .foregroundColor(Color.safeRed)
                                 .padding(.trailing)
+                           
+                            
+                            Text("\(charging?.total ?? 0) / \(charging?.total ?? 0)")
+                                .pretendarText(fontSize: 12, fontWeight: .regular)
+                        }
+                    }
+                    
+                    else if (charging?.ready == 0) {
+                        HStack(spacing: 0) {
+                            Text("모두 이용 중")
+                                .pretendarText(fontSize: 12, fontWeight: .regular)
+                                .foregroundColor(Color.safeRed)
+                                .padding(.trailing)
+                            
+                            
                             Text("\(charging?.charging ?? 0) / \(charging?.total ?? 0)")
                                 .pretendarText(fontSize: 12, fontWeight: .regular)
                         }
@@ -59,6 +74,8 @@ struct MarkerInfoView: View {
                             Text("충전 가능")
                                 .pretendarText(fontSize: 12, fontWeight: .regular)
                                 .foregroundColor(.safeGreen)
+                            
+                            
                             Text("\(charging?.charging ?? 0) / \(charging?.total ?? 0)")
                                 .pretendarText(fontSize: 12, fontWeight: .regular)
                         }
