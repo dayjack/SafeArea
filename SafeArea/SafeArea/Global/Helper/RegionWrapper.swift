@@ -13,7 +13,7 @@ import SwiftUI
 class RegionWrapper: ObservableObject {
     var _region: MKCoordinateRegion = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 37.748433, longitude: 127.123),
-        span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
+        span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
     var region: Binding<MKCoordinateRegion> {
         Binding(
             get: { self._region },
