@@ -44,7 +44,7 @@ struct ContentView: View {
                 VStack {
                     HStack {
                         Spacer()
-                        EmergencyButtonView(showingAlert: $showingAlert)
+                        EmergencyButtonView(showingAlert: $showingAlert, chargingStationList: $chargingStationList)
                             .padding(.top, 56)
                             .padding(.trailing, 15)
                     }
