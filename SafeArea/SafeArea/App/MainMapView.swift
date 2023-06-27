@@ -13,6 +13,7 @@ import swiftui_bottom_sheet_drawer
 struct MainMapView: View {
     
     @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.748433, longitude: 127.123), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
+    @StateObject private var regionWrapper = RegionWrapper()
     @State var userTrackingMode: MapUserTrackingMode = .follow
     @Binding var locationViewModel: LocationViewModel
     @Binding var zscodeData: ZscodeData?
@@ -38,7 +39,7 @@ struct MainMapView: View {
     var body: some View {
         
         ZStack {
-            Map(coordinateRegion: $region, showsUserLocation: true, userTrackingMode: .constant(userTrackingMode), annotationItems: (self.chargingStationAnnotation ?? .init())) { charging in
+            Map(coordinateRegion: regionWrapper.region, showsUserLocation: true, userTrackingMode: .constant(userTrackingMode), annotationItems: (self.chargingStationAnnotation ?? .init())) { charging in
                 MapAnnotation(coordinate: .init(latitude: (charging.lat as! NSString).doubleValue, longitude: (charging.lng as! NSString).doubleValue)) {
                     PlaceAnnotationView(charging: charging, chargingStationInfo: $chargingStationInfo, isChargingStationInfo: $isChargingStationInfo, isChargingStationCount : $isChargingStationCount)
                 }
@@ -249,6 +250,8 @@ struct MainMapView: View {
                 }
                 
             }
+            
+            
         }
         .onAppear {
             print("LastDance : \(coordinate)")
@@ -262,3 +265,12 @@ struct MainMapView: View {
 //        MainMapView()
 //    }
 //}
+
+extension MainMapView {
+    func updateRegion(newRegion: MKCoordinateRegion) {
+        withAnimation {
+            regionWrapper.region.wrappedValue = newRegion
+            regionWrapper.flag.toggle()
+        }
+    }
+}
