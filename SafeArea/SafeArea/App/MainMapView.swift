@@ -48,99 +48,99 @@ struct MainMapView: View {
             .gesture(DragGesture().onChanged { _ in
                 userTrackingMode = .none
             })
-                BottomSheet(
-                    content:
-                        ZStack {
-                            Color.white
-                                .cornerRadius(20)
-                                .offset(y: -14)
-                            VStack {
-                                
-                                List {
-                                    ForEach(chargingStationList, id: \.self) { item in
-                                        
-                                        HStack {
-                                            VStack(alignment: .leading, spacing: 0){
-                                                Text(item.statNm ?? "데이터 없음")
-                                                    .pretendarText(fontSize: 16, fontWeight: .medium)
-                                                    .padding(.bottom, 8)
-                                                HStack {
-                                                    Text(item.addr ?? "주소 미확인")
-                                                        .pretendarText(fontSize: 12, fontWeight: .regular)
-                                                    Text("  |  ")
-                                                    
-                                                    Text(item.distance >= 1000 ? String(format: "%.1fkm", item.distance / 1000) : "\(Int(item.distance))m")
-                                                        .pretendarText(fontSize: 12, fontWeight: .medium)
-                                                        .onAppear {
-                                                            
-                                                            let tempcoor = coordinate
-                                                            
-                                                            let tempLat = tempcoor?.latitude
-                                                            let formattedStartLat = String(format: "%.6f", tempLat ?? 0.0)
-                                                            
-                                                            let tempLng = tempcoor?.longitude
-                                                            let formattedStartLng = String(format: "%.6f", tempLng ?? 0.0)
-                                                            
-                                                            guard let startlat = Double(formattedStartLat), let startlng = Double(formattedStartLng), let endlat = Double(item.lat ?? "0.0"), let endlng = Double(item.lng ?? "0.0") else {
-                                                                return
-                                                            }
-                                                            
-                                                            let startLocation = CLLocation(latitude: startlat, longitude: startlng)
-                                                            let endLocation = CLLocation(latitude: endlat, longitude: endlng)
-                                                            
-                                                            calculateDrivingDistance(startLocation: startLocation, endLocation: endLocation) { drivingDistance in
-                                                                // Use the drivingDistance value here
-                                                                print("Driving distance: \(drivingDistance)")
-                                                                item.distance = drivingDistance
-                                                            }
-                                                            
-                                                        }
-                                                }
-                                                .opacity(0.5)
-                                                .padding(.bottom, 9)
+            BottomSheet(
+                content:
+                    ZStack {
+                        Color.white
+                            .cornerRadius(20)
+                            .offset(y: -14)
+                        VStack {
+                            
+                            List {
+                                ForEach(chargingStationList, id: \.self) { item in
+                                    
+                                    HStack {
+                                        VStack(alignment: .leading, spacing: 0){
+                                            Text(item.statNm ?? "데이터 없음")
+                                                .pretendarText(fontSize: 16, fontWeight: .medium)
+                                                .padding(.bottom, 8)
+                                            HStack {
+                                                Text(item.addr ?? "주소 미확인")
+                                                    .pretendarText(fontSize: 12, fontWeight: .regular)
+                                                Text("  |  ")
                                                 
-                                                if (item.ready == 0) {
-                                                    HStack(spacing: 0) {
-                                                        Text("모두 이용 중")
-                                                            .pretendarText(fontSize: 12, fontWeight: .regular)
-                                                            .foregroundColor(Color.safeRed)
-                                                            .padding(.trailing)
-                                                        Text("\(item.charging ?? 0) / \(item.total ?? 0)")
-                                                            .pretendarText(fontSize: 12, fontWeight: .regular)
+                                                Text(item.distance >= 1000 ? String(format: "%.1fkm", item.distance / 1000) : "\(Int(item.distance))m")
+                                                    .pretendarText(fontSize: 12, fontWeight: .medium)
+                                                    .onAppear {
+                                                        
+                                                        let tempcoor = coordinate
+                                                        
+                                                        let tempLat = tempcoor?.latitude
+                                                        let formattedStartLat = String(format: "%.6f", tempLat ?? 0.0)
+                                                        
+                                                        let tempLng = tempcoor?.longitude
+                                                        let formattedStartLng = String(format: "%.6f", tempLng ?? 0.0)
+                                                        
+                                                        guard let startlat = Double(formattedStartLat), let startlng = Double(formattedStartLng), let endlat = Double(item.lat ?? "0.0"), let endlng = Double(item.lng ?? "0.0") else {
+                                                            return
+                                                        }
+                                                        
+                                                        let startLocation = CLLocation(latitude: startlat, longitude: startlng)
+                                                        let endLocation = CLLocation(latitude: endlat, longitude: endlng)
+                                                        
+                                                        calculateDrivingDistance(startLocation: startLocation, endLocation: endLocation) { drivingDistance in
+                                                            // Use the drivingDistance value here
+                                                            print("Driving distance: \(drivingDistance)")
+                                                            item.distance = drivingDistance
+                                                        }
+                                                        
                                                     }
+                                            }
+                                            .opacity(0.5)
+                                            .padding(.bottom, 9)
+                                            
+                                            if (item.ready == 0) {
+                                                HStack(spacing: 0) {
+                                                    Text("모두 이용 중")
+                                                        .pretendarText(fontSize: 12, fontWeight: .regular)
+                                                        .foregroundColor(Color.safeRed)
+                                                        .padding(.trailing)
+                                                    Text("\(item.charging ?? 0) / \(item.total ?? 0)")
+                                                        .pretendarText(fontSize: 12, fontWeight: .regular)
                                                 }
-                                                else {
-                                                    HStack {
-                                                        Text("충전 가능")
-                                                            .pretendarText(fontSize: 12, fontWeight: .regular)
-                                                            .foregroundColor(.safeGreen)
-                                                        Text("\(item.charging ?? 0) / \(item.total ?? 0)")
-                                                            .pretendarText(fontSize: 12, fontWeight: .regular)
-                                                    }
+                                            }
+                                            else {
+                                                HStack {
+                                                    Text("충전 가능")
+                                                        .pretendarText(fontSize: 12, fontWeight: .regular)
+                                                        .foregroundColor(.safeGreen)
+                                                    Text("\(item.charging ?? 0) / \(item.total ?? 0)")
+                                                        .pretendarText(fontSize: 12, fontWeight: .regular)
                                                 }
-                                                Spacer()
                                             }
                                             Spacer()
                                         }
-                                        .padding(.top, 18)
-                                        .padding(.leading, 24)
+                                        Spacer()
                                     }
-                                    Spacer().frame(height: 250)
+                                    .padding(.top, 18)
+                                    .padding(.leading, 24)
                                 }
-                                .listStyle(.plain)
-                                .opacity(Double(listOpacity))
-                                
-                                
+                                Spacer().frame(height: 250)
                             }
-                            .padding(.leading, 4)
-                            .padding(.vertical, 26)
-                            .opacity(isFixed ? 0 : 1)
+                            .listStyle(.plain)
+                            .opacity(Double(listOpacity))
+                            
+                            
                         }
-                        .shadow(color: .black.opacity(0), radius: 0, x: 0, y: 0)
-                    ,
-                    shift: 252,
-                    topIndentation: 184
-                )
+                        .padding(.leading, 4)
+                        .padding(.vertical, 26)
+                        .opacity(isFixed ? 0 : 1)
+                    }
+                    .shadow(color: .black.opacity(0), radius: 0, x: 0, y: 0)
+                ,
+                shift: 252,
+                topIndentation: 184
+            )
             .onPositionChanged{
                 position = $0
                 if !position.isDown {

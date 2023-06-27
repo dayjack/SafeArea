@@ -13,6 +13,8 @@ struct EmergencyButtonView: View {
     @Binding var showingAlert: Bool
     @State private var isPressing = false
     @State private var timer: Timer? = nil
+    @Binding var chargingStationList: [ChargingStationAnnotation]
+    
     let generator = UIImpactFeedbackGenerator(style: .soft)
     
     // MARK: - BODY
@@ -70,16 +72,16 @@ struct EmergencyButtonView: View {
             Text("화재 경보 및 현재 충전소의 위치 정보가\n함께 신고 접수됩니다.")
         }
         .sheet(isPresented: $isShowingMessageView) {
-            MessageComposeView(recipients: ["01040359646", "01087918713"], messageBody: "전기차에서 불났어요")
+            MessageComposeView(recipients: ["01040359646", "01087918713", "01097483320"], messageBody: "[안전충전 App 발신]\n \n화재 신고합니다. \n \n- 충전소 이름 :  \(chargingStationList[0].statNm!), \n- 현 위치 : \(chargingStationList[0].addr!), \n- 주위에 \(chargingStationList[0].charging!)대의 전기차 충전 중 ")
         }
         
     }
 }
 
 // MARK: - PREVIEW
-struct EmergencyButtonView_Previews: PreviewProvider {
-    static var previews: some View {
-        EmergencyButtonView(showingAlert: .constant(false))
-            .previewLayout(.sizeThatFits)
-    }
-}
+//struct EmergencyButtonView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        EmergencyButtonView(showingAlert: .constant(false))
+//            .previewLayout(.sizeThatFits)
+//    }
+//}
