@@ -273,7 +273,7 @@ struct MainMapView: View {
         }
         .onAppear {
             print("LastDance : \(coordinate)")
-            self.regionWrapper = RegionWrapper(_region: MKCoordinateRegion(center: coordinate ?? .init(), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5)))
+            self.regionWrapper = RegionWrapper(_region: MKCoordinateRegion(center: coordinate ?? .init(), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)))
             //            chargingStationList
             print("LastSort : \(self.chargingStationList.count)")
         }
