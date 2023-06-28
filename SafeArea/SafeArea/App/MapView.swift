@@ -11,7 +11,7 @@ import Alamofire
 
 struct MapView: View {
     
-    @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.748433, longitude: 127.123), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
+    @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.748433, longitude: 127.123), span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
     @StateObject var locationManager: LocationViewModel = LocationViewModel()
     @State var zscodeData: ZscodeData?
     @State var chargingStationModelData : ChargingStation?
