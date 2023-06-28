@@ -13,11 +13,9 @@ struct MainMapTopDescriptionView_1: View {
     let chargeDescription = Text("물에 의한 ")
         + Text("감전 위험")
             .bold()
-            .foregroundColor(Color.red)
         + Text("이 있어요.\n")
     + Text("실내 충전소")
         .bold()
-        .foregroundColor(Color.red)
      + Text("를 권장해요.")
     
     // MARK: - BODY
