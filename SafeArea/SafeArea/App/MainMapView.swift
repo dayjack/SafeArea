@@ -217,6 +217,7 @@ struct MainMapView: View {
                                                 .foregroundColor(.black)
                                         }
                                     }
+                                    .padding(.top, 4)
                             }
                             
                             
@@ -228,6 +229,7 @@ struct MainMapView: View {
                                 
                             } label: {
                                 Circle().frame(width: 48, height: 48)
+                                    .padding(.top, 15)
                                     .foregroundColor(.white)
                                     .overlay {
                                         
@@ -236,7 +238,8 @@ struct MainMapView: View {
                                             .scaledToFit()
                                             .frame(width: 18.4, height: 18.4)
                                             .foregroundColor(.black)
-                                        
+                                            .padding(.top, 16.5)
+                                            .padding(.trailing, 1)
                                     }
                                     .shadow(radius: 4, x: 0 , y: 1)
                             }
@@ -245,7 +248,7 @@ struct MainMapView: View {
                             
                             
                         }
-                        .padding(.bottom, 130)
+                        .padding(.bottom, 115)
                         
                     }
                     .opacity(isListShowing ? 0 : 1)
