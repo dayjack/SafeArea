@@ -28,7 +28,7 @@ struct SafeAreaApp: App {
     
     var body: some Scene {
         WindowGroup {
-            MainApp()
+            SplashScreenView()
         }
         
     }
