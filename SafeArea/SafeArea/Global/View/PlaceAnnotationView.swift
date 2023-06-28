@@ -25,6 +25,8 @@ struct PlaceAnnotationView: View {
                                 VStack(alignment: .leading) {
                                     Text(charging?.statNm ?? "데이터 없음")
                                         .pretendarText(fontSize: 16, fontWeight: .semibold)
+                                        .lineLimit(1)
+//                                        .foregroundColor(Color.red)
                                     
                                     if (charging?.charging == 0 && charging?.ready == 0) {
                                         HStack(spacing: 0) {
