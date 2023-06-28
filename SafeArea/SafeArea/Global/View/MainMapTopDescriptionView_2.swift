@@ -11,12 +11,10 @@ struct MainMapTopDescriptionView_2: View {
     // MARK: - PROPERTY
     let chargeDescription = Text("배터리 발열 위험")
         .bold()
-        .foregroundColor(Color.red)
     + Text("이 있어요.\n")
     
     + Text("지붕이 있는 충전소")
         .bold()
-        .foregroundColor(Color.red)
     
     + Text("를 권장해요.")
     
