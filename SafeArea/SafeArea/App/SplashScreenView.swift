@@ -11,6 +11,7 @@ struct SplashScreenView: View {
     @State private var isActive = false
     @State private var size = 0.7
     @State private var opacity = 0.5
+    @State private var rotationAngle: Angle = .degrees(0)
     
     var body: some View {
         if isActive {
@@ -21,6 +22,11 @@ struct SplashScreenView: View {
                 HStack{
                     Spacer()
                     Image("launchIcon")
+                        .rotationEffect(rotationAngle)
+                        .animation(.interpolatingSpring(stiffness: 100, damping: 5).delay(0.2)) // 스프링 애니메이션 설정
+                        .onAppear {
+                            rotationAngle = .degrees(180) // 회전 각도 업데이트
+                        }
                     Spacer()
                 }
                 Spacer()
