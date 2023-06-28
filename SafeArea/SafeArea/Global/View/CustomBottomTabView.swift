@@ -48,9 +48,10 @@ struct CustomBottomTabView: View {
                             .shadow(radius: 7)
                             .overlay {
                                 Image("icon_home")
+                                    .resizable()
                                     .grayscale(imageGrayScale)
                                     .opacity(imageOpacity)
-                                    .frame(width: 49, height: 49)
+                                    .frame(width: 65.1, height: 66.3)
                             }
                             .onTapGesture {
                                 iconSelected = .home
@@ -108,7 +109,7 @@ extension CustomBottomTabView {
             withAnimation(.easeInOut(duration: 0.25)) {
                 self.imageOpacity = 0.4
                 self.imageGrayScale = 1
-                self.angle = Angle(degrees: -45)
+                self.angle = Angle(degrees: -90)
             }
         case .home:
             withAnimation(.easeInOut(duration: 0.25)) {
@@ -120,7 +121,7 @@ extension CustomBottomTabView {
             withAnimation(.easeInOut(duration: 0.25)) {
                 self.imageOpacity = 0.4
                 self.imageGrayScale = 1
-                self.angle = Angle(degrees: -45)
+                self.angle = Angle(degrees: 90)
             }
         }
     }
