@@ -12,6 +12,8 @@ import swiftui_bottom_sheet_drawer
 
 struct MainMapView: View {
     
+    @State private var uuidString = ""
+    
     @State private var regionWrapper = RegionWrapper(_region: .init())
     @State var userTrackingMode: MapUserTrackingMode = .follow
     @Binding var locationViewModel: LocationViewModel
@@ -19,9 +21,7 @@ struct MainMapView: View {
     @Binding var weatherData: Weather?
     @Binding var chargingStationAnnotation: [ChargingStationAnnotation]
     @Binding var chargingStationList: [ChargingStationAnnotation]
-    //    @State var coordinate: CLLocationCoordinate2D= .init()
     
-    @State var isChargingStationCount: Int = 0
     @State var isChargingStationInfo: Bool = false
     @State var chargingStationInfo: ChargingStationAnnotation?
     // MARK: - swiftui_bottom_sheet_drawer
@@ -40,14 +40,18 @@ struct MainMapView: View {
         ZStack {
             Map(coordinateRegion: regionWrapper.region, showsUserLocation: true, userTrackingMode: .constant(userTrackingMode), annotationItems: (self.chargingStationAnnotation ?? .init())) { charging in
                 MapAnnotation(coordinate: .init(latitude: (charging.lat as! NSString).doubleValue, longitude: (charging.lng as! NSString).doubleValue)) {
-                    PlaceAnnotationView(charging: charging, chargingStationInfo: $chargingStationInfo, isChargingStationInfo: $isChargingStationInfo, isChargingStationCount : $isChargingStationCount)
+                    PlaceAnnotationView(charging: charging, uuidString: $uuidString, chargingStationInfo: $chargingStationInfo, isChargingStationInfo: $isChargingStationInfo)
+                        
                 }
             }
             .ignoresSafeArea()
             .tint(.safeRed)
             .gesture(DragGesture().onChanged { _ in
                 userTrackingMode = .none
+                uuidString = ""
+                isChargingStationInfo = false
             })
+            
             BottomSheet(
                 content:
                     ZStack {

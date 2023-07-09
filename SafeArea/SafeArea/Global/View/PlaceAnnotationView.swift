@@ -9,11 +9,13 @@ import SwiftUI
 
 struct PlaceAnnotationView: View {
     
+    
     var charging: ChargingStationAnnotation?
+    @Binding var uuidString: String
+    let uuid: UUID = UUID()
     @State var isclicked: Bool = false
     @Binding var chargingStationInfo: ChargingStationAnnotation?
     @Binding var isChargingStationInfo: Bool
-    @Binding var isChargingStationCount: Int
     var body: some View {
         ZStack {
             VStack {
@@ -26,7 +28,7 @@ struct PlaceAnnotationView: View {
                                     Text(charging?.statNm ?? "데이터 없음")
                                         .pretendarText(fontSize: 16, fontWeight: .semibold)
                                         .lineLimit(1)
-//                                        .foregroundColor(Color.red)
+                                    //                                        .foregroundColor(Color.red)
                                     
                                     if (charging?.charging == 0 && charging?.ready == 0) {
                                         HStack(spacing: 0) {
@@ -34,7 +36,7 @@ struct PlaceAnnotationView: View {
                                                 .pretendarText(fontSize: 12, fontWeight: .regular)
                                                 .foregroundColor(Color.safeRed)
                                                 .padding(.trailing)
-                                           
+                                            
                                             
                                             Text("\(charging?.total ?? 0) / \(charging?.total ?? 0)")
                                                 .pretendarText(fontSize: 12, fontWeight: .regular)
@@ -80,29 +82,25 @@ struct PlaceAnnotationView: View {
                     } else {
                         Image("placeMarker_1")
                     }
-                } .onTapGesture {
-                    print("clicked")
-                    isclicked.toggle()
-                    
-                    chargingStationInfo = charging
-//                    isChargingStationInfo.toggle()
-                    if isclicked {
-                        isChargingStationCount += 1
-                    } else {
-                        isChargingStationCount -= 1
-                    }
-                    if isChargingStationCount > 0 {
-                        isChargingStationInfo = true
-                    } else {
-                        isChargingStationInfo = false
-                    }
-                    
-                    
                 }
             }
-            .offset(y: isclicked ? -50 : 0)
             
+            .offset(y: isclicked ? -50 : 0)
         }
+        .onTapGesture {
+            uuidString = uuid.uuidString
+        }
+        .onChange(of: uuidString) { newValue in
+
+            if newValue == uuid.uuidString {
+                isclicked = true
+                isChargingStationInfo = true
+                chargingStationInfo = charging
+            } else {
+                isclicked = false
+            }
+        }
+        
         
     }
 }
