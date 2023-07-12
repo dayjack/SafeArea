@@ -22,7 +22,8 @@ struct EmergencyButtonView: View {
         ZStack{
             Image("emergencyButton")
                 .resizable()
-                .frame(width: 88, height: 88)
+            //                .frame(width: 88, height: 88)
+                .frame(width: deviceSize(), height: deviceSize())
                 .shadow(color: Color.black.opacity(0.25), radius: 10, x: 0, y: 4)
                 .overlay(
                     Circle()
