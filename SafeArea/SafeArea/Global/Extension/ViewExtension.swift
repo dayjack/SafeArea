@@ -151,4 +151,74 @@ extension View {
         // 기타 플랫폼에 대한 기본 값 반환
         return 88
     }
+    
+    func onboardingIndicatorSize() -> CGFloat {
+        
+        #if os(iOS)
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            
+            print("Resizing: \(UIScreen.main.nativeBounds.height)")
+            
+            switch UIScreen.main.nativeBounds.height {
+                
+            case 2532, 2556: // iPhone 14, iPhone 14 pro, iPhone 13, iPhone 13 Pro
+                return 90
+            case 2778: // iPhone 13 Pro max
+                return 98
+            case 2796: // iPhone 14 Pro max
+                return 99
+            case 2340: // iPhone 13 mini, iPhone 12 mini
+                return 86
+            case 1334: // iPhnoe SE 3rd generation
+                return 32
+            case 1792: // iPhone 11
+                return 90
+            case 2436: // iPhone 11 Pro
+                return 86
+            case 2688: // iPhone 11 Pro max
+                return 95
+                
+            default:
+                return 56
+            }
+        }
+        #endif
+        // 기타 플랫폼에 대한 기본 값 반환
+        return 88
+    }
+    
+    func onboardingButtonSize() -> CGFloat {
+        
+        #if os(iOS)
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            
+            print("Resizing: \(UIScreen.main.nativeBounds.height)")
+            
+            switch UIScreen.main.nativeBounds.height {
+                
+            case 2532, 2556: // iPhone 14, iPhone 14 pro, iPhone 13, iPhone 13 Pro
+                return 70
+            case 2778: // iPhone 13 Pro max
+                return 70
+            case 2796: // iPhone 14 Pro max
+                return 70
+            case 2340: // iPhone 13 mini, iPhone 12 mini
+                return 70
+            case 1334: // iPhnoe SE 3rd generation
+                return 90
+            case 1792: // iPhone 11
+                return 70
+            case 2436: // iPhone 11 Pro
+                return 70
+            case 2688: // iPhone 11 Pro max
+                return 70
+                
+            default:
+                return 56
+            }
+        }
+        #endif
+        // 기타 플랫폼에 대한 기본 값 반환
+        return 88
+    }
 }
