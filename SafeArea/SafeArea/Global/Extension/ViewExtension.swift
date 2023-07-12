@@ -115,6 +115,40 @@ extension View {
             completion(route.distance)
         }
     }
-
-
+    
+    
+    func deviceSize() -> CGFloat {
+        
+        #if os(iOS)
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            
+            print("Resizing: \(UIScreen.main.nativeBounds.height)")
+            
+            switch UIScreen.main.nativeBounds.height {
+                
+            case 2532, 2556: // iPhone 14, iPhone 14 pro, iPhone 13, iPhone 13 Pro
+                return 88
+            case 2778: // iPhone 13 Pro max
+                return 96
+            case 2796: // iPhone 14 Pro max
+                return 97
+            case 2340: // iPhone 13 mini, iPhone 12 mini
+                return 84
+            case 1334: // iPhnoe SE 3rd generation
+                return 82
+            case 1792: // iPhone 11
+                return 93
+            case 2436: // iPhone 11 Pro
+                return 84
+            case 2688: // iPhone 11 Pro max
+                return 93
+                
+            default:
+                return 56
+            }
+        }
+        #endif       
+        // 기타 플랫폼에 대한 기본 값 반환
+        return 88
+    }
 }

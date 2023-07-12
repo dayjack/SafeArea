@@ -45,8 +45,8 @@ struct ContentView: View {
                 HStack {
                     Spacer()
                     EmergencyButtonView(showingAlert: $showingAlert, chargingStationList: $chargingStationList)
-                        .padding(.top, 56)
-                        .padding(.trailing, 15)
+                        .padding(.top, emergencyBtnPaddingTop())
+                        .padding(.trailing, emergencyBtnPaddingTrailng())
                 }
                 Spacer()
                 CustomBottomTabView(iconSelected: $iconSelected)
@@ -78,4 +78,65 @@ enum IconName: String {
     case guideline = "icon_guideline"
     case checklist = "icon_checklist"
     case home = "icon_home"
+}
+
+extension ContentView {
+    
+    func emergencyBtnPaddingTop() -> CGFloat {
+#if os(iOS)
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            switch UIScreen.main.nativeBounds.height {
+            case 2532, 2556: // iPhone 14, iPhone 14 pro, iPhone 13, iPhone 13 Pro, iPhone 12, iPhone 12 Pro
+                return 56
+            case 2778: // iPhone 13 Pro max, iPhone 12 Pro max
+                return 60.96
+            case 2796: // iPhone 14 Pro max
+                return 61
+            case 2340: // iPhone 13 mini, iPhone 12 mini
+                return 54
+            case 1334: // iPhone SE 3rd generation
+                return 53
+            case 1792: // iPhone 11
+                return 59
+            case 2436: // iPhone 11 Pro
+                return 54
+            case 2688: // iPhone 11 Pro max
+                return 59
+                
+            default:
+                return 56
+            }
+        }
+#endif
+        return 0.0
+    }
+    
+    func emergencyBtnPaddingTrailng() -> CGFloat {
+#if os(iOS)
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            switch UIScreen.main.nativeBounds.height {
+            case 2532, 2556: // iPhone 14, iPhone 14 Pro, iPhone 13, iPhone 13 Pro
+                return 15
+            case 2778: // iPhone 13 Pro, iPhone 14 Plus
+                return 16
+            case 2796: // iPhone 14 Pro max
+                return 15
+            case 2340: // iPhone 13 mini, iPhone 12 mini
+                return 14
+            case 1334: // iPhnoe SE 3rd generation
+                return 15
+            case 1792: // iPhone 11
+                return 16
+            case 2436: // iPhone 11 Pro
+                return 15
+            case 2688: // iPhone 11 Pro max
+                return 16
+                
+            default:
+                return 15
+            }
+        }
+#endif
+        return 0.0
+    }
 }
