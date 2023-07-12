@@ -55,7 +55,7 @@ struct MainCheckListView: View {
                         .frame(width: 190)
                         .frame(height: 10)
                         .tint(.safeGreen)
-//                        .gaugeStyle(.accessoryLinearCapacity)
+                        //                        .gaugeStyle(.accessoryLinearCapacity)
                         
                         Text("\(Int(progress * 100))%")
                             .frame(height: 19)
@@ -93,8 +93,9 @@ struct MainCheckListView: View {
                 .frame(height: 21)
                 .frame(maxWidth: .infinity)
             // MARK: - 체크 리스트
+            ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 13) {
-                    Spacer().frame(height: 1).frame(maxWidth: .infinity)
+                    Spacer().frame(height: 10).frame(maxWidth: .infinity)
                     ForEach(checkList.indices, id: \.self) { index in
                         let item = checkList[index]
                         Toggle(isOn: $bools[index]) {
@@ -107,7 +108,7 @@ struct MainCheckListView: View {
                     }
                     .ignoresSafeArea()
                     .onChange(of: bools) { newValue in
-
+                        
                         print("Calendar selectedDate: \(selectedDate)")
                         print("Calendar selectedDate: \(koreanTime(date: Date()))")
                         if extractLocalDate(from: selectedDate) == extractLocalDate(from: koreanTime(date: Date())) {
@@ -123,8 +124,11 @@ struct MainCheckListView: View {
                     }
                     
                 }
-            .padding(.leading, 24)
-            .frame(maxWidth: .infinity)
+                .padding(.leading, 24)
+                .frame(maxWidth: .infinity)
+                Spacer().frame(height: 150).frame(maxWidth: .infinity)
+            }
+            
             Spacer()
         }
         .ignoresSafeArea(.all)
