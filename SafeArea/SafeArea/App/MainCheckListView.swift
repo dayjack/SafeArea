@@ -43,7 +43,7 @@ struct MainCheckListView: View {
                     .pretendarText(fontSize: 24, fontWeight: .semibold)
                 Text("오늘 하루 나의 차는 안전한가요?")
                     .pretendarText(fontSize: 14, fontWeight: .medium)
-                    .padding(.bottom, 45)
+                    .padding(.bottom, 26)
                 
                 VStack(alignment: .leading, spacing: 10) {
                     Text("나의 안전지수 100% 충전 챌린지")
@@ -95,7 +95,7 @@ struct MainCheckListView: View {
             // MARK: - 체크 리스트
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 13) {
-                    Spacer().frame(height: 10).frame(maxWidth: .infinity)
+                    Spacer().frame(height: 1).frame(maxWidth: .infinity)
                     ForEach(checkList.indices, id: \.self) { index in
                         let item = checkList[index]
                         Toggle(isOn: $bools[index]) {
