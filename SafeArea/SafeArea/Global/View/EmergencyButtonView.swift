@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import Alamofire
+
 
 struct EmergencyButtonView: View {
     // MARK: - PROPERTY
@@ -14,7 +16,7 @@ struct EmergencyButtonView: View {
     @State private var isPressing = false
     @State private var timer: Timer? = nil
     @Binding var chargingStationList: [ChargingStationAnnotation]
-    
+    @Binding var weatherData: Weather?
     let generator = UIImpactFeedbackGenerator(style: .soft)
     
     // MARK: - BODY
@@ -22,8 +24,7 @@ struct EmergencyButtonView: View {
         ZStack{
             Image("emergencyButton")
                 .resizable()
-            //                .frame(width: 88, height: 88)
-                .frame(width: deviceSize(), height: deviceSize())
+                .frame(width: 88, height: 88)
                 .shadow(color: Color.black.opacity(0.25), radius: 10, x: 0, y: 4)
                 .overlay(
                     Circle()
@@ -68,7 +69,21 @@ struct EmergencyButtonView: View {
         )
         .alert("119 긴급 신고를 하시겠습니까?", isPresented: $showingAlert) {
             Button("취소", role: .cancel) {}
-            Button("신고하기", role: .destructive) {isShowingMessageView = true}
+            Button("신고하기", role: .destructive) {
+                isShowingMessageView = true
+                print("dd \(weatherData?.weather![0].id)")
+                
+                
+                
+                var url = URL(string: "http://35.72.228.224/safeArea/insertEVCarData.php")!
+                let dangerparams =
+                ["temp" : weatherData?.main?.temp, "weatherStatus" : weatherData?.weather![0].id, "chargeName" : "\(chargingStationList[0].statNm!)", "chargeAddress": "\(chargingStationList[0].addr!)"] as Dictionary
+                
+                AF.request(url, method: .get, parameters: dangerparams).responseString {
+                    print($0)
+                }
+                
+            }
         }message: {
             Text("화재 경보 및 현재 충전소의 위치 정보가\n함께 신고 접수됩니다.")
         }
