@@ -110,7 +110,7 @@ struct MainMapTopView: View {
                     MainMapTopDescriptionView_3()
                         .padding(.leading, 3)
                     
-                case 511, 701, 711, 721, 731, 741, 751, 761, 762, 771, 800, 802, 803, 804, 903, 905, 906, 951, 952, 953, 954, 955, 956, 957, 958, 959:
+                case 511, 701, 711, 721, 731, 741, 751, 761, 762, 771, 800, 801 ,802, 803, 804, 903, 905, 906, 951, 952, 953, 954, 955, 956, 957, 958, 959:
                     MainMapTopDescriptionView_4()
                         .padding(.leading, 3)
                 default:
@@ -124,7 +124,9 @@ struct MainMapTopView: View {
             }
             .padding(.top, 54)
             .padding(.leading, 21)
-            
+            .onAppear {
+                print("weather Data : \(weatherData?.weather?.first?.id)")
+            }
 //            HStack {
 //                Spacer()
 //                EmergencyButtonView()
