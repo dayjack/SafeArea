@@ -21,7 +21,11 @@ class ChargingStationAnnotation : ObservableObject, Identifiable {
     
     var distance = 0.0
     
-    init(statNm: String? = nil, addr: String? = nil, lat: String? = nil, lng: String? = nil, unknownStatus: Int? = nil, ready: Int? = nil, charging: Int? = nil, total: Int? = nil, distance: Double = 0.0) {
+    var chgerID: String = ""
+    var chgerType: String = ""
+
+    
+    init(statNm: String? = nil, addr: String? = nil, lat: String? = nil, lng: String? = nil, unknownStatus: Int? = nil, ready: Int? = nil, charging: Int? = nil, total: Int? = nil, distance: Double = 0.0, chgerID: String, chgerType: String) {
         self.statNm = statNm
         self.addr = addr
         self.lat = lat
@@ -30,6 +34,9 @@ class ChargingStationAnnotation : ObservableObject, Identifiable {
         self.ready = ready
         self.charging = charging
         self.total = total
+        self.distance = distance
+        self.chgerID = chgerID
+        self.chgerType = chgerType
     }
 }
 

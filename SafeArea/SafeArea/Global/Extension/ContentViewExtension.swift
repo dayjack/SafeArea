@@ -75,17 +75,21 @@ extension ContentView {
                 var charging: Int = 0
                 var total: Int = 0
                 var distance: Double = 0.0
+                var chgerID: String = ""
+                var chgerType: String = ""
                 
                 for item in self.chargingStationModelData?.items.item ?? [] {
                     print("EugeneTest item : \(item.statNm!) \(item.lat!) \(item.lng!)")
                     if statNm != (item.statNm!) {     //다를 때 넣어준다.
                         print("EugeneTest before : \(statNm) \(lat) \(lng)")
-                        self.chargingStationAnnotation.append(ChargingStationAnnotation(statNm: statNm, addr: addr, lat: lat, lng: lng, unknownStatus: unknownStatus, ready: ready, charging: charging, total: total, distance: distance))
+                        self.chargingStationAnnotation.append(ChargingStationAnnotation(statNm: statNm, addr: addr, lat: lat, lng: lng, unknownStatus: unknownStatus, ready: ready, charging: charging, total: total, distance: distance, chgerID: chgerID , chgerType: chgerType))
                         print("EugeneTest  after : \(chargingStationAnnotation.last!.statNm!) \(chargingStationAnnotation.last!.lat!) \(chargingStationAnnotation.last!.lng!)")
                         statNm = item.statNm!
                         addr = item.addr!
                         lat = item.lat!
                         lng = item.lng!
+                        chgerID = item.chgerID ?? ""
+                        chgerType = item.chgerType ?? ""
                         unknownStatus = 0
                         ready = 0
                         charging = 0
@@ -120,7 +124,7 @@ extension ContentView {
                 if self.chargingStationAnnotation.count != 0 {
                     self.chargingStationAnnotation.remove(at: 0)
                 }
-                self.chargingStationAnnotation.append(ChargingStationAnnotation(statNm: statNm, addr: addr, lat: lat, lng: lng, unknownStatus: unknownStatus, ready: ready, charging: charging, total: total))
+                self.chargingStationAnnotation.append(ChargingStationAnnotation(statNm: statNm, addr: addr, lat: lat, lng: lng, unknownStatus: unknownStatus, ready: ready, charging: charging, total: total, chgerID: chgerID, chgerType: chgerType))
                 
                 for item in self.chargingStationAnnotation {
                     print("itemstatNm : \(item.statNm!)")

@@ -73,11 +73,14 @@ struct EmergencyButtonView: View {
                 isShowingMessageView = true
                 print("dd \(weatherData?.weather![0].id)")
                 
-                
+                /*
+                 var chgerID: String = ""
+                 var chgerType: String = ""
+                 */
                 
                 var url = URL(string: "http://35.72.228.224/safeArea/insertEVCarData.php")!
                 let dangerparams =
-                ["temp" : weatherData?.main?.temp, "weatherStatus" : weatherData?.weather![0].id, "chargeName" : "\(chargingStationList[0].statNm!)", "chargeAddress": "\(chargingStationList[0].addr!)"] as Dictionary
+                ["temp" : weatherData?.main?.temp, "weatherStatus" : weatherData?.weather![0].id, "chargeName" : "\(chargingStationList[0].statNm!)", "chargeAddress": "\(chargingStationList[0].addr!)", "humidity" : weatherData?.main?.humidity, "pressure" : weatherData?.main?.pressure, "chgerID" : chargingStationList[0].chgerID, "chgerType" : chargingStationList[0].chgerType] as Dictionary
                 
                 AF.request(url, method: .get, parameters: dangerparams).responseString {
                     print($0)
